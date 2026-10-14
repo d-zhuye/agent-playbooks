@@ -1,0 +1,3 @@
+# Notes are append-only lines, so when two machines add notes at once, keep both sides.
+notes/*.md merge=union
+notes/README.md merge=text

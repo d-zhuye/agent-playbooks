@@ -1,0 +1,13 @@
+# Merge into ~/.codex/config.toml. If a [sandbox_workspace_write] table already exists, add these
+# paths to its writable_roots instead of adding a second table (a duplicate table stops Codex).
+
+[projects."REPO"]
+trust_level = "trusted"
+
+# Let Codex add playbook notes and journal entries from any project (see ~/.codex/AGENTS.md).
+[sandbox_workspace_write]
+writable_roots = [
+  "REPO/notes",
+  "REPO/journal",
+  "REPO/.checks",
+]

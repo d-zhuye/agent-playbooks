@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "additionalDirectories": ["REPO"],
+    "allow": [
+      "Edit(/REPO/notes/**)",
+      "Edit(/REPO/journal/**)",
+      "Edit(/REPO/.checks/**)",
+      "Bash(git -C REPO add *)",
+      "Bash(git -C REPO commit *)",
+      "Bash(git -C REPO pull --rebase)",
+      "Bash(git -C REPO push)",
+      "Bash(git -C REPO rev-parse HEAD)",
+      "Bash(git -C REPO log *)"
+    ]
+  }
+}

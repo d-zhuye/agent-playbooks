@@ -1,0 +1,33 @@
+# Publishing notes and journal entries to the agent-playbooks repo (see ~/.codex/AGENTS.md).
+# Allowed commands run without a prompt, outside the sandbox, so commit and push can reach .git and the network.
+
+prefix_rule(
+    pattern = ["git", "-C", "REPO", "add", "notes", "journal"],
+    decision = "allow",
+    justification = "Stage playbook notes and journal entries",
+)
+
+prefix_rule(
+    pattern = ["git", "-C", "REPO", "commit", "-m"],
+    decision = "allow",
+    justification = "Commit playbook notes and journal entries",
+)
+
+prefix_rule(
+    pattern = ["git", "-C", "REPO", "pull", "--rebase"],
+    decision = "allow",
+    justification = "Sync the playbooks repo before pushing",
+)
+
+prefix_rule(
+    pattern = ["git", "-C", "REPO", "push"],
+    decision = "allow",
+    justification = "Publish playbook notes and journal entries",
+)
+
+# Prefix matching would also allow force pushes; block the common forms.
+prefix_rule(
+    pattern = ["git", "-C", "REPO", "push", ["--force", "-f", "--force-with-lease"]],
+    decision = "forbidden",
+    justification = "Never rewrite the shared playbooks history",
+)

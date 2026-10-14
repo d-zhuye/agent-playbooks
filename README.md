@@ -1,5 +1,7 @@
 # Agent playbooks
 
+New machine? Start with [SETUP.md](SETUP.md).
+
 What has worked, and what hasn't, across projects, so agents don't relearn the same lessons.
 Each playbook below says what it does, why to use it, and how to install it. Agents: read this
 index, then open the playbooks that fit the project. Also search [journal/](journal/) for
@@ -22,19 +24,13 @@ problems seen before that aren't playbooks yet.
 
 ## Using a playbook in a project
 
-On the owner's machine, Claude Code already has this rule at user level (`~/.claude/CLAUDE.md`),
-so every project knows to leave notes. For other agent tools, paste this into the project's
-`AGENTS.md` once, filling in the path to this repo and the playbooks you installed:
+Claude Code and Codex get the rules for using this repo at user level, so every project knows to
+leave notes and to check for new playbooks. [SETUP.md](SETUP.md) installs them on a machine, and
+covers other agent tools too. The rules themselves are in
+[setup/agent-rules.md](setup/agent-rules.md).
 
-```md
-- This project uses playbooks from TODO(project): <path to agent-playbooks>: TODO(project): <names>.
-  When one helps, fails, needs changing or is skipped, add one line to
-  <path>/notes/<playbook>.md (format in notes/README.md) and commit it there.
-  When a problem keeps recurring and no playbook covers it, add or update a journal entry
-  (<path>/CONTRIBUTING.md).
-```
-
-Those notes are how the reviews know what's working.
+Those notes are how the reviews know what's working. `.checks/` is ignored by git: each machine
+keeps its own record of when each project last checked.
 
 ## Adding and reviewing
 

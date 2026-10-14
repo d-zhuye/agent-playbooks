@@ -1,7 +1,8 @@
 # Adding to the playbooks
 
 This repo is a journal of what worked and what didn't across projects, so agents don't have to
-learn the same lessons again. It has three kinds of files:
+learn the same lessons again. The goal is one shared way of starting, building and maintaining
+many projects, so work goes faster and feels the same in each. It has three kinds of files:
 
 | Kind | Where | What it is | Bar to add |
 |---|---|---|---|
