@@ -22,8 +22,9 @@ problems seen before that aren't playbooks yet.
 
 ## Using a playbook in a project
 
-When you install a playbook, also paste this into the project's `AGENTS.md`, once, filling in
-the path to this repo and the playbooks you installed:
+On the owner's machine, Claude Code already has this rule at user level (`~/.claude/CLAUDE.md`),
+so every project knows to leave notes. For other agent tools, paste this into the project's
+`AGENTS.md` once, filling in the path to this repo and the playbooks you installed:
 
 ```md
 - This project uses playbooks from TODO(project): <path to agent-playbooks>: TODO(project): <names>.

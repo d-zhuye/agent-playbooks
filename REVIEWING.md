@@ -65,7 +65,9 @@ Run the monthly sweep first, then:
    fix.
 4. **Trim the notes.** In each notes file, replace lines older than the previous repo review with
    one summary line: `- <YYYY-MM-DD> · SUMMARY · <n> notes: <what they showed>`.
-5. **Check this process.** Are notes being written? Did sweeps find work, or always stop early?
+5. **Check this process.** Are notes being written? If projects were active but left fewer
+   than 3 notes in the quarter, agents are forgetting: propose a reminder hook that fires at
+   the end of a task. Did sweeps find work, or always stop early?
    Did any change get reverted? Adjust the thresholds and timing in this file if they're wrong,
    and say why in the review log.
 6. **Update [README.md](README.md),** add a line to the review log below, commit
