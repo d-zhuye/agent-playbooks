@@ -29,7 +29,9 @@ Reviews should respond to patterns, not single reports.
 
 1. **Find what's due.** For each playbook, count the note lines below the last `REVIEW` line in
    `notes/<name>.md`. A playbook is due if it has **5 or more** new lines, or its last review was
-   more than **6 months** ago. If nothing is due, stop and say so.
+   more than **6 months** ago. A playbook never reviewed counts from the date it was added
+   (`git log --diff-filter=A --format=%as -- <name>.md`); a missing notes file means no notes.
+   If nothing is due, stop and say so.
 2. **For each due playbook:**
    1. Read its new notes, then the playbook.
    2. Group the notes by issue. Separate one-off reports from patterns (see the rules above).
