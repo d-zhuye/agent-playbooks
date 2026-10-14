@@ -6,3 +6,5 @@ to install it. Agents: read this index, then open the playbooks that fit the pro
 - [Screenshot checks](screenshot-checks.md): approved screenshots of every screen, compared after
   each UI change with one command; agents approve predicted changes and ask only about the rest.
   For Expo / React Native apps (and plain web apps).
+
+To add or update a playbook, follow [CONTRIBUTING.md](CONTRIBUTING.md).
