@@ -8,7 +8,7 @@ many projects, so work goes faster and feels the same in each. It has three kind
 |---|---|---|---|
 | Journal entry | `journal/<slug>.md` | A short note on a problem that keeps coming back, and what was tried | The problem recurred or persisted |
 | Note | `notes/<playbook>.md` | One line on how a playbook went in a project | You used (or skipped) a playbook |
-| Playbook | `<name>.md` | A written-up setup another agent can install | Promoted by a review (see [REVIEWING.md](REVIEWING.md)) |
+| Playbook | `playbooks/<name>.md` | A written-up setup another agent can install | Promoted by a review (see [REVIEWING.md](REVIEWING.md)) |
 
 Keep adding easy. Reviews do the sorting: they promote, merge, rewrite and delete.
 
@@ -18,7 +18,7 @@ Add one when a problem has come up more than once, or won't go away. A single od
 worth one yet. Failures count: "we tried X and it made things worse" saves the next agent from
 trying X.
 
-1. **Search first:** `grep -ril '<keyword>' journal/ *.md`. If an entry or playbook already covers
+1. **Search first:** `grep -ril '<keyword>' journal/ playbooks/`. If an entry or playbook already covers
    the problem, add a `Seen` line or a note to it instead of starting a new one.
 2. **Create `journal/<slug>.md`,** named after the problem in kebab-case
    (`agents-rerun-full-suite.md`). Use this template; leave out lines you don't know yet:
@@ -48,7 +48,7 @@ write one directly when a setup clearly earns it. A playbook is one Markdown fil
 agent will follow to install a working setup in a new project, without seeing the project the
 setup came from. Write it for that agent.
 
-1. **Name the file** after what the setup does, in kebab-case: `screenshot-checks.md`, not
+1. **Name the file** in `playbooks/` after what the setup does, in kebab-case: `screenshot-checks.md`, not
    `playwright.md` or `while-we-wait-tests.md`.
 2. **Write it using the sections below.** Leave out any section that doesn't apply, and keep
    the order of the rest.
@@ -79,7 +79,7 @@ setup came from. Write it for that agent.
 10. **Builds on** (optional): existing tools or skills it relies on or overlaps with, and what
     this playbook adds.
 
-[screenshot-checks.md](screenshot-checks.md) is the reference example.
+[playbooks/screenshot-checks.md](playbooks/screenshot-checks.md) is the reference example.
 
 ## Updating a playbook
 
