@@ -1,0 +1,1 @@
+- 2026-10-14 · interval-timer · skipped · Existing inner-loop/close-out rules in CLAUDE.md already cover the tiers; no pre-commit hook wanted yet.

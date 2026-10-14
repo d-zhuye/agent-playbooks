@@ -1,0 +1,1 @@
+- 2026-10-14 · interval-timer · skipped · Needs react-native-web and stubs for location, audio and IAP, and web is explicitly not a product target here.
