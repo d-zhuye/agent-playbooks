@@ -1,7 +1,9 @@
 # Agent playbooks
 
-Proven setups to copy into a new project. Each playbook says what it does, why to use it, and how
-to install it. Agents: read this index, then open the playbooks that fit the project.
+What has worked, and what hasn't, across projects, so agents don't relearn the same lessons.
+Each playbook below says what it does, why to use it, and how to install it. Agents: read this
+index, then open the playbooks that fit the project. Also search [journal/](journal/) for
+problems seen before that aren't playbooks yet.
 
 - [Delegated work in worktrees](delegated-work-in-worktrees.md): briefs, base-commit checks, report
   format and integration for subagents working in parallel git worktrees. Any project in git.
@@ -18,4 +20,23 @@ to install it. Agents: read this index, then open the playbooks that fit the pro
   hand-back, a pre-commit hook on staged files, the full check in CI. Starter code for Node/Jest
   with GitHub Actions; the tiers apply to any stack.
 
-To add or update a playbook, follow [CONTRIBUTING.md](CONTRIBUTING.md).
+## Using a playbook in a project
+
+When you install a playbook, also paste this into the project's `AGENTS.md`, once, filling in
+the path to this repo and the playbooks you installed:
+
+```md
+- This project uses playbooks from TODO(project): <path to agent-playbooks>: TODO(project): <names>.
+  When one helps, fails, needs changing or is skipped, add one line to
+  <path>/notes/<playbook>.md (format in notes/README.md) and commit it there.
+  When a problem keeps recurring and no playbook covers it, add or update a journal entry
+  (<path>/CONTRIBUTING.md).
+```
+
+Those notes are how the reviews know what's working.
+
+## Adding and reviewing
+
+- To add a journal entry, a note or a playbook, follow [CONTRIBUTING.md](CONTRIBUTING.md).
+- To run a review, follow [REVIEWING.md](REVIEWING.md): a monthly sweep of each playbook's
+  notes, and a repo-wide review every 3 months.
