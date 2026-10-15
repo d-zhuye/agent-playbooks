@@ -7,6 +7,9 @@ Each playbook below says what it does, why to use it, and how to install it. Age
 index, then open the playbooks that fit the project. Also search [journal/](journal/) for
 problems seen before that aren't playbooks yet.
 
+- [App Store upload readiness](playbooks/app-store-upload-readiness.md): 14 pass/fail checks before an App Store
+  Connect upload (current Xcode/SDK minimum, icon, privacy manifest, Info.plist, signing, binary
+  contents) and a short report format. iOS apps; Expo / EAS commands included.
 - [Delegated work in worktrees](playbooks/delegated-work-in-worktrees.md): briefs, base-commit checks, report
   format and integration for subagents working in parallel git worktrees. Any project in git.
 - [Docs without copies](playbooks/docs-without-copies.md): docs record intent and point to the code or a
