@@ -1,0 +1,1 @@
+- 2026-10-15 · while-we-wait · changed · First run: all four free sources answered with zero failures, but the demand measure needed three fixes (typed share, continuations only, a half-word step) before it ranked queries; the run produced a 100-byte keyword line, a first Play listing, a web page plan and 8 blocked "kids" queries for review.
