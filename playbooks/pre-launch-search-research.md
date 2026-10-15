@@ -22,18 +22,21 @@ and there is no record of why a word was chosen, so nobody can judge it after la
 With it, every proposed word traces to a row in `queries.csv` with its sources, every rejected
 word that the data favored is listed for a human, and the post-launch playbook has a baseline.
 
-Figures come from **one project** (the first run, where this playbook was written), so treat them
-as rough:
+Figures come from **one project** (the first run, a party-games app with 114 input queries),
+so treat them as rough:
 
 | Step | Computer | Agent | Human |
 |---|---|---|---|
-| Collection (two passes, ~60 input queries) | 3–5 min | 10–20 min | 0 |
+| Collection (three passes, 114 input queries, ~1,600 requests) | ~8.5 min in all | 10–15 min | 0 |
+| Looking at web results and competitor pages | 0 | ~5 min | 0 |
 | Optional account-gated signals | 0 | 2 min | ~10 min |
-| Analysis, report and proposals | 0 | 30–60 min | 0 |
+| Analysis, report and proposals | 0 | 15–25 min | 0 |
 | Reviewing the proposals and conflicts | 0 | 0 | 15–30 min |
 
-Agent tokens: roughly 150k–300k for a full run across three surfaces, most of it reading
-`queries.csv` and competitor pages. TODO(review): replace with figures from notes.
+The first run took about 35 minutes of agent time end to end, including fixing the script's
+demand measure; the fixes are already in the starter code. Agent tokens: roughly 150k–250k,
+about half of it reading collector output and web results (estimated, not measured).
+TODO(review): replace with figures from notes.
 
 **Who does what**
 
@@ -56,7 +59,10 @@ Agent tokens: roughly 150k–300k for a full run across three surfaces, most of 
 - **Seed:** a query the agent starts from, before any data.
 - **Query:** what a person types into a surface's search box. One row in `queries.csv`.
 - **Store-style form:** a web query cut down to what people type in a store ("games to play while
-  waiting in line" → "waiting games"). It counts for ASO only if a store's autocomplete shows it.
+  waiting in line" → "waiting in line games"). It counts for ASO only if a store's autocomplete
+  shows it.
+- **Typed share:** the least of a query, in percent, someone had to type before a source
+  suggested it. 19 means it was suggested after typing 19% of it. Lower means more searched.
 - **Keyword:** a word or phrase placed in a listing field. Queries are the demand; keywords are
   the supply.
 - **Intent cluster:** queries that want the same thing, grouped by what defines them: a place or
@@ -74,8 +80,9 @@ Agent tokens: roughly 150k–300k for a full run across three surfaces, most of 
 ```
 1. Seeds         agent writes docs/aso/<date>/seeds.txt from the product's own docs
 2. Collect       node scripts/search-research/collect.mjs seeds.txt queries.csv
-                   └ per query: Google, App Store and Play autocomplete (query + query minus last
-                     word), App Store top 10 via the iTunes Search API → new rows for suggestions
+                   └ per query: Google, App Store and Play autocomplete, typed the way a person
+                     types it ("ro", "road", "road tr", … "road trip games"), and the App Store
+                     top 10 via the iTunes Search API → typed shares, and new rows for suggestions
 3. Expand        agent adds relevant suggestions and store-style forms to seeds.txt, runs again
                    (1–2 more passes; already-looked-up queries are skipped)
 4. Look around   agent's own web search for top web queries; competitor store pages
@@ -98,7 +105,7 @@ Output, one folder per audit so a later audit can be compared:
 
 | Source | Signal | Access |
 |---|---|---|
-| Google autocomplete | Whether and how high a query is suggested | Public, unofficial; script, 1/s |
+| Google autocomplete | How much of a query must be typed before it's suggested | Public, unofficial; script, 1/s |
 | App Store search hints | Same, inside the App Store | Public, unofficial; script, 1/s |
 | Google Play search suggest | Same, inside Play | Public, unofficial; script, 1/s |
 | iTunes Search API | Top 10 App Store apps and their rating counts | Official; ~20 calls/min, script 1 per 3.5 s |
@@ -112,9 +119,11 @@ paid tools. Google Trends is fine for a human to glance at, but has no field in 
 
 ### Rules the script applies
 
-- **Position:** the best place a query appeared in a source's suggestions, across all lookups
-  (`1`–`10`); `self` if it appeared only when typed in full; blank if never.
-- **Demand from autocomplete:** 1–3 High, 4–6 Medium, 7–10 Low, `self` Low, blank None, marked `?`.
+- **Typed share:** each query is looked up as each word's first two letters, half of any word of
+  six letters or more, then the whole word. A suggestion counts only if it starts with what was
+  typed. The column keeps the lowest share across all lookups; blank means never suggested.
+- **Demand from autocomplete:** typed share up to 40 High, up to 70 Medium, above 70 Low, blank
+  None, marked `?`.
 - **Demand from humans, which wins when present:** Keyword Planner lower bound ≥10K High,
   ≥1K Medium, ≥100 Low, below None (web). Apple Ads popularity 4–5 High, 3 Medium, 1–2 Low
   (App Store). Play has no free human source, so Play demand is always `?`.
@@ -148,9 +157,12 @@ paid tools. Google Trends is fine for a human to glance at, but has no field in 
 //   node scripts/search-research/collect.mjs <seeds.txt> <queries.csv> [--country us] [--lang en] [--refresh]
 //
 // For each query in seeds.txt (one per line, # for comments) it reads Google, App Store and
-// Google Play autocomplete, for the query and for the query minus its last word, and the top 10
-// App Store results from the iTunes Search API. Suggestions become new rows, so the next run can
-// take the promising ones as input. Queries already looked up are skipped unless --refresh.
+// Google Play autocomplete as the query is typed ("ro", "road", "road tr", "road trip",
+// "road trip ga", "road trip gam", "road trip games") and the top 10 App Store results from the iTunes Search API.
+// Each source's column holds the typed share: the least of a query, in percent, that had to be
+// typed before that source suggested it. Lower means more searched. Suggestions become new rows,
+// so the next run can take the promising ones as input. Queries already looked up are skipped
+// unless --refresh.
 //
 // Columns this script owns are rewritten on every run. Human columns (kp_range, ads_popularity)
 // and agent columns (cluster, store_form, notes) are kept as they are. Node 18+, no dependencies.
@@ -181,8 +193,8 @@ if (!STOREFRONTS[country]) {
 
 // Untuned starting thresholds. Change them when notes from real projects say so.
 const DIFFICULTY = { low: 1_000, high: 50_000 }; // median App Store rating count of the top 10
-const tierFromPosition = (p) =>
-  p === '' ? 'None' : p === 'self' ? 'Low' : Number(p) <= 3 ? 'High' : Number(p) <= 6 ? 'Medium' : 'Low';
+const tierFromShare = (share) =>
+  share === '' ? 'None' : Number(share) <= 40 ? 'High' : Number(share) <= 70 ? 'Medium' : 'Low';
 const tierFromPlanner = (range) => {
   // Keyword Planner buckets such as "1K – 10K" or "100 – 1K": the lower bound decides.
   const m = String(range).trim().match(/^([\d.,]+)\s*([KM]?)/i);
@@ -285,6 +297,7 @@ const sources = {
 const itunesWait = throttle(3_500);
 async function appStoreTop10(q) {
   await itunesWait();
+  requests.itunes++;
   const url = `https://itunes.apple.com/search?entity=software&limit=10&country=${country}&term=${encodeURIComponent(q)}`;
   const res = await fetch(url, { headers: UA });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -301,16 +314,13 @@ const row = (q, parent) => {
   if (!rows.has(key)) rows.set(key, { query: key, parent });
   return rows.get(key);
 };
-// Keep the lowest position seen; "self" (appeared only when typed in full) ranks below any number.
-const better = (a = '', b = '') => {
-  if (a === '' || a === 'self') return b === '' ? a : b === 'self' ? 'self' : b;
-  if (b === '' || b === 'self') return a;
-  return String(Math.min(Number(a), Number(b)));
-};
+// Keep the lowest typed share seen across lookups.
+const lower = (a = '', b) => (a === '' ? String(b) : String(Math.min(Number(a), b)));
 
 const inputs = [...new Set(readFileSync(seedsPath, 'utf8').split('\n').map((l) => norm(l.replace(/#.*/, ''))).filter(Boolean))];
 const todo = inputs.filter((q) => refresh || !rows.get(q)?.looked_up);
 const failures = Object.fromEntries([...Object.keys(sources), 'itunes'].map((s) => [s, 0]));
+const requests = Object.fromEntries([...Object.keys(sources), 'itunes'].map((s) => [s, 0]));
 const done = Object.fromEntries(Object.keys(sources).map((s) => [s, new Set()])); // lookups made this run
 const today = new Date().toISOString().slice(0, 10);
 console.error(`${todo.length} of ${inputs.length} queries to look up (${country}, ${lang}).`);
@@ -320,6 +330,7 @@ async function lookUp(name, lookup) {
   done[name].add(lookup);
   const source = sources[name];
   await source.wait();
+  requests[name]++;
   let list;
   try {
     list = (await source.suggest(lookup)).map(norm);
@@ -328,16 +339,27 @@ async function lookUp(name, lookup) {
     console.error(`  ${name} "${lookup}": ${e.message}`);
     return;
   }
-  list.forEach((s, i) => {
+  for (const s of list) {
     const r = row(s, lookup);
-    r[name] = better(r[name], s === lookup ? 'self' : String(i + 1));
-  });
+    // Stores also suggest strings that don't start with what was typed (app names, other word
+    // orders). Those rows are kept for reading, but only a true continuation has a typed share.
+    if (s.startsWith(lookup)) r[name] = lower(r[name], Math.round((100 * lookup.length) / s.length));
+  }
 }
 
 for (const [n, q] of todo.entries()) {
   const r = row(q, '(input)');
+  r.parent = '(input)';
+  // Type it the way a person does: each word's first two letters, half of a long word, then the
+  // whole word. Without the half step, one-word heads like "trivia" only show when typed in full.
   const words = q.split(' ');
-  const lookups = words.length > 1 ? [q, words.slice(0, -1).join(' ')] : [q];
+  const lookups = [];
+  words.forEach((w, i) => {
+    const before = words.slice(0, i).join(' ');
+    const cuts = [2, w.length >= 6 ? Math.ceil(w.length / 2) : 0].filter((n) => n && n < w.length);
+    for (const n of cuts) lookups.push(`${before} ${w.slice(0, n)}`.trim());
+    lookups.push(`${before} ${w}`.trim());
+  });
   await Promise.all([
     ...Object.keys(sources).map(async (name) => {
       for (const l of lookups) await lookUp(name, l);
@@ -359,15 +381,16 @@ for (const [n, q] of todo.entries()) {
 
 // Demand tiers: a human source wins when present; otherwise autocomplete, marked "?" (unconfirmed).
 for (const r of rows.values()) {
-  r.web_demand = tierFromPlanner(r.kp_range) ?? `${tierFromPosition(r.google ?? '')}?`;
-  r.appstore_demand = tierFromAds(r.ads_popularity) ?? `${tierFromPosition(r.appstore ?? '')}?`;
-  r.play_demand = `${tierFromPosition(r.play ?? '')}?`;
+  r.web_demand = tierFromPlanner(r.kp_range) ?? `${tierFromShare(r.google ?? '')}?`;
+  r.appstore_demand = tierFromAds(r.ads_popularity) ?? `${tierFromShare(r.appstore ?? '')}?`;
+  r.play_demand = `${tierFromShare(r.play ?? '')}?`;
 }
 
 const header = [...new Set([...SCRIPT_COLUMNS, ...OTHER_COLUMNS, ...existing.header])];
 const sorted = [...rows.values()].sort((a, b) => a.query.localeCompare(b.query));
 writeFileSync(csvPath, [header, ...sorted.map((r) => header.map((h) => r[h] ?? ''))].map((f) => f.map(csvField).join(',')).join('\n') + '\n');
-console.error(`Wrote ${sorted.length} rows to ${csvPath}. Failed lookups: ${JSON.stringify(failures)}`);
+console.error(`Wrote ${sorted.length} rows to ${csvPath}.`);
+console.error(`Requests: ${JSON.stringify(requests)}. Failed: ${JSON.stringify(failures)}`);
 if (todo.length && Object.values(failures).some((f) => f >= todo.length)) process.exit(1);
 ```
 
@@ -403,24 +426,31 @@ Work in `docs/aso/<YYYY-MM-DD>/`. The script is `scripts/search-research/collect
    grouped under `# cluster` comments. Cover each intent cluster: places and situations,
    groups, feature or game names, constraints ("offline", "no wifi", "no ads"). Mix short heads
    ("road trip games") with longer web-style queries ("games to play while waiting in line").
+   Include every word in the current listing's searchable fields, so none is dropped untested.
    Leave out other products' names. If the human gave seeds, include them.
 2. **Collect.** `node scripts/search-research/collect.mjs docs/aso/<date>/seeds.txt
    docs/aso/<date>/queries.csv <country/lang flags>`. If it prints failures for a whole source,
    say so in the report and carry on with the rest.
-3. **Expand, once or twice.** Read the new suggestion rows (blank `looked_up`). Add the relevant
-   ones to `seeds.txt`, under their cluster. For each web-style query, write its store-style form
+3. **Expand, once or twice.** Don't read `queries.csv` whole: it grows to thousands of rows.
+   Filter it with a short script, e.g. suggestion rows (blank `looked_up`) on topic with a typed
+   share under 45 in a store column. Add the relevant ones to `seeds.txt`, under their cluster. For each web-style query, write its store-style form
    in the `store_form` column: lowercase, 1–3 words, without question words, "best", "to play",
    "app", "free" or "download". Add each store-style form to `seeds.txt` too. Run step 2 again;
    only new queries are looked up. Stop when a pass adds few relevant rows.
-4. **Fill `cluster`** for every relevant row. Leave unrelated rows (other meanings, other apps'
-   names) blank and add `notes: unrelated` to any that look relevant but aren't.
+4. **Fill `cluster`** for every input. In `notes`, mark inputs that mean something else in the
+   stores (read `as_top3`: "car games" there are driving games), that a copy rule blocks, or that
+   would be untrue of the product. Read singular and plural rows together: autocomplete often
+   suggests only one of them.
 5. **Look around.**
    - Web: for the ~10 strongest web queries, use your web-search tool once each. Note what ranks
      (listicles, forums, app pages, video) in `notes`: that's the web difficulty.
    - App Store: read `as_top3` for each strong query. Open the store pages of the 3–5 competitors
-     that recur most, and note their subtitles and the words they repeat.
-   - Google Play: for shortlisted queries only, open `https://play.google.com/store/search?q=<query>&c=apps`
-     and note the top results' install bands.
+     that recur most, and note their names, subtitles and the words they repeat. The app's own
+     subtitle is the `<p class="subtitle">` right after the page's `<h1>`; the other subtitles
+     on the page belong to related apps.
+   - Google Play: for a few strong queries, open `https://play.google.com/store/search?q=<query>&c=apps`.
+     Search pages show no install counts: open the top five results' details pages and read the
+     band beside "Downloads".
 6. **Human step (optional).** Write `shortlist.txt`: at most 50 queries worth confirming. Ask the
    human to type, into `queries.csv`, the Google Ads Keyword Planner range in `kp_range` (e.g.
    `1K – 10K`) and the Apple Ads search popularity (1–5) in `ads_popularity`. Then run step 2
@@ -453,8 +483,11 @@ Work in `docs/aso/<YYYY-MM-DD>/`. The script is `scripts/search-research/collect
 
 - Free sources only: the script, your own web search, single store pages. No bulk scraping, no
   logins, no paid tools or APIs.
-- A store-style form counts for ASO only if a store's autocomplete shows it (a number or `self`
-  in `appstore` or `play`). Unconfirmed forms can still serve the web.
+- The `google`, `appstore` and `play` columns hold the typed share: the least of a query, in
+  percent, that had to be typed before that source suggested it. Lower is more searched; blank
+  is never suggested. Compare within a source, not across them.
+- A store-style form counts for ASO only if a store's autocomplete shows it (a value in
+  `appstore` or `play`). Unconfirmed forms can still serve the web.
 - Every proposed word traces to a row in `queries.csv`.
 - Copy rules beat data. When they clash, it's a Conflict for the human.
 - Don't propose a listing in a language the product doesn't support.
@@ -484,8 +517,8 @@ Why each part is there:
 ## 6. Acceptance test
 
 1. **The script runs clean.** `node scripts/search-research/collect.mjs` on a three-line seeds
-   file finishes in under a minute, prints `Failed lookups` with all zeros, and writes rows
-   with positions in all three source columns for at least one seed.
+   file finishes in under a minute, prints `Failed` with all zeros, and writes rows with a typed
+   share in all three source columns for at least one seed.
 2. **Reruns keep human work.** Type a Keyword Planner range and an Apple Ads number into one row,
    add a seed, run again: the typed values stay, that row's demand tiers lose their `?`, and only
    the new seed is looked up.
@@ -502,20 +535,38 @@ Why each part is there:
 
 ## 7. Gotchas
 
-- **Plurals split the data.** App Store hints for "road trip" suggested "road trip game", not
-  "road trip games", so the plural showed only `self`. Read singular and plural rows together.
+- **The first demand measure didn't rank anything.** "Best position under the query minus its
+  last word" left every one-word head ("trivia", "riddles") at the bottom. Cutting the last word
+  to two letters made nearly everything first. Typed share, with lookups at each word's first two
+  letters, half of a long word and the whole word, spread queries from 15 to 100. Without the
+  half-word step, one-word heads still scored 100.
+- **Suggestions that don't continue the typing.** App Store hints include app names and other
+  word orders ("carpool: road trip games" for "road trip"). Counting them made a long app name
+  look like the most-searched query (typed share 5). Only continuations get a typed share.
+- **Don't read the CSV whole.** Two expansion passes on about 110 inputs gave 4,300 rows. Filter
+  it with a short script: inputs only, or on-topic suggestions under a typed share.
+- **Plurals split the data.** In the App Store "road trip game" scored 29 and "road trip games"
+  100, because hints suggested only the singular. Read singular and plural rows together.
   Apple matches some plural forms on its own, so the keyword field rarely needs both.
 - **Words mean different things in stores.** "line games" looked like a waiting-in-line query,
-  but its App Store top 3 were line-drawing puzzles with ~73K median ratings. Read `as_top3`
-  before trusting a difficulty tier: a High tier for an unrelated meaning isn't competition,
-  and it isn't demand for this product either.
+  but its App Store top 3 were line-drawing puzzles with ~73K median ratings. Car, restaurant,
+  plane and airport games were driving, cooking and flight sims, and I Spy was hidden-object
+  games. Read `as_top3` before trusting a tier: a High tier for an unrelated meaning is neither
+  competition nor demand for this product.
 - **Hints include app names.** App Store hints returned "carpool: road trip games", an app's
   name. Navigational queries for other apps are not targets. Apple's guideline 2.3.7 bans other
   apps' names in metadata, so they never go in a proposal.
 - **The iTunes Search API is a proxy.** Its order is close to App Store search but not the same.
   Use it for difficulty, never as "where we would rank".
-- **Autocomplete position is relative.** Position 2 under a rare prefix may be fewer searches than
-  position 8 under a common one. That's why tiers stay `?` until a human source confirms them.
+- **Typed shares are relative.** They rank queries within one source; they aren't volumes, and
+  each source's autocomplete behaves differently. That's why tiers stay `?` until a human
+  source confirms them.
+- **Competitor subtitles.** An App Store page's data holds many `"subtitle"` values; the first
+  ones belong to related apps. The app's own is the `<p class="subtitle">` right after the `<h1>`.
+- **Play installs aren't on search pages.** Read the band beside "Downloads" on each result's
+  details page.
+- **Test the current listing's words.** The first run nearly dropped "quiz" from the keyword
+  field without data. Seeds now include every word already in the listing.
 - **The unofficial endpoints can break.** The App Store hints and Play suggest endpoints are
   what the store apps and sites use, not public APIs. The script counts failures per source and
   exits 1 if a source failed for every query; report a broken source, don't silently drop it.
