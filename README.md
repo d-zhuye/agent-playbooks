@@ -21,7 +21,7 @@ problems seen before that aren't playbooks yet.
 - [Pre-launch search research](playbooks/pre-launch-search-research.md): a one-off audit of how people
   search for the product, from free autocomplete and App Store competition data, ending in
   proposed App Store, Google Play and web page text plus flagged conflicts with copy rules. Apps
-  and sites before launch; Node script included.
+  and sites before launch; Node scripts included.
 - [Screenshot checks](playbooks/screenshot-checks.md): approved screenshots of every screen, compared after
   each UI change with one command; agents approve predicted changes and ask only about the rest.
   For Expo / React Native apps (and plain web apps).
