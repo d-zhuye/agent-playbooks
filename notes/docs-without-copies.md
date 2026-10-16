@@ -1,1 +1,2 @@
 - 2026-10-14 · interval-timer · changed · Installed as a one-paragraph rule in CLAUDE.md with exemptions for voice.md, release/ paste text and dated records; audit found one dead doc reference in a test comment and stale test counts only in frozen release records.
+- 2026-10-15 · while-we-wait · worked · Screenshot mockups capture the real app by stable content IDs; release captions live in the editable generator rather than copies of app UI text.
