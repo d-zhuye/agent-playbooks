@@ -22,20 +22,20 @@ and there is no record of why a word was chosen, so nobody can judge it after la
 With it, every proposed word traces to a row in `queries.csv` with its sources, every rejected
 word that the data favored is listed for a human, and the post-launch playbook has a baseline.
 
-Figures come from **one project** (the first run, a party-games app with 114 input queries),
-so treat them as rough:
+Figures come from **one project** (a party-games app), audited twice by different agents on the
+same day: 114 and 67 input queries. Treat them as rough:
 
 | Step | Computer | Agent | Human |
 |---|---|---|---|
-| Collection (three passes, 114 input queries, ~1,600 requests) | ~8.5 min in all | 10–15 min | 0 |
-| Looking at web results and competitor pages | 0 | ~5 min | 0 |
+| Collection (2–3 passes, 67–114 input queries, 1,200–1,600 requests) | 6.5–8.5 min in all | 10–15 min | 0 |
+| Looking at web results and competitor pages | 0 | 5–10 min | 0 |
 | Optional account-gated signals | 0 | 2 min | ~10 min |
 | Analysis, report and proposals | 0 | 15–25 min | 0 |
 | Reviewing the proposals and conflicts | 0 | 0 | 15–30 min |
 
-The first run took about 35 minutes of agent time end to end, including fixing the script's
-demand measure; the fixes are already in the starter code. Agent tokens: roughly 150k–250k,
-about half of it reading collector output and web results (estimated, not measured).
+The two runs took about 35 and 22 minutes of agent time end to end, each including a fix to the
+scripts; the fixes are already in the starter code. Agent tokens: roughly 150k–250k, about half of
+it reading collector output and web results (estimated, not measured).
 TODO(review): replace with figures from notes.
 
 **Who does what**
@@ -69,25 +69,31 @@ TODO(review): replace with figures from notes.
 - **Intent cluster:** queries that want the same thing, grouped by what defines them: a place or
   situation, a group, a feature or game name, or a constraint ("offline", "no wifi").
 - **Demand tier:** High, Medium, Low or None, per surface, computed by the script. A trailing
-  `?` means only autocomplete backs it (unconfirmed).
+  `?` means only autocomplete backs it: it shows how readily a query is suggested, not how often
+  it's searched.
 - **Difficulty tier:** Low, Medium or High: how hard it is to rank, from competitors' strength.
 - **Fit:** whether a query suits the product. Blank means it does; `other-meaning`, `blocked`,
-  `untrue` and `weak` keep it out of targets.
+  `untrue` and `weak` keep it out of targets, and `other-meaning-store` keeps it out of store
+  targets only.
 - **Proposal:** a proposed value for one listing field, with the current value, the queries it
-  targets and the post-launch metric it should move.
-- **Conflict:** a query the data favors that a project copy rule blocks. Listed for a human,
-  never placed in a proposal.
+  targets and the post-launch metric that would show whether it worked. Proposals are
+  hypotheses until that metric comes in.
+- **Conflict:** an input query with a Medium or High tier on some surface that a project copy
+  rule blocks. Data comes first: the proposal uses it, and Conflicts flags it for a human.
 
 ### The run
 
 ```
-1. Seeds         agent writes docs/aso/<date>/seeds.txt under "# cluster:" headings
+1. Seeds         agent writes docs/aso/<date>/seeds.txt under "# cluster:" headings, from what
+                   the product does (the current listing waits for step 3)
 2. Collect       node scripts/search-research/collect.mjs seeds.txt queries.csv
                    └ per query: Google, App Store and Play autocomplete, typed the way a person
                      types it ("ro", "road", "road tr", … "road trip games"), and the App Store
-                     top 10 via the iTunes Search API → typed shares, and new rows for suggestions
-3. Expand        agent adds suggestions, competitors' generic terms and store-style forms to
-                   seeds.txt and runs again (1–2 more passes; finished queries are skipped)
+                     top 10 via the iTunes Search API → typed shares, and new rows for suggestions;
+                     saved after every query
+3. Expand        agent adds suggestions, competitors' generic terms, store-style forms and the
+                   current listing's words to seeds.txt and runs again (1–2 more passes;
+                   finished queries are skipped)
 4. Judge fit     agent marks queries that mean something else, are blocked or untrue
 5. Look around   web search for the top web targets; competitor store pages; Play install bands
 6. Analyze       node scripts/search-research/report.mjs queries.csv → ranked tables → report.md
@@ -108,6 +114,10 @@ Output, one folder per audit so a later audit can be compared:
 | `docs/aso/<date>/proposals.md` | Proposed listing per surface, Conflicts and Human decisions |
 | `docs/aso/<date>/shortlist.txt` | Queries for the optional human step |
 | `docs/aso/<date>/run-log.md` | Steps, problems and fixes; only until the notes list three projects |
+
+Nothing else goes in the folder except small evidence files that the report cites, such as
+download bands read from Play pages. Throwaway scripts and raw pages go in a scratch folder outside
+the repo. One run left 29 files, and a reader had to tour them to follow the audit.
 
 ### Sources (free only)
 
@@ -135,9 +145,11 @@ paid tools. Google Trends is fine for a human to glance at, but has no field in 
 - **Demand from humans, which wins when present:** Keyword Planner lower bound ≥10K High,
   ≥1K Medium, ≥100 Low, below None (web). Apple Ads popularity 4–5 High, 3 Medium, 1–2 Low
   (App Store). Play has no free human source, so Play demand is always `?`.
-- **Difficulty (App Store):** median rating count of the top 10 results: under 1,000 Low,
-  1,000–50,000 Medium, over 50,000 High. These thresholds are untuned guesses; notes should
-  tune them.
+- **Difficulty (App Store):** median rating count of the top 10 results (the mean of the two
+  middle counts when there are ten): under 1,000 Low, 1,000–50,000 Medium, over 50,000 High.
+  These thresholds are untuned guesses; notes should tune them. All ten counts are kept in
+  `as_top10_ratings`, and the report shows the largest beside the median, because a low median
+  can hide one app with hundreds of thousands of ratings.
 
 ---
 
@@ -148,7 +160,8 @@ paid tools. Google Trends is fine for a human to glance at, but has no field in 
    storefronts to `STOREFRONTS` in `collect.mjs` if it targets more than the ones listed.
 3. **Copy the skill** to `.claude/skills/search-research/SKILL.md` and fill its
    `TODO(project):` lines: where the product is described, the current listing and the reasons
-   given for it, the copy rules, the surfaces in scope, the country and language.
+   given for it, the copy rules, the surfaces in scope and which one is primary, the site's
+   existing URLs, the country and language.
 4. **Paste the agent rule** into `AGENTS.md` (section 5).
 5. **Link it from where listing text is prepared.** Add a line to the project's listing doc or
    its pre-submission checklist: "Keywords, titles and descriptions come from the latest
@@ -157,6 +170,10 @@ paid tools. Google Trends is fine for a human to glance at, but has no field in 
    edited.
 6. **Commit `docs/aso/`.** The audit folder is small text and is the record the post-launch
    playbook builds on. Nothing goes in `.gitignore`.
+
+**Upgrading from script version 2:** copy all three scripts and the skill again. `collect.mjs`
+refuses a version-2 `queries.csv`, so start the next audit in a new folder; finished audits stay
+as they are.
 
 ---
 
@@ -175,13 +192,18 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 
 // Bump when a change alters what the source columns or tiers mean. collect.mjs refuses to merge
 // into a queries.csv made by another version, because old and new values can't be compared.
-export const SCRIPT_VERSION = '2';
+export const SCRIPT_VERSION = '3';
 
-export const SCRIPT_COLUMNS = ['query', 'parent', 'looked_up', 'script', 'google', 'appstore', 'play', 'as_top10_median_ratings', 'as_top3', 'difficulty', 'web_demand', 'appstore_demand', 'play_demand'];
+export const SCRIPT_COLUMNS = ['query', 'parent', 'looked_up', 'sources_ok', 'script', 'google', 'appstore', 'play', 'as_top10_median_ratings', 'as_top10_ratings', 'as_top3', 'as_top3_urls', 'difficulty', 'web_demand', 'appstore_demand', 'play_demand'];
+// Every source an input is looked up in. sources_ok lists the ones that answered; looked_up is set
+// once all have, so a source that is down costs only its own surface.
+export const SOURCES = ['google', 'appstore', 'play', 'itunes'];
+export const answered = (r) => (r.sources_ok || '').split(' ').filter(Boolean);
 // Human columns: kp_range, ads_popularity. Agent columns: cluster, fit, store_form, notes.
 export const OTHER_COLUMNS = ['kp_range', 'ads_popularity', 'cluster', 'fit', 'store_form', 'notes'];
-// Blank fit means the query fits the product. Anything else keeps it out of targets.
-export const FIT_VALUES = ['', 'yes', 'other-meaning', 'blocked', 'untrue', 'weak'];
+// Blank fit means the query fits the product. Anything else keeps it out of targets, except that
+// other-meaning-store keeps it out of the store targets only (the web still reads it as this product).
+export const FIT_VALUES = ['', 'yes', 'other-meaning', 'other-meaning-store', 'blocked', 'untrue', 'weak'];
 
 // Untuned starting thresholds, from one project. Tune them from the calibration that
 // report.mjs prints once humans have filled kp_range or ads_popularity.
@@ -200,6 +222,11 @@ export const tierFromAds = (dots) => {
   const n = Number(dots);
   if (!n) return null;
   return n >= 4 ? 'High' : n === 3 ? 'Medium' : 'Low';
+};
+// The middle of the counts, averaging the two middle ones when there's an even number.
+export const median = (counts) => {
+  const s = [...counts].sort((a, b) => a - b);
+  return s.length ? (s[Math.floor((s.length - 1) / 2)] + s[Math.floor(s.length / 2)]) / 2 : 0;
 };
 export const difficultyFromMedian = (median) =>
   median < DIFFICULTY.low ? 'Low' : median <= DIFFICULTY.high ? 'Medium' : 'High';
@@ -271,17 +298,21 @@ export function readSeeds(path) {
 // that source suggested it. Lower means more searched. Suggestions become new rows, so the next
 // run can take the promising ones as input.
 //
-// A query is marked looked_up only when every source answered, so running again retries just the
-// failures; finished queries are never looked up twice. To measure again later, start a new audit
-// folder: values from different days or script versions don't belong in one file.
+// sources_ok lists the sources that answered for a query, and looked_up is set once all have.
+// Running again retries only the missing sources; a finished source is never asked twice. To
+// measure again later, start a new audit folder: values from different days or script versions
+// don't belong in one file.
 //
-// Columns this script owns are rewritten on every run. Human columns (kp_range, ads_popularity)
-// and agent columns (cluster, fit, store_form, notes) are kept, except that a blank cluster is
-// filled from the seeds file's "# cluster:" headings. Node 18+, no dependencies.
+// The file is saved after every query, so stopping the script (Ctrl-C) keeps the finished ones and
+// prints the request counts. Edit queries.csv only between runs: the script rewrites it from its
+// own copy after every query. Columns this script owns are rewritten on every run. Human columns
+// (kp_range, ads_popularity) and agent columns (cluster, fit, store_form, notes) are kept, except
+// that a blank cluster is filled from the seeds file's "# cluster:" headings. Node 18+, no
+// dependencies.
 
 import {
-  SCRIPT_VERSION, difficultyFromMedian, norm, readCsv, readSeeds, tierFromAds, tierFromPlanner,
-  tierFromShare, writeCsv,
+  SCRIPT_VERSION, SOURCES, answered, difficultyFromMedian, median, norm, readCsv, readSeeds,
+  tierFromAds, tierFromPlanner, tierFromShare, writeCsv,
 } from './shared.mjs';
 
 const positional = [];
@@ -306,7 +337,7 @@ if (!STOREFRONTS[country]) {
 }
 
 const existing = readCsv(csvPath);
-const versions = new Set(existing.records.filter((r) => r.looked_up).map((r) => r.script || '1'));
+const versions = new Set(existing.records.filter((r) => r.looked_up || r.script).map((r) => r.script || '1'));
 if (versions.size && !(versions.size === 1 && versions.has(SCRIPT_VERSION))) {
   console.error(`${csvPath} was made by script version ${[...versions].join(', ')}; this is version ${SCRIPT_VERSION}.`);
   console.error('Their values mean different things. Start a new queries.csv (or a new audit folder).');
@@ -377,7 +408,11 @@ async function appStoreTop10(q) {
   const url = `https://itunes.apple.com/search?entity=software&limit=10&country=${country}&term=${encodeURIComponent(q)}`;
   const res = await fetch(url, { headers: UA });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  return (await res.json()).results.map((r) => ({ name: r.trackName, ratings: r.userRatingCount ?? 0 }));
+  return (await res.json()).results.map((r) => ({
+    name: r.trackName,
+    url: String(r.trackViewUrl ?? '').split('?')[0],
+    ratings: r.userRatingCount ?? 0,
+  }));
 }
 
 // --- Run -------------------------------------------------------------------------------------
@@ -393,10 +428,12 @@ const lower = (a = '', b) => (a === '' ? String(b) : String(Math.min(Number(a), 
 
 const seeds = readSeeds(seedsPath); // query → cluster
 const todo = [...seeds.keys()].filter((q) => !rows.get(q)?.looked_up);
-const failures = Object.fromEntries([...Object.keys(sources), 'itunes'].map((s) => [s, 0]));
-const requests = Object.fromEntries([...Object.keys(sources), 'itunes'].map((s) => [s, 0]));
+const failures = Object.fromEntries(SOURCES.map((s) => [s, 0]));
+const requests = Object.fromEntries(SOURCES.map((s) => [s, 0]));
 const done = Object.fromEntries(Object.keys(sources).map((s) => [s, new Map()])); // lookup → succeeded
-const today = new Date().toISOString().slice(0, 10);
+// The local date, so it matches the audit folder's name.
+const now = new Date();
+const today = [now.getFullYear(), now.getMonth() + 1, now.getDate()].map((n) => String(n).padStart(2, '0')).join('-');
 console.error(`${todo.length} of ${seeds.size} queries to look up (${country}, ${lang}).`);
 
 async function lookUp(name, lookup) {
@@ -423,10 +460,29 @@ async function lookUp(name, lookup) {
   return true;
 }
 
+function save() {
+  for (const r of rows.values()) {
+    if (seeds.has(r.query) && !r.cluster) r.cluster = seeds.get(r.query);
+    // Demand tiers: a human source wins when present; otherwise autocomplete, marked "?" (unconfirmed).
+    r.web_demand = tierFromPlanner(r.kp_range) ?? `${tierFromShare(r.google)}?`;
+    r.appstore_demand = tierFromAds(r.ads_popularity) ?? `${tierFromShare(r.appstore)}?`;
+    r.play_demand = `${tierFromShare(r.play)}?`;
+  }
+  writeCsv(csvPath, existing.header, rows.values());
+}
+const counts = () => `Requests: ${JSON.stringify(requests)}. Failed: ${JSON.stringify(failures)}`;
+process.on('SIGINT', () => {
+  save();
+  console.error(`\nStopped. Saved ${rows.size} rows to ${csvPath}; running again finishes the rest.`);
+  console.error(counts());
+  process.exit(130);
+});
+
 let incomplete = 0;
 for (const [n, q] of todo.entries()) {
   const r = row(q, '(input)');
   r.parent = '(input)';
+  const ok = new Set(answered(r));
   // Type it the way a person does: each word's first two letters, half of a long word, then the
   // whole word. Without the half step, one-word heads like "trivia" only show when typed in full.
   const words = q.split(' ');
@@ -437,43 +493,41 @@ for (const [n, q] of todo.entries()) {
     for (const c of cuts) lookups.push(`${before} ${w.slice(0, c)}`.trim());
     lookups.push(`${before} ${w}`.trim());
   });
-  const results = await Promise.all([
-    ...Object.keys(sources).map(async (name) => {
-      let ok = true;
-      for (const l of lookups) ok = (await lookUp(name, l)) && ok;
-      return ok;
+  await Promise.all([
+    ...Object.keys(sources).filter((name) => !ok.has(name)).map(async (name) => {
+      let all = true;
+      for (const l of lookups) all = (await lookUp(name, l)) && all;
+      if (all) ok.add(name);
     }),
-    appStoreTop10(q).then(
+    ok.has('itunes') ? null : appStoreTop10(q).then(
       (top) => {
-        const counts = top.map((t) => t.ratings).sort((a, b) => a - b);
-        const median = counts.length ? counts[Math.floor((counts.length - 1) / 2)] : 0;
-        r.as_top10_median_ratings = String(median);
+        // Ratings in result order, so the median (and anything else) can be recomputed later.
+        const ratings = top.map((t) => t.ratings);
+        r.as_top10_ratings = ratings.join(' ');
+        r.as_top10_median_ratings = String(median(ratings));
         r.as_top3 = top.slice(0, 3).map((t) => t.name).join(' | ');
-        r.difficulty = difficultyFromMedian(median);
-        return true;
+        r.as_top3_urls = top.slice(0, 3).map((t) => t.url).join(' | ');
+        r.difficulty = difficultyFromMedian(median(ratings));
+        ok.add('itunes');
       },
-      (e) => { failures.itunes++; console.error(`  itunes "${q}": ${e.message}`); return false; },
+      (e) => { failures.itunes++; console.error(`  itunes "${q}": ${e.message}`); },
     ),
   ]);
-  if (results.every(Boolean)) {
-    r.looked_up = today;
-    r.script = SCRIPT_VERSION;
-  } else incomplete++;
+  r.sources_ok = SOURCES.filter((s) => ok.has(s)).join(' ');
+  if (ok.size) r.script = SCRIPT_VERSION;
+  if (ok.size === SOURCES.length) r.looked_up = today;
+  else incomplete++;
+  save();
   console.error(`  ${n + 1}/${todo.length} ${q}`);
 }
 
-for (const r of rows.values()) {
-  if (r.looked_up && !r.cluster && seeds.get(r.query)) r.cluster = seeds.get(r.query);
-  // Demand tiers: a human source wins when present; otherwise autocomplete, marked "?" (unconfirmed).
-  r.web_demand = tierFromPlanner(r.kp_range) ?? `${tierFromShare(r.google)}?`;
-  r.appstore_demand = tierFromAds(r.ads_popularity) ?? `${tierFromShare(r.appstore)}?`;
-  r.play_demand = `${tierFromShare(r.play)}?`;
-}
-
-writeCsv(csvPath, existing.header, rows.values());
+save();
 console.error(`Wrote ${rows.size} rows to ${csvPath}.`);
-console.error(`Requests: ${JSON.stringify(requests)}. Failed: ${JSON.stringify(failures)}`);
-if (incomplete) console.error(`${incomplete} queries are incomplete. Run again to retry only those.`);
+console.error(counts());
+if (incomplete) {
+  console.error(`${incomplete} queries are missing a source. Run again to retry only those sources;`);
+  console.error('report.mjs ranks each surface from the queries whose sources answered.');
+}
 if (todo.length && Object.values(failures).some((f) => f >= todo.length)) process.exit(1);
 ```
 
@@ -485,13 +539,16 @@ if (todo.length && Object.values(failures).some((f) => f >= todo.length)) proces
 //
 //   node scripts/search-research/report.mjs <queries.csv> [--top 15]
 //
-// Only looked-up queries (inputs) are ranked, since only they have a difficulty. Singular and
-// plural forms are read together: a query's typed share is the best of its forms ("road trip
-// games" takes "road trip game"'s 29 if the stores only suggest the singular). Queries whose
-// fit is anything but blank or "yes" never become targets. Read-only; Node 18+, no dependencies.
+// Only inputs are ranked, since only they have a difficulty, and each surface only from the inputs
+// its sources answered for (App Store: appstore and itunes; Play: play; web: google), so one
+// source being down costs only its own tables. Singular and plural forms are read together: a
+// query's typed share is the best of its forms ("road trip games" takes "road trip game"'s 29 if
+// the stores only suggest the singular). Queries whose fit is anything but blank or "yes" never
+// become targets; other-meaning-store ones still can on the web. Read-only; Node 18+, no
+// dependencies.
 
 import {
-  FIT_VALUES, SCRIPT_VERSION, readCsv, tierFromAds, tierFromPlanner, tierFromShare,
+  FIT_VALUES, SCRIPT_VERSION, SOURCES, answered, readCsv, tierFromAds, tierFromPlanner, tierFromShare,
 } from './shared.mjs';
 
 const args = process.argv.slice(2);
@@ -503,11 +560,15 @@ if (!csvPath) {
 }
 
 const { records } = readCsv(csvPath);
-const inputs = records.filter((r) => r.looked_up);
-const fits = (r) => r.fit === '' || r.fit === 'yes' || r.fit == null;
+const inputs = records.filter((r) => answered(r).length);
+// Blocked queries still rank: data comes before copy rules, and the blocked table flags them.
+const fits = (r, surface) => !r.fit || r.fit === 'yes' || r.fit === 'blocked' || (r.fit === 'other-meaning-store' && surface === 'web');
+const has = (r, ...sources) => sources.every((s) => answered(r).includes(s));
 
-// Singular/plural key: drop a final "s" from words longer than three letters ("games" → "game").
-const formKey = (q) => q.split(' ').map((w) => (w.length > 3 && /[^s]s$/.test(w) ? w.slice(0, -1) : w)).join(' ');
+// Singular/plural key for words longer than three letters: "-ies" and "-ie" become "-y"
+// ("categories", "category" → "category"; "movies", "movie" → "movy"), then a final "s" is
+// dropped ("games" → "game").
+const formKey = (q) => q.split(' ').map((w) => (w.length > 3 ? w.replace(/ies$|ie$/, 'y').replace(/([^s])s$/, '$1') : w)).join(' ');
 const forms = new Map();
 for (const r of records) {
   const k = formKey(r.query);
@@ -536,14 +597,19 @@ const byShare = (source) => (a, b) =>
   (best(a, source).value ?? 999) - (best(b, source).value ?? 999) ||
   Number(a.as_top10_median_ratings || 0) - Number(b.as_top10_median_ratings || 0);
 const fmt = (n) => Number(n || 0).toLocaleString('en-US');
+// Median and largest rating count: a low median with a huge largest count means one strong app.
+const ratingsCell = (r) => {
+  const max = Math.max(0, ...String(r.as_top10_ratings || '').split(' ').filter(Boolean).map(Number));
+  return `${fmt(r.as_top10_median_ratings)}; max ${fmt(max)}`;
+};
 
 function table(title, rows, source, { difficulty = true, limit = top } = {}) {
   console.log(`\n## ${title} (${rows.length}${rows.length > limit ? `, top ${limit} shown` : ''})\n`);
   if (!rows.length) return console.log('None.');
-  console.log(`| Query | Typed share | Demand | ${difficulty ? 'Difficulty (median ratings) | ' : ''}Cluster |`);
+  console.log(`| Query | Typed share | Demand | ${difficulty ? 'Difficulty (median; max ratings) | ' : ''}Cluster |`);
   console.log(`|---|---|---|${difficulty ? '---|' : ''}---|`);
   for (const r of rows.slice(0, limit)) {
-    const d = difficulty ? ` ${r.difficulty} (${fmt(r.as_top10_median_ratings)}) |` : '';
+    const d = difficulty ? ` ${r.difficulty} (${ratingsCell(r)}) |` : '';
     console.log(`| ${r.query} | ${shareCell(best(r, source), r)} | ${demand(r, source)} |${d} ${r.cluster || '–'} |`);
   }
 }
@@ -551,10 +617,12 @@ function table(title, rows, source, { difficulty = true, limit = top } = {}) {
 // --- Checks ----------------------------------------------------------------------------------
 
 console.log(`# Search research tables: ${csvPath}\n`);
-console.log(`${records.length} rows, ${inputs.length} looked up.`);
+console.log(`${records.length} rows, ${inputs.length} inputs.`);
 const warnings = [];
 const versions = new Set(inputs.map((r) => r.script || '1'));
 if (versions.size > 1 || !versions.has(SCRIPT_VERSION)) warnings.push(`script versions in this file: ${[...versions].join(', ')} (this is ${SCRIPT_VERSION})`);
+const missing = inputs.filter((r) => !r.looked_up).map((r) => `${r.query} (${SOURCES.filter((s) => !answered(r).includes(s)).join(', ')})`);
+if (missing.length) warnings.push(`missing sources, left out of those surfaces' tables: ${missing.join('; ')}`);
 const unclustered = inputs.filter((r) => !r.cluster).map((r) => r.query);
 if (unclustered.length) warnings.push(`no cluster: ${unclustered.join('; ')}`);
 const badFit = inputs.filter((r) => !FIT_VALUES.includes(r.fit ?? '')).map((r) => `${r.query} (${r.fit})`);
@@ -563,11 +631,13 @@ for (const w of warnings) console.log(`- **Warning:** ${w}`);
 
 // --- Targets ---------------------------------------------------------------------------------
 
-const ok = inputs.filter(fits);
-table('App Store targets', ok.filter((r) => strong(demand(r, 'appstore')) && ['Low', 'Medium'].includes(r.difficulty)).sort(byShare('appstore')), 'appstore');
-table('App Store stretch (High demand, High difficulty)', ok.filter((r) => demand(r, 'appstore').startsWith('High') && r.difficulty === 'High').sort(byShare('appstore')), 'appstore');
-table('Google Play targets (read install bands for the top 5)', ok.filter((r) => strong(demand(r, 'play'))).sort(byShare('play')), 'play', { difficulty: false });
-table('Web targets (check what ranks for the top 10)', ok.filter((r) => strong(demand(r, 'google'))).sort(byShare('google')), 'google', { difficulty: false });
+const appStore = inputs.filter((r) => fits(r, 'store') && has(r, 'appstore', 'itunes'));
+const play = inputs.filter((r) => fits(r, 'store') && has(r, 'play'));
+const web = inputs.filter((r) => fits(r, 'web') && has(r, 'google'));
+table('App Store targets', appStore.filter((r) => strong(demand(r, 'appstore')) && ['Low', 'Medium'].includes(r.difficulty)).sort(byShare('appstore')), 'appstore');
+table('App Store stretch (High demand, High difficulty)', appStore.filter((r) => demand(r, 'appstore').startsWith('High') && r.difficulty === 'High').sort(byShare('appstore')), 'appstore');
+table('Google Play targets (read install bands for the top 5)', play.filter((r) => strong(demand(r, 'play'))).sort(byShare('play')), 'play', { difficulty: false });
+table('Web targets (check what ranks for the top 10)', web.filter((r) => strong(demand(r, 'google'))).sort(byShare('google')), 'google', { difficulty: false });
 
 // --- Left out --------------------------------------------------------------------------------
 
@@ -575,13 +645,15 @@ const blocked = inputs.filter((r) => r.fit === 'blocked').sort(byShare('appstore
 console.log(`\n## Blocked by a copy rule: for Conflicts (${blocked.length})\n`);
 if (!blocked.length) console.log('None.');
 else {
-  console.log('| Query | App Store | Play | Google | Difficulty (median ratings) | Notes |\n|---|---|---|---|---|---|');
+  console.log('| Query | App Store | Play | Google | Difficulty (median; max ratings) | Notes |\n|---|---|---|---|---|---|');
   for (const r of blocked) {
     const cells = ['appstore', 'play', 'google'].map((s) => shareCell(best(r, s), r)).join(' | ');
-    console.log(`| ${r.query} | ${cells} | ${r.difficulty} (${fmt(r.as_top10_median_ratings)}) | ${r.notes || '–'} |`);
+    console.log(`| ${r.query} | ${cells} | ${r.difficulty} (${ratingsCell(r)}) | ${r.notes || '–'} |`);
   }
 }
-const out = inputs.filter((r) => !fits(r) && r.fit !== 'blocked');
+const blockedSuggestions = records.filter((r) => r.fit === 'blocked' && !inputs.includes(r)).length;
+if (blockedSuggestions) console.log(`\nPlus ${blockedSuggestions} blocked suggestion rows, not looked up: give the count only.`);
+const out = inputs.filter((r) => !fits(r, 'store') && r.fit !== 'blocked');
 console.log(`\n## Left out for fit (${out.length})\n`);
 for (const r of out) console.log(`- ${r.query}: ${r.fit}${r.notes ? `, ${r.notes}` : ''}`);
 if (!out.length) console.log('None.');
@@ -593,6 +665,7 @@ if (!out.length) console.log('None.');
 const rank = { None: 0, Low: 1, Medium: 2, High: 3 };
 function calibrate(label, source, humanTier) {
   const pairs = inputs
+    .filter((r) => has(r, source))
     .map((r) => [tierFromShare(best(r, source).value ?? ''), humanTier(r)])
     .filter(([, h]) => h);
   if (!pairs.length) return console.log(`- ${label}: no human data yet.`);
@@ -627,7 +700,11 @@ Store Connect, Play Console or the website yourself.
   `docs/release/app-store-listing.md`, or "none yet"
 - Copy rules the listing must follow: TODO(project): e.g. the voice section of the design doc,
   words the project never uses
-- Surfaces in scope: TODO(project): App Store, Google Play, web (drop any the project lacks)
+- Surfaces in scope: TODO(project): the primary surface (the one launching first) and any
+  exploratory ones, e.g. "App Store primary; Google Play and web exploratory". Drop any the
+  project lacks.
+- URLs the site already serves (privacy policy, support): TODO(project): e.g. `/privacy`, or
+  "no site"
 - Country and language: TODO(project): `--country us --lang en`
 
 ## Budget
@@ -636,25 +713,38 @@ Defaults for one audit. Go over only when the product has many distinct features
 the report.
 
 - 3 collection passes and about 120 input queries.
-- About 10 web searches, about 10 App Store pages and about 15 Play pages.
+- About 10 web searches, about 10 App Store pages and about 15 Play details pages. Count each
+  app's page once, however many searches it appears in; Play search pages don't count.
+
+These are ceilings. Stop sooner when a pass adds few relevant rows. Exploratory surfaces get
+their tables in the report and a short proposal, without store-page reads; spend the saved time
+on the primary surface's open questions.
 
 ## Steps
 
 Work in `docs/aso/<YYYY-MM-DD>/`. The scripts are in `scripts/search-research/`.
 
-1. **Seeds.** Read the product inputs and write `seeds.txt`: 30–60 queries, one per line, under
-   `# cluster: <name>` headings (`# cluster: place - road trips`). Cover each intent cluster:
-   places and situations, groups, feature names, constraints ("offline", "no wifi", "no ads").
-   Mix short heads ("road trip games") with longer web-style queries ("games to play while
-   waiting in line"). Include every word in the current listing's searchable fields, so none is
-   dropped untested. Leave out other products' names. If the human gave seeds, include them.
+1. **Seeds.** Read what the product does, not the current listing yet, and write `seeds.txt`:
+   30–60 queries, one per line, under `# cluster: <name>` headings
+   (`# cluster: place - road trips`). Cover each intent cluster: places and situations, groups,
+   feature names, constraints ("offline", "no wifi", "no ads"). Seed each feature name on its
+   own as well as with a head word ("categories" and "categories game"). Mix short heads
+   ("road trip games") with longer web-style queries ("games to play while waiting in line").
+   Leave out other products' names. If the human gave seeds, include them.
 2. **Collect.** `node scripts/search-research/collect.mjs docs/aso/<date>/seeds.txt
-   docs/aso/<date>/queries.csv <country/lang flags>`. It fills `cluster` from the headings. If a
-   whole source fails, say so in the report and carry on. If some queries are incomplete, run it
-   again: only those are retried.
+   docs/aso/<date>/queries.csv <country/lang flags>`. It fills `cluster` from the headings and
+   saves the file after every query, so a stopped run keeps its work. Edit `queries.csv` only
+   between runs: the script rewrites it after every query, from the copy it loaded at the start.
+   If a whole source fails, say so in the report and carry on: the report ranks each surface from
+   the queries its own sources answered. If some queries are incomplete, run it again: only their
+   missing sources are retried.
 3. **Expand, once or twice.** Don't read `queries.csv` whole: it grows to thousands of rows.
-   Filter it with a short script, e.g. suggestion rows (blank `looked_up`) on topic with a typed
-   share under 45 in a store column. Add to `seeds.txt`, under their cluster:
+   Filter it with a short script, e.g. suggestion rows (`parent` isn't `(input)`) on topic with
+   a typed share under 45 in a store column. Add to `seeds.txt`, under their cluster:
+   - every word in the current listing's searchable fields not yet covered, marked
+     `# from listing` at the end of the line, so none is dropped untested. Read the listing now,
+     after the first pass, so the first seeds come from the product rather than the listing's
+     choices;
    - relevant suggestions;
    - generic terms from the names in `as_top3` ("pass the phone", "group games"), never the
      brand names;
@@ -665,7 +755,10 @@ Work in `docs/aso/<YYYY-MM-DD>/`. The scripts are in `scripts/search-research/`.
    at the budget.
 4. **Judge fit.** Read `as_top3` for the inputs, and set `fit` on any that don't fit, with a
    reason in `notes`. Blank means it fits.
-   - `other-meaning`: the stores read it as something else ("car games" there are driving games).
+   - `other-meaning`: it means something else everywhere.
+   - `other-meaning-store`: the stores read it as something else, but on the web it still
+     means this product ("car games" are driving games in stores, passenger games on the web).
+     It stays a web target.
    - `blocked`: a copy rule forbids a word in it.
    - `untrue`: the product doesn't do what it asks.
    - `weak`: it fits only loosely, or the top results serve a different audience.
@@ -673,18 +766,22 @@ Work in `docs/aso/<YYYY-MM-DD>/`. The scripts are in `scripts/search-research/`.
    - Web: run `report.mjs` (step 6) and use your web-search tool once for each of the top 10
      web targets. Note in the report what kind of site ranks (lists, forums, app pages, video):
      that's the web difficulty.
-   - App Store: open the store pages of the 3–5 competitors that recur most in `as_top3`, and
-     note their names, subtitles and the words they repeat. The app's own subtitle is the
-     `<p class="subtitle">` right after the page's `<h1>`; the other subtitles on the page belong
-     to related apps.
+   - App Store: open the store pages of the 3–5 competitors that recur most in `as_top3`, using
+     the links in `as_top3_urls`, and note their names, subtitles and the words they repeat.
+     The app's own subtitle is the `<p class="subtitle">` right after the page's `<h1>`; the
+     other subtitles on the page belong to related apps.
    - Google Play: for each of the top 5 Play targets, open
-     `https://play.google.com/store/search?q=<query>&c=apps`, then the top five results' details
-     pages, and note the band beside "Downloads". Search pages don't show it.
+     `https://play.google.com/store/search?q=<query>&c=apps`, then the top results' details
+     pages until the budget is spent (each app once), and note the band beside "Downloads".
+     Search pages don't show it.
+   - Skip the store pages for exploratory surfaces. If your browser tool refuses a store page,
+     fetch that one page directly, and keep only the facts you need from it.
 6. **Analyze, in `report.md`.** Run `node scripts/search-research/report.mjs
    docs/aso/<date>/queries.csv`. It prints ranked target, stretch, blocked and left-out tables,
    reading singular and plural forms together. Build the report from those tables; don't
    re-rank by eye.
-   - **Targets:** the top ~15 per surface, with their typed share and difficulty.
+   - **Targets:** the top ~15 per surface, with their typed share and difficulty. Where a
+     target's largest rating count dwarfs its median, say one app dominates it.
    - **Stretch:** demand High, difficulty High. Only worth it for words already in the listing,
      or for the name or subtitle if the words define the product.
    - **Left out:** a line each for strong queries dropped, and why.
@@ -693,7 +790,9 @@ Work in `docs/aso/<YYYY-MM-DD>/`. The scripts are in `scripts/search-research/`.
    - Check each target against the product: it must do what the query asks for.
 7. **Propose, in `proposals.md`.** One section per surface in scope, each field with current
    value, proposed value, its length against the limit, the queries it targets, and the
-   post-launch metric it should move (search impressions, conversion, or Search Console clicks).
+   post-launch metric that would show whether it worked (search impressions, conversion, or
+   Search Console clicks). Write each as a hypothesis: the data shows what people are offered
+   as they type, not what they'll download.
    - **App Store:** name (30), subtitle (30), keywords (100 bytes), promotional text (170). The
      description and promotional text aren't indexed: propose changes there only for conversion.
      To fill the keyword field:
@@ -705,12 +804,19 @@ Work in `docs/aso/<YYYY-MM-DD>/`. The scripts are in `scripts/search-research/`.
      5. Stop at 100 bytes, checking with `printf %s '<line>' | wc -c`.
    - **Google Play:** title (30), short description (80), full description (4,000). Play indexes
      the full description: use each target once, in a sentence a person would write, never in a
-     list of keywords. If an App Store description exists, propose Play's as edits to it.
+     list of keywords. One natural phrase may cover close variants ("riddle games" and "riddles");
+     say which targets it covers. If an App Store description exists, propose Play's as edits
+     to it.
    - **Web:** for each page, the title (about 60 characters), meta description (about 155) and H1.
      If there's no landing page, propose a page plan: one page per strong cluster, with its title
-     and the questions it answers. Prefer clusters where blogs rank, not big publishers.
-   - **Conflicts:** every row with `fit` = `blocked` that the data favors: the query, the rule, and
-     what the human could change. Never put it in a proposal.
+     and the questions it answers. Prefer clusters where blogs rank, not big publishers. Keep
+     the URLs the site already serves; where a new home page goes is a human decision.
+   - **Conflicts:** each row in the report's blocked table with a Medium or High tier on some
+     surface, if it's true of the product and winnable. Put it in the proposal anyway, and list it
+     here for human review: the query and its evidence, the rule it breaks, the risk, the proposal
+     field that uses it, and the replacement text to paste if the human keeps the rule. Blocked
+     suggestion rows get a count only. Only truth and store policy stay hard limits (for example
+     a phrase a store reserves); a term those block is listed here but not proposed.
    - **Human decisions:** the contradictions from step 6, and anything outside the rules, such as
      the extra-locale keyword option for the US App Store.
 8. **Check every number.** Each typed share, median, count and length in `report.md` and
@@ -722,8 +828,8 @@ Work in `docs/aso/<YYYY-MM-DD>/`. The scripts are in `scripts/search-research/`.
    - every human decision;
    - anything that failed.
 
-   Also write `shortlist.txt` (at most 50 queries worth confirming) and ask the human to do the
-   optional step below. Don't wait for it.
+   Also write `shortlist.txt` (at most 50 input queries worth confirming; calibration reads
+   inputs only) and ask the human to do the optional step below. Don't wait for it.
 10. **Optional human step, after hand-back.** For each shortlisted query, the human types into
     `queries.csv` the Google Ads Keyword Planner range in `kp_range` (e.g. `1K – 10K`) and the
     Apple Ads search popularity (1–5) in `ads_popularity`. Then run `collect.mjs` again (nothing
@@ -741,16 +847,21 @@ playbook note and, if they're fixes, into the playbook.
 - Free sources only: the scripts, your own web search, single store pages. No bulk scraping, no
   logins, no paid tools or APIs.
 - The `google`, `appstore` and `play` columns hold the typed share: the least of a query, in
-  percent, that had to be typed before that source suggested it. Lower is more searched; blank
-  is never suggested. Compare within a source, not across them.
+  percent, that had to be typed before that source suggested it. Lower means suggested sooner,
+  a sign of more searching but not a measure of it; blank is never suggested. Compare within a
+  source, not across them, and write "suggested early", not "high volume".
 - A store-style form counts for ASO only if a store's autocomplete shows it (a value in
   `appstore` or `play`). Unconfirmed forms can still serve the web.
-- Every proposed word traces to a row in `queries.csv`.
-- Copy rules beat data. When they clash, it's a Conflict for the human.
+- Every word a proposal adds to reach searchers traces to a row in `queries.csv`. The app's
+  name, factual claims and connecting words trace to the product instead.
+- Data beats copy rules. When they clash, the proposal follows the data and flags the clash
+  under Conflicts for human review, with the replacement text if the rule is kept. Only truth and
+  store policy are hard limits.
 - Apple and Google don't document most of how search ranks. When a proposal relies on
   undocumented behavior (how words combine across fields, which small words are ignored), say
   it's common practice, not fact.
-- If a script's scoring looks wrong mid-audit, stop. Fix the script in the playbook first, bump
+- If a script's scoring looks wrong mid-audit, stop and show it with a small example (ten made-up
+  rating counts, say). Fix the script in the playbook first, bump
   `SCRIPT_VERSION` in `shared.mjs` if values change meaning, start a new `queries.csv`, and say so
   in the report.
 - Don't propose a listing in a language the product doesn't support.
@@ -779,25 +890,39 @@ Why each part is there:
 
 ## 6. Acceptance test
 
-1. **The script runs clean.** `node scripts/search-research/collect.mjs` on a three-line seeds
+Test 1 needs no network: it checks the scoring itself. Tests 2–4 use the live sources, so a
+source that changes or goes down can fail them while the code is fine; read the error before
+fixing the code.
+
+1. **The median is right.**
+   `node --input-type=module -e "import { median, difficultyFromMedian } from './scripts/search-research/shared.mjs'; const m = median([5000, 100, 1300, 900]); console.log(m, difficultyFromMedian(m))"`
+   prints `1100 Medium`.
+2. **The script runs clean.** `node scripts/search-research/collect.mjs` on a three-line seeds
    file finishes in under a minute, prints `Failed` with all zeros, and writes rows with a typed
-   share in all three source columns for at least one seed.
-2. **Reruns keep human work.** Type a Keyword Planner range and an Apple Ads number into one row,
+   share in all three source columns, ten counts in `as_top10_ratings` and three links in
+   `as_top3_urls` for at least one seed.
+3. **Stopping keeps work.** Add five seeds, run again and press Ctrl-C after the first one
+   finishes: the script prints `Stopped`, the saved rows and the request counts, and exits 130.
+   Running again looks up only the seeds still unfinished.
+4. **Reruns keep human work.** Type a Keyword Planner range and an Apple Ads number into one row,
    add a seed, run again: the typed values stay, that row's demand tiers lose their `?`, and only
    the new seed is looked up. Every input has the cluster of its `# cluster:` heading.
-3. **Versions don't mix.** Change `script` on one row to another version and run again: the
+5. **Versions don't mix.** Change `script` on one row to another version and run again: the
    script refuses, names both versions and exits 2.
-4. **The report ranks and calibrates.** `report.mjs` on that file prints the four target tables,
+6. **The report ranks and calibrates.** `report.mjs` on that file prints the four target tables,
    shows a plural's share taken from its singular (`29 (as "road trip game")`) where the stores
    suggest only one, keeps rows with a `fit` out of targets, and prints a Calibration line for
-   the row with human data.
-5. **Unprompted use.** In a fresh session, ask "what keywords should the App Store listing use?"
+   the row with human data. Then, on a copy of the file, set `fit` to `other-meaning-store` on a
+   query that is both an App Store and a web target, and remove `play` from another target's
+   `sources_ok` and clear its `looked_up`. The first appears among the web targets only. The second is missing from the Play
+   table, still appears in the others, and is named in a warning.
+7. **Unprompted use.** In a fresh session, ask "what keywords should the App Store listing use?"
    without naming the skill. The agent follows the skill and produces the audit files, not a list
    from memory.
-6. **Conflicts surface.** Add a copy rule that bans a word the data favors (for example a word the
-   project's listing avoids). The agent sets `fit` to `blocked`, and the word appears under
-   Conflicts with its row and the rule, and in no proposal.
-7. **Limits hold.** Every proposed field shows its length, and the App Store keyword field is
+8. **Conflicts surface.** Add a copy rule that bans a word the data favors (for example a word the
+   project's listing avoids). The agent sets `fit` to `blocked`, puts the word in a proposal,
+   and lists it under Conflicts with its row, the rule, the risk and the replacement text.
+9. **Limits hold.** Every proposed field shows its length, and the App Store keyword field is
    at most 100 bytes (`printf %s '…' | wc -c`).
 
 ---
@@ -819,21 +944,48 @@ Why each part is there:
   data, and step 8 checks what's left.
 - **Plurals split the data.** In the App Store "road trip game" scored 29 and "road trip games"
   100, because hints suggested only the singular. `report.mjs` reads the forms together.
-  Apple matches some plural forms on its own, so the keyword field rarely needs both.
+  Apple matches some plural forms on its own, so the keyword field rarely needs both. Dropping a
+  final "s" left "categories" apart from "category"; "-ies" now becomes "-y" first.
 - **Changing the scoring mid-audit.** The first run re-ran pass 1 four times while fixing the
   demand measure. Merging old and new values would have mixed two meanings in one column without
   any sign of it, so `collect.mjs` now records its version on each row and refuses to merge
   another.
+- **The median took the lower middle count.** With ten results whose middle counts were 900 and
+  1,300, the script gave 900 (Low) instead of 1,100 (Medium). The second run caught it by reading
+  the code, stopped and collected again. It now averages the two, acceptance test 1 checks it
+  without the network, and all ten counts are kept so difficulty can be recomputed from the
+  file.
+- **A low median can hide one big app.** "categories" had a median of 392 ratings but a largest
+  count of about 175K. The report now shows both.
+- **Stopping the collector lost everything.** It used to write the CSV and the request counts
+  only at the end, so stopping it to fix the median kept nothing. It now saves after every query
+  and prints the counts when stopped. It also used to need every source before marking a query
+  done, and the report read only finished queries, so one source down would have emptied every
+  table. Each surface now ranks from its own sources.
+- **Edits made during a run were lost.** An agent set `fit` values while the collector ran; the
+  collector's final write, from the copy it loaded at the start, dropped them. Edit between runs.
+- **Guessed competitor links failed.** Two App Store URLs built from names didn't open, and six
+  extra lookups found the real ones. `as_top3_urls` now keeps the links from the same response.
+- **The Play page budget didn't fit the Play step.** Five targets with five results each is 25
+  details pages against a budget of about 15. Counting each app once still needed 16. The budget
+  now counts unique details pages only, and the step stops when it's spent.
+- **Browser tools can refuse store pages.** One agent's browser refused all five Play search
+  pages, while fetching each page directly worked.
+- **Dates crossed midnight.** `looked_up` was a UTC date, a day after the audit folder's local
+  date in an evening run. It's local now.
 - **Keyword packing by trial.** Fitting the first keyword field took five tries (147, 133, 141,
   107, then 100 bytes). The skill's packing steps get there in one pass.
 - **Data that contradicts the project's docs.** The first project's listing doc called one game
   name "too generic to search for", but the data made it a target. That only showed up as
-  "not covered" in a table. Contradictions now go to Human decisions.
+  "not covered" in a table. Contradictions now go to Human decisions. The second run seeded the
+  bare name ("categories", not only "categories game") and found a Low difficulty, firmer
+  evidence than the first run had.
 - **Words mean different things in stores.** "line games" looked like a waiting-in-line query,
   but its App Store top 3 were line-drawing puzzles with ~73K median ratings. Car, restaurant,
   plane and airport games were driving, cooking and flight sims, and I Spy was hidden-object
   games. Read `as_top3` before trusting a tier: a High tier for an unrelated meaning is neither
-  competition nor demand for this product.
+  competition nor demand for this product. On the web, "car games" still finds passenger games,
+  so a single fit for all surfaces dropped a good web query; `other-meaning-store` keeps it.
 - **Hints include app names.** App Store hints returned "carpool: road trip games", an app's
   name. Navigational queries for other apps are not targets. Apple's guideline 2.3.7 bans other
   apps' names in metadata, so they never go in a proposal.
@@ -841,16 +993,19 @@ Why each part is there:
   Use it for difficulty, never as "where we would rank".
 - **Typed shares are relative.** They rank queries within one source; they aren't volumes, and
   each source's autocomplete behaves differently. That's why tiers stay `?` until a human
-  source confirms them.
+  source confirms them, and why proposals are hypotheses: neither run could say whether a new
+  subtitle would win more downloads.
 - **Competitor subtitles.** An App Store page's data holds many `"subtitle"` values; the first
   ones belong to related apps. The app's own is the `<p class="subtitle">` right after the `<h1>`.
 - **Play installs aren't on search pages.** Read the band beside "Downloads" on each result's
   details page.
 - **Test the current listing's words.** The first run nearly dropped "quiz" from the keyword
-  field without data. Seeds now include every word already in the listing.
+  field without data. Every word already in the listing is now added in the second pass, after
+  seeds written from the product alone, so the listing's choices don't shape the first seeds.
 - **The unofficial endpoints can break.** The App Store hints and Play suggest endpoints are
   what the store apps and sites use, not public APIs. The script counts failures per source and
-  exits 1 if a source failed for every query; report a broken source, don't silently drop it.
+  exits 1 if a source failed for every query; the other surfaces still rank. Report a broken
+  source, don't silently drop it.
 - **Web queries don't always carry over.** Long questions ("what games can we play while waiting
   in line") get searched on the web, but people type short heads in stores. Only a store-style
   form that store autocomplete shows counts for ASO.
