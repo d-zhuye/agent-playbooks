@@ -1,1 +1,2 @@
 - 2026-10-14 · interval-timer · skipped · Needs react-native-web and stubs for location, audio and IAP, and web is explicitly not a product target here.
+- 2026-10-15 · while-we-wait · worked · A shared Button change (check mark on selected choices) flagged 3 screens, 2 predicted and 1 explained by the shared component (dev buttons); approved and ended on a clean 316-test run.
