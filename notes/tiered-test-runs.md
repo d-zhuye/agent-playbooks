@@ -1,2 +1,3 @@
 - 2026-10-14 · interval-timer · skipped · Existing inner-loop/close-out rules in CLAUDE.md already cover the tiers; no pre-commit hook wanted yet.
 - 2026-10-16 · while-we-wait · worked · The Get to Know You presentation change used related UI tests while editing and check:quick before hand-back, without running foundation-only checks.
+- 2026-10-16 · while-we-wait · worked · The conversation-bubble device fix reproduced its overflow bug in a targeted UI test, then passed related tests and check:quick without running foundation-only checks.
