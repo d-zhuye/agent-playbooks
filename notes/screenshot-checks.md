@@ -2,3 +2,4 @@
 - 2026-10-15 · while-we-wait · worked · A shared Button change (check mark on selected choices) flagged 3 screens, 2 predicted and 1 explained by the shared component (dev buttons); approved and ended on a clean 316-test run.
 - 2026-10-16 · while-we-wait · worked · Torn Poster's deck walk caught 11–19px overflow on one dilemma; measured padding fixed it, and approvals stayed on the three predicted active-game screenshots.
 - 2026-10-16 · while-we-wait · worked · The subsequent full run also exposed 15 stale Settings/Expansion count baselines; verified the bundled totals against HEAD and refreshed those count-only screenshots separately from the poster design.
+- 2026-10-16 · while-we-wait · worked · Trivia’s measured Quiz Ticket geometry fit the manual tall, short and longest-word cases; the targeted visual check changed only the five predicted active-play and fact-overlay screenshots.
