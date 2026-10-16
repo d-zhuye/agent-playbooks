@@ -1,1 +1,2 @@
 - 2026-10-14 · interval-timer · skipped · Existing inner-loop/close-out rules in CLAUDE.md already cover the tiers; no pre-commit hook wanted yet.
+- 2026-10-16 · while-we-wait · worked · The Get to Know You presentation change used related UI tests while editing and check:quick before hand-back, without running foundation-only checks.

@@ -4,3 +4,4 @@
 - 2026-10-16 · while-we-wait · worked · The subsequent full run also exposed 15 stale Settings/Expansion count baselines; verified the bundled totals against HEAD and refreshed those count-only screenshots separately from the poster design.
 - 2026-10-16 · while-we-wait · worked · Trivia’s measured Quiz Ticket geometry fit the manual tall, short and longest-word cases; the targeted visual check changed only the five predicted active-play and fact-overlay screenshots.
 - 2026-10-16 · while-we-wait · worked · Mystery Folder changed only the five predicted Riddles screenshots; its revealed-answer deck walk and manual tall, short, longest-word and short-window cases fit without shrinking text.
+- 2026-10-16 · while-we-wait · worked · Conversation Bubble review covered nine predicted active-game screenshots, every free question at three phone sizes, and manual worst-case and short-window previews.
