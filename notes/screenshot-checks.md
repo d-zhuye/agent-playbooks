@@ -6,3 +6,4 @@
 - 2026-10-16 · while-we-wait · worked · Mystery Folder changed only the five predicted Riddles screenshots; its revealed-answer deck walk and manual tall, short, longest-word and short-window cases fit without shrinking text.
 - 2026-10-16 · while-we-wait · worked · Conversation Bubble review covered nine predicted active-game screenshots, every free question at three phone sizes, and manual worst-case and short-window previews.
 - 2026-10-16 · while-we-wait · changed · An iPhone report exposed decoration lost after native safe-area measurement; added a simulated safe-area screenshot and native measurement regression alongside the regular phone captures.
+- 2026-10-16 · while-we-wait · worked · Night Lens changed only three predicted I Spy screenshots; the free deck walk, curved-edge text checks for tall and longest-word targets, short-window review and final 316-check web run passed.
