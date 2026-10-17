@@ -9,3 +9,4 @@
 - 2026-10-16 · while-we-wait · worked · Night Lens changed only three predicted I Spy screenshots; the free deck walk, curved-edge text checks for tall and longest-word targets, short-window review and final 316-check web run passed.
 - 2026-10-16 · while-we-wait · worked · A still SVG star field changed only the three predicted I Spy screenshots; screenshot diffs confirmed the lens, text and controls stayed in place.
 - 2026-10-16 · while-we-wait · didn't · A star background passed web checks but nested percentage-positioned SVGs clustered on iPhone; replaced them with measured native views and a bounds/resizing regression test.
+- 2026-10-16 · while-we-wait · worked · Paper Vault review isolated 13 predicted play/guide screenshots; the free-deck walk passed at all three phone sizes, and localhost required the documented sandbox escalation.
