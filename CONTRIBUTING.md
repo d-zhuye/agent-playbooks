@@ -8,7 +8,7 @@ many projects, so work goes faster and feels the same in each. It has three kind
 |---|---|---|---|
 | Journal entry | `journal/<slug>.md` | A short note on a problem that keeps coming back, and what was tried | The problem recurred or persisted |
 | Note | `notes/<playbook>.md` | One line on how a playbook went in a project | You used (or skipped) a playbook |
-| Playbook | `playbooks/<name>.md` | A written-up setup another agent can install | Promoted by a review (see [REVIEWING.md](REVIEWING.md)) |
+| Playbook | `playbooks/<name>.md`, or `playbooks/<name>/README.md` with its files | A written-up setup another agent can install | Promoted by a review (see [REVIEWING.md](REVIEWING.md)) |
 
 Keep adding easy. Reviews do the sorting: they promote, merge, rewrite and delete.
 
@@ -48,8 +48,14 @@ write one directly when a setup clearly earns it. A playbook is one Markdown fil
 agent will follow to install a working setup in a new project, without seeing the project the
 setup came from. Write it for that agent.
 
-1. **Name the file** in `playbooks/` after what the setup does, in kebab-case: `screenshot-checks.md`, not
-   `playwright.md` or `while-we-wait-tests.md`.
+When the starter code runs to many files, or ships scripts with tests, make the playbook a folder
+instead: `playbooks/<name>/README.md` is the playbook, and `playbooks/<name>/files/` holds the
+starter files at the paths they take in a project, so they can be copied as they are and their
+tests run in place. [playbooks/customer-story-research/](playbooks/customer-story-research/) is
+the example.
+
+1. **Name the file** (or folder) in `playbooks/` after what the setup does, in kebab-case:
+   `screenshot-checks.md`, not `playwright.md` or `while-we-wait-tests.md`.
 2. **Write it using the sections below.** Leave out any section that doesn't apply, and keep
    the order of the rest.
 3. **Remove project specifics.** That covers app names, screen names, people and private URLs.
@@ -69,7 +75,8 @@ setup came from. Write it for that agent.
    and after. Say how many projects the figures come from.
 3. **How it works:** the parts, how they connect, and the commands.
 4. **Setup checklist:** dependencies, pinned versions, scripts, config and `.gitignore`.
-5. **Starter code:** every file, in full, ready to copy. Use comments to explain what each part
+5. **Starter code:** every file, in full, ready to copy (in a folder playbook: a table of the
+   files in `files/` and how to test them). Use comments to explain what each part
    does and why.
 6. **Agent rule:** the exact text to paste into `AGENTS.md`, and why each line is there.
 7. **Acceptance test:** scenarios that prove the setup works, including one where an agent
