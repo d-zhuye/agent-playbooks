@@ -10,6 +10,11 @@ problems seen before that aren't playbooks yet.
 - [App Store upload readiness](playbooks/app-store-upload-readiness.md): 14 pass/fail checks before an App Store
   Connect upload (current Xcode/SDK minimum, icon, privacy manifest, Info.plist, signing, binary
   contents) and a short report format. iOS apps; Expo / EAS commands included.
+- [Customer story research](playbooks/customer-story-research/README.md): agents find stories people
+  share online about the struggle a product solves, check every quote against its page, rate the
+  four Jobs to Be Done forces, write findings blind to the team's ideal-user profile, then compare
+  them with it in a report and page. Unproven; any product before customer interviews; Node
+  scripts included.
 - [Delegated work in worktrees](playbooks/delegated-work-in-worktrees.md): briefs, base-commit checks, report
   format and integration for subagents working in parallel git worktrees. Any project in git.
 - [Docs without copies](playbooks/docs-without-copies.md): docs record intent and point to the code or a

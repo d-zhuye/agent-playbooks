@@ -1,0 +1,479 @@
+<!doctype html>
+<!--
+  The page template for build-report.mjs, which fills five placeholders, each exactly once: the
+  title (TITLE in double braces), the run header, forces, findings and people we might be wrong
+  about (REPORT-TOP), the run notes after the story browser (RUN-NOTES), the retained stories as
+  JSON (STORY-DATA) and page-filter.mjs, inlined (PAGE-FILTER).
+  Self-contained: no external scripts, styles or fonts. The story cards set text with
+  textContent only.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{TITLE}}</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: a field report in one reading column; the four forces as a two-sided board up top,
+   findings and quotes below, then a filterable stack of story cards. */
+:root {
+  --bg: #f3f5f7;
+  --surface: #ffffff;
+  --ink: #17202b;
+  --muted: #566170;
+  --line: #d6dce4;
+  --toward: #1b6883;
+  --toward-soft: #dbebf1;
+  --against: #975210;
+  --against-soft: #f5e6d4;
+  --checked: #26754a;
+  --unchecked: #85661a;
+  --warn-bg: #fbefd9;
+  --warn-ink: #6f4500;
+  --link: #1b5aa3;
+  --focus: #2a69d1;
+  --display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --step--1: 0.8125rem;
+  --step-0: 1rem;
+  --step-1: 1.1875rem;
+  --step-2: 1.5rem;
+  --step-3: 2rem;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #10151c; --surface: #18202a; --ink: #e4e9f0; --muted: #9aa6b6; --line: #2a3441;
+    --toward: #63b5d2; --toward-soft: #15303a; --against: #e2a463; --against-soft: #382916;
+    --checked: #6bc68f; --unchecked: #d8b45b; --warn-bg: #3a2b11; --warn-ink: #f1cf8b;
+    --link: #8bb8ef; --focus: #8bb8ef;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #10151c; --surface: #18202a; --ink: #e4e9f0; --muted: #9aa6b6; --line: #2a3441;
+  --toward: #63b5d2; --toward-soft: #15303a; --against: #e2a463; --against-soft: #382916;
+  --checked: #6bc68f; --unchecked: #d8b45b; --warn-bg: #3a2b11; --warn-ink: #f1cf8b;
+  --link: #8bb8ef; --focus: #8bb8ef;
+  color-scheme: dark;
+}
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: var(--step-0)/1.55 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+main { max-width: 60rem; margin: 0 auto; padding-block: 2rem 4rem; display: grid; gap: 3rem; }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.2; text-wrap: balance; margin: 0; }
+h1 { font-size: var(--step-3); }
+h2 { font-size: var(--step-2); }
+h3 { font-size: var(--step-1); }
+h4 { font-size: var(--step-0); margin: 0; }
+p, ul, ol, dl, blockquote { margin: 0; }
+a { color: var(--link); text-underline-offset: 0.15em; }
+a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 2px solid var(--focus); outline-offset: 2px;
+}
+section { display: grid; gap: 1rem; min-width: 0; }
+.lede { color: var(--muted); max-width: 65ch; }
+.eyebrow { font-size: var(--step--1); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.refs { font: var(--step--1)/1.4 var(--mono); color: var(--muted); display: flex; flex-wrap: wrap; gap: 0.25rem 0.6rem; }
+.none { color: var(--muted); font-style: italic; }
+blockquote { font-family: var(--display); font-size: var(--step-1); line-height: 1.45; overflow-wrap: anywhere; }
+blockquote cite { display: block; font: var(--step--1)/1.4 var(--mono); color: var(--muted); font-style: normal; margin-top: 0.25rem; }
+
+/* Run header */
+.run { display: grid; gap: 0.75rem; }
+.product { color: var(--muted); }
+.incomplete { background: var(--warn-bg); color: var(--warn-ink); border-radius: 0.5rem; padding: 0.75rem 1rem; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr)); gap: 0.5rem 1.5rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding-block: 0.75rem; }
+.facts dt { font-size: var(--step--1); color: var(--muted); }
+.facts dd { margin: 0; font: 600 var(--step-1)/1.3 var(--body); font-variant-numeric: tabular-nums; }
+.spread summary { cursor: pointer; color: var(--muted); font-size: var(--step--1); }
+.spread p { margin-top: 0.5rem; font-size: var(--step--1); color: var(--muted); }
+
+/* Forces board */
+.board { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.side { display: grid; gap: 1rem; align-content: start; min-width: 0; }
+.toward { --side: var(--toward); --side-soft: var(--toward-soft); }
+.against { --side: var(--against); --side-soft: var(--against-soft); }
+.side-label { font-size: var(--step--1); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: var(--side); }
+.force { background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--side); border-radius: 0.5rem; padding: 1rem; display: grid; gap: 0.75rem; min-width: 0; }
+.force .hint { color: var(--muted); font-size: var(--step--1); }
+.count { font-variant-numeric: tabular-nums; }
+.count .num { font: 600 var(--step-2)/1 var(--display); color: var(--side); }
+.bar { display: flex; height: 0.6rem; background: var(--side-soft); border-radius: 0.3rem; overflow: hidden; }
+.seg { background: var(--side); }
+.seg.clear { opacity: 0.6; }
+.seg.weak { opacity: 0.3; }
+.legend { font: var(--step--1)/1.4 var(--mono); color: var(--muted); }
+.themes { list-style: none; padding: 0; display: grid; gap: 0.9rem; }
+.themes li { display: grid; gap: 0.4rem; border-top: 1px solid var(--line); padding-top: 0.75rem; }
+.theme { font-weight: 600; }
+.theme .n { font-weight: 400; color: var(--muted); font-size: var(--step--1); margin-left: 0.4rem; }
+.themes blockquote { font-size: var(--step-0); border-left: 3px solid var(--side-soft); padding-left: 0.75rem; }
+
+/* Findings */
+.findings { display: grid; gap: 2rem; }
+.finding ul { padding-left: 1.2rem; display: grid; gap: 0.6rem; max-width: 70ch; }
+.finding li .refs { display: inline-flex; margin-left: 0.4rem; }
+.finding .words { list-style: none; padding: 0; display: grid; gap: 1rem; max-width: none; }
+.words li { background: var(--surface); border: 1px solid var(--line); border-radius: 0.5rem; padding: 1rem; display: grid; gap: 0.4rem; }
+.words .note { color: var(--muted); font-size: var(--step--1); }
+
+/* People we might be wrong about */
+.wrong { list-style: none; padding: 0; display: grid; gap: 0.6rem; }
+.wrong li { border-left: 3px solid var(--against); padding-left: 0.75rem; }
+
+/* Story browser */
+.filters { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 0.75rem 1rem; background: var(--surface); border: 1px solid var(--line); border-radius: 0.5rem; padding: 1rem; }
+.filters label, .filters legend { display: grid; gap: 0.25rem; font-size: var(--step--1); color: var(--muted); }
+.filters input, .filters select { font: inherit; font-size: var(--step-0); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 0.375rem; padding: 0.4rem 0.5rem; min-width: 0; width: 100%; }
+.filters fieldset { border: 0; padding: 0; margin: 0; grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: center; }
+.filters fieldset legend { float: left; margin-right: 0.5rem; }
+.filters .check { display: inline-flex; align-items: center; gap: 0.35rem; color: var(--ink); font-size: var(--step-0); }
+.filters .check input { width: auto; }
+.fit-range { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.filters button { font: inherit; justify-self: start; align-self: end; background: transparent; color: var(--link); border: 1px solid var(--line); border-radius: 0.375rem; padding: 0.4rem 0.8rem; cursor: pointer; }
+#story-count { color: var(--muted); font-size: var(--step--1); }
+.story-list { display: grid; gap: 0.75rem; }
+.story { background: var(--surface); border: 1px solid var(--line); border-radius: 0.5rem; min-width: 0; }
+.story > summary { cursor: pointer; padding: 0.9rem 1rem; display: grid; gap: 0.4rem; list-style: none; }
+.story > summary::-webkit-details-marker { display: none; }
+.story[open] > summary { border-bottom: 1px solid var(--line); }
+.story-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.3rem 0.6rem; }
+.sid { font: var(--step--1)/1 var(--mono); color: var(--muted); }
+.sit { font-weight: 600; min-width: 0; overflow-wrap: anywhere; }
+.chip { font-size: var(--step--1); border: 1px solid var(--line); border-radius: 999px; padding: 0.05rem 0.55rem; white-space: nowrap; }
+.chip.type-counter { border-color: var(--against); color: var(--against); }
+.chip.type-switch { border-color: var(--toward); color: var(--toward); }
+.story-meta { display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; font-size: var(--step--1); color: var(--muted); font-variant-numeric: tabular-nums; }
+.pips { display: inline-flex; gap: 0.2rem; }
+.pip { font: 600 0.6875rem/1 var(--mono); width: 1.25rem; height: 1.25rem; display: inline-grid; place-items: center; border-radius: 0.25rem; border: 1px solid var(--line); color: var(--muted); }
+.pip.on.toward-pip { background: var(--toward); border-color: var(--toward); color: var(--surface); }
+.pip.on.against-pip { background: var(--against); border-color: var(--against); color: var(--surface); }
+.story-body { padding: 1rem; display: grid; gap: 1.25rem; }
+.story-body h4 { font-size: var(--step--1); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.job { font-family: var(--display); font-size: var(--step-1); }
+.kv { display: grid; grid-template-columns: max-content 1fr; gap: 0.25rem 0.75rem; font-size: var(--step--1); }
+.kv dt { color: var(--muted); }
+.kv dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.force-rows { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 0.75rem; }
+.force-row { display: grid; gap: 0.35rem; align-content: start; border-left: 3px solid var(--side); padding-left: 0.75rem; min-width: 0; }
+.force-row.absent { border-left-color: var(--line); color: var(--muted); }
+.force-row blockquote { font-size: var(--step-0); }
+.quotes { padding-left: 1.4rem; display: grid; gap: 0.75rem; }
+.quotes blockquote { font-size: var(--step-0); }
+.qmeta { font-size: var(--step--1); color: var(--muted); display: flex; flex-wrap: wrap; gap: 0.2rem 0.75rem; }
+.mark-checked { color: var(--checked); font-weight: 600; }
+.mark-unrechecked { color: var(--unchecked); font-weight: 600; }
+.parts { padding-left: 1.4rem; display: grid; gap: 0.3rem; font-size: var(--step--1); }
+.parts .score { font: 600 var(--step--1)/1.4 var(--mono); }
+.story-foot { font-size: var(--step--1); display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; }
+.empty { color: var(--muted); font-style: italic; }
+
+/* Run notes */
+.notes { display: grid; gap: 0.75rem; max-width: 70ch; }
+.notes dt { font-weight: 600; }
+.notes dd { margin: 0.15rem 0 0; color: var(--muted); overflow-wrap: anywhere; }
+.notes dd ul { padding-left: 1.2rem; }
+
+@media (max-width: 40rem) {
+  .board { grid-template-columns: 1fr; }
+  main { gap: 2.5rem; padding-block: 1.25rem 3rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+<main>
+<!--REPORT-TOP-->
+<section id="stories" aria-labelledby="stories-h">
+  <h2 id="stories-h">Stories</h2>
+  <p class="lede">Every retained story. Open one to read its forces, quotes and fit. A tick marks a quote the check found on the live page.</p>
+  <form id="filters" class="filters">
+    <label for="f-situation">Situation contains
+      <input id="f-situation" name="situation" type="search" list="f-situations" autocomplete="off">
+    </label>
+    <datalist id="f-situations"></datalist>
+    <label for="f-type">Story type
+      <select id="f-type" name="type"><option value="">Any type</option></select>
+    </label>
+    <label for="f-platform">Platform
+      <select id="f-platform" name="platform"><option value="">Any platform</option></select>
+    </label>
+    <label for="f-confidence">Confidence
+      <select id="f-confidence" name="confidence"><option value="">Any confidence</option></select>
+    </label>
+    <div class="fit-range">
+      <label for="f-min">Fit from <input id="f-min" name="minFit" type="number" min="0" max="10" inputmode="numeric"></label>
+      <label for="f-max">to <input id="f-max" name="maxFit" type="number" min="0" max="10" inputmode="numeric"></label>
+    </div>
+    <fieldset>
+      <legend>Forces present</legend>
+      <label class="check" for="f-push"><input id="f-push" type="checkbox" name="force" value="push"> Push</label>
+      <label class="check" for="f-pull"><input id="f-pull" type="checkbox" name="force" value="pull"> Pull</label>
+      <label class="check" for="f-anxiety"><input id="f-anxiety" type="checkbox" name="force" value="anxiety"> Anxiety</label>
+      <label class="check" for="f-habit"><input id="f-habit" type="checkbox" name="force" value="habit"> Habit</label>
+      <button type="reset" id="f-clear">Clear filters</button>
+    </fieldset>
+  </form>
+  <p id="story-count" aria-live="polite"></p>
+  <div id="story-list" class="story-list"></div>
+</section>
+<!--RUN-NOTES-->
+</main>
+<!--STORY-DATA-->
+<script>
+(function () {
+  'use strict';
+  /*PAGE-FILTER*/
+
+  var data = JSON.parse(document.getElementById('story-data').textContent);
+  var stories = data.stories;
+  var FORCES = ['push', 'pull', 'anxiety', 'habit'];
+  var FORCE_TITLES = { push: 'Push', pull: 'Pull', anxiety: 'Anxiety', habit: 'Habit' };
+  var TOWARD = { push: true, pull: true };
+  var TYPE_LABELS = { 'switch': 'Switch story', plea: 'Plea for help', review: 'Product review', counter: 'Counter-story' };
+  var CHECK_LABELS = { checked: '✓ Checked', unrechecked: '? Couldn’t recheck' };
+  var form = document.getElementById('filters');
+  var list = document.getElementById('story-list');
+  var count = document.getElementById('story-count');
+
+  // Builds an element. Text only ever goes in through textContent.
+  function el(tag, opts, children) {
+    var node = document.createElement(tag);
+    opts = opts || {};
+    if (opts.className) node.className = opts.className;
+    if (opts.text != null) node.textContent = opts.text;
+    if (opts.attrs) Object.keys(opts.attrs).forEach(function (k) { node.setAttribute(k, opts.attrs[k]); });
+    (children || []).forEach(function (c) { if (c) node.appendChild(c); });
+    return node;
+  }
+
+  function sourceLink(href, text) {
+    var a = el('a', { text: text });
+    if (/^https?:\/\//i.test(href || '')) {
+      a.href = href;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+    }
+    return a;
+  }
+
+  function storyLink(id) {
+    return el('a', { text: id, attrs: { href: '#' + id } });
+  }
+
+  function fillSelect(id, values, labels) {
+    var select = document.getElementById(id);
+    values.forEach(function (v) {
+      select.appendChild(el('option', { text: (labels && labels[v]) || v, attrs: { value: v } }));
+    });
+  }
+
+  function unique(values) {
+    return values.filter(function (v, i) { return v && values.indexOf(v) === i; }).sort();
+  }
+
+  fillSelect('f-type', unique(stories.map(function (s) { return s.type; })), TYPE_LABELS);
+  fillSelect('f-platform', unique(stories.map(function (s) { return s.platform; })));
+  fillSelect('f-confidence', unique(stories.map(function (s) { return s.fit && s.fit.confidence; })));
+  unique(stories.map(function (s) { return s.situation; })).forEach(function (v) {
+    document.getElementById('f-situations').appendChild(el('option', { attrs: { value: v } }));
+  });
+
+  function currentFilters() {
+    var e = form.elements;
+    return {
+      situation: e.situation.value.trim(),
+      type: e.type.value,
+      platform: e.platform.value,
+      confidence: e.confidence.value,
+      minFit: e.minFit.value,
+      maxFit: e.maxFit.value,
+      forces: Array.prototype.filter.call(form.querySelectorAll('input[name="force"]'), function (i) { return i.checked; })
+        .map(function (i) { return i.value; })
+    };
+  }
+
+  function quoteById(s, id) {
+    for (var i = 0; i < s.quotes.length; i += 1) if (s.quotes[i].id === id) return s.quotes[i];
+    return null;
+  }
+
+  function pips(forces) {
+    var present = FORCES.filter(function (f) { return forces && forces[f]; });
+    var box = el('span', { className: 'pips', attrs: { 'aria-label': 'Forces present: ' + (present.join(', ') || 'none') } });
+    FORCES.forEach(function (f) {
+      var on = forces && forces[f];
+      box.appendChild(el('span', {
+        className: 'pip ' + (TOWARD[f] ? 'toward-pip' : 'against-pip') + (on ? ' on' : ''),
+        text: f === 'pull' ? 'U' : f.charAt(0).toUpperCase(),
+        attrs: { title: FORCE_TITLES[f] + (on ? ': ' + forces[f].strength : ': not in the story'), 'aria-hidden': 'true' }
+      }));
+    });
+    return box;
+  }
+
+  function fitText(fit) {
+    if (!fit) return 'No fit score';
+    return 'Fit ' + fit.total + ' from ' + fit.shown + ' of 5 parts · ' + fit.confidence;
+  }
+
+  // The speaker label, and the name the page shows when the finder recorded it.
+  function who(s) {
+    return s.author ? s.speaker + ' (' + s.author + ')' : s.speaker;
+  }
+
+  function card(s) {
+    var d = el('details', { className: 'story', attrs: { id: s.id } });
+    var summary = el('summary', {}, [
+      el('div', { className: 'story-head' }, [
+        el('span', { className: 'sid', text: s.id }),
+        el('span', { className: 'chip type-' + s.type, text: TYPE_LABELS[s.type] || s.type }),
+        el('span', { className: 'sit', text: s.situation || 'Situation not given' })
+      ]),
+      el('div', { className: 'story-meta' }, [
+        el('span', { text: [s.platform, s.posted || 'date not shown', who(s)].join(' · ') }),
+        el('span', { text: fitText(s.fit) }),
+        pips(s.forces)
+      ])
+    ]);
+    d.appendChild(summary);
+
+    var body = el('div', { className: 'story-body' });
+    if (s.job) body.appendChild(el('p', { className: 'job', text: s.job }));
+    var kv = el('dl', { className: 'kv' });
+    [['Who', s.group], ['Trigger', s.trigger], ['Found', s.found]].forEach(function (pair) {
+      kv.appendChild(el('dt', { text: pair[0] }));
+      kv.appendChild(el('dd', { text: pair[1] || 'Not shown' }));
+    });
+    body.appendChild(kv);
+
+    var rows = el('div', { className: 'force-rows' });
+    FORCES.forEach(function (f) {
+      var force = s.forces && s.forces[f];
+      var row = el('div', { className: 'force-row ' + (TOWARD[f] ? 'toward' : 'against') + (force ? '' : ' absent') });
+      row.appendChild(el('h4', { text: FORCE_TITLES[f] + (force ? ' · ' + force.strength : '') }));
+      if (!force) {
+        row.appendChild(el('p', { text: 'Not in the story' }));
+      } else {
+        row.appendChild(el('p', { text: force.summary }));
+        force.quotes.forEach(function (qid) {
+          var q = quoteById(s, qid);
+          if (q) row.appendChild(el('blockquote', { text: '“' + q.text + '”' }));
+        });
+      }
+      rows.appendChild(row);
+    });
+    body.appendChild(el('div', {}, [el('h4', { text: 'Forces' }), rows]));
+
+    var quotes = el('ol', { className: 'quotes' });
+    s.quotes.forEach(function (q) {
+      quotes.appendChild(el('li', {}, [
+        el('blockquote', { text: '“' + q.text + '”' }),
+        el('p', { className: 'qmeta' }, [
+          el('span', { className: 'mark-' + q.check, text: CHECK_LABELS[q.check] || q.check }),
+          el('span', { text: q.id + ' · ' + who(s) }),
+          sourceLink(q.url, 'Page')
+        ]),
+        q.note ? el('p', { className: 'qmeta', text: 'Note: ' + q.note }) : null
+      ]));
+    });
+    body.appendChild(el('div', {}, [el('h4', { text: 'Quotes, in the storyteller’s words' }), quotes]));
+
+    if (s.fit) {
+      var parts = el('ol', { className: 'parts' });
+      s.fit.parts.forEach(function (p, i) {
+        var label = data.fitParts && data.fitParts[i] ? data.fitParts[i] + ': ' : '';
+        parts.appendChild(el('li', {}, [
+          el('span', { text: label }),
+          el('span', { className: 'score', text: p.score === null ? 'not shown' : String(p.score) }),
+          el('span', { text: ' · ' + p.reason })
+        ]));
+      });
+      body.appendChild(el('div', {}, [el('h4', { text: fitText(s.fit) }), parts]));
+    }
+
+    var audit = data.audit && data.audit[s.id];
+    if (audit) {
+      body.appendChild(el('p', {
+        className: 'qmeta',
+        text: 'Spot-check: attribution ' + audit.attribution + ', context ' + audit.context + ', forces ' + audit.forces
+          + ', fit ' + audit.fit + (audit.note ? '. ' + audit.note : '')
+      }));
+    }
+
+    var foot = el('p', { className: 'story-foot' }, [sourceLink(s.thread, 'Open the source')]);
+    if (s.related && s.related.length) {
+      var rel = el('span', { text: 'Same thread: ' });
+      s.related.forEach(function (id, i) {
+        if (i) rel.appendChild(document.createTextNode(', '));
+        rel.appendChild(storyLink(id));
+      });
+      foot.appendChild(rel);
+    }
+    body.appendChild(foot);
+    d.appendChild(body);
+    return d;
+  }
+
+  function render() {
+    var shown = filterStories(stories, currentFilters());
+    list.replaceChildren.apply(list, shown.map(card));
+    if (stories.length === 0) count.textContent = 'No stories were found.';
+    else if (shown.length === stories.length) count.textContent = 'Showing all ' + stories.length + ' stories.';
+    else count.textContent = 'Showing ' + shown.length + ' of ' + stories.length + ' stories.';
+    if (stories.length && shown.length === 0) {
+      list.appendChild(el('p', { className: 'empty', text: 'No stories match these filters. Clear a filter to see more.' }));
+    }
+  }
+
+  // Clearing the form re-renders once the reset has applied; openStory cancels that render so it
+  // can't replace a card it has just opened.
+  var resetRender = null;
+
+  // A story link opens its card, clearing filters first if they hide it.
+  function openStory(id) {
+    if (!stories.some(function (s) { return s.id === id; })) return;
+    var target = document.getElementById(id);
+    if (!target) {
+      form.reset();
+      clearTimeout(resetRender);
+      render();
+      target = document.getElementById(id);
+    }
+    target.open = true;
+    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    target.scrollIntoView({ block: 'start', behavior: still ? 'auto' : 'smooth' });
+    target.querySelector('summary').focus({ preventScroll: true });
+  }
+
+  form.addEventListener('input', render);
+  form.addEventListener('change', render);
+  form.addEventListener('reset', function () { resetRender = setTimeout(render, 0); });
+  form.addEventListener('submit', function (e) { e.preventDefault(); });
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#s"]');
+    if (!a) return;
+    var id = a.getAttribute('href').slice(1);
+    if (/^s\d+$/.test(id)) {
+      e.preventDefault();
+      openStory(id);
+    }
+  });
+
+  render();
+  if (/^#s\d+$/.test(location.hash)) openStory(location.hash.slice(1));
+})();
+</script>
+</body>
+</html>
