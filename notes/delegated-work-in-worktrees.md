@@ -1,0 +1,1 @@
+- 2026-10-30 · while-we-wait · skipped · Catalogue sample proposals used sequential game-specific authors in place after sandbox read-only git metadata prevented an isolated worktree; live catalogue files stayed unchanged pending exact-card approval.
