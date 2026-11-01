@@ -1,1 +1,2 @@
 - 2026-10-30 · while-we-wait · skipped · Catalogue sample proposals used sequential game-specific authors in place after sandbox read-only git metadata prevented an isolated worktree; live catalogue files stayed unchanged pending exact-card approval.
+- 2026-10-31 · while-we-wait · changed · Resumed a paused Science batch from its worktree handoff; it only worked after rebuilding the draft in the main checkout, since the scratch scripts hardcoded the baseline and ID start, and numbering above the other branches' IDs.
