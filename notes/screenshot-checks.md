@@ -11,3 +11,4 @@
 - 2026-10-16 · while-we-wait · didn't · A star background passed web checks but nested percentage-positioned SVGs clustered on iPhone; replaced them with measured native views and a bounds/resizing regression test.
 - 2026-10-16 · while-we-wait · worked · Paper Vault review isolated 13 predicted play/guide screenshots; the free-deck walk passed at all three phone sizes, and localhost required the documented sandbox escalation.
 - 2026-10-16 · while-we-wait · worked · Reviewed and approved only the three predicted Categories active-screen changes after replacing its card with generated raster artwork.
+- 2026-11-01 · REVIEW · no change; 9 of 12 notes worked; the web-passes-but-iPhone-differs reports (safe-area, nested SVG) are 2 notes from one project, below the 3-note pattern bar
