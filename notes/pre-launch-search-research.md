@@ -5,3 +5,4 @@
 - 2026-10-15 · while-we-wait · skipped · Rendered the owner-supplied App Store storyboard without rerunning the completed search research; the updated playbook fits future listing revisions.
 - 2026-10-15 · while-we-wait · worked · Reused the completed search audit for screenshot storyboard review; kept autocomplete evidence separate from unmeasured conversion hypotheses.
 - 2026-10-16 · while-we-wait · skipped · A competitor pricing survey (50 apps) is outside its keyword scope; reused its store endpoints and found the App Store page JSON lists each in-app purchase by name and price (`Annotation` "In-App Purchases" textPairs) while Play gives only a range in `ds:5` [1][2][19] — worth a pricing step if this recurs.
+- 2026-11-01 · REVIEW · no change; the 2026-10-15 'changed' notes were already folded into the playbook that day, and the open items (seed checklist, queue vs line, pricing step) are one-off reports
