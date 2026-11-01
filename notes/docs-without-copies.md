@@ -2,3 +2,4 @@
 - 2026-10-15 · while-we-wait · worked · Screenshot mockups capture the real app by stable content IDs; release captions live in the editable generator rather than copies of app UI text.
 - 2026-10-16 · while-we-wait · worked · Riddles redesign handoff points to live copy and stable prompt IDs while preserving exact image-generation text only in its dated prompt manifest.
 - 2026-10-16 · while-we-wait · worked · The Categories flip-file design records raster layout and accessibility intent while the registry remains the source of player-facing words.
+- 2026-10-31 · while-we-wait · worked · Sports Trivia generation used the validator for the current audience mix and kept exact candidate wording only in a dated proposal, outside the playable library.
