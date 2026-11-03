@@ -2,3 +2,4 @@
 - 2026-10-16 · while-we-wait · worked · The Get to Know You presentation change used related UI tests while editing and check:quick before hand-back, without running foundation-only checks.
 - 2026-10-16 · while-we-wait · worked · The conversation-bubble device fix reproduced its overflow bug in a targeted UI test, then passed related tests and check:quick without running foundation-only checks.
 - 2026-10-31 · while-we-wait · worked · Sports content updates used related tests while editing and a final quick check, with content validation after each accepted round.
+- 2026-11-03 · while-we-wait · worked · Illustrated onboarding used related UI/asset tests, reproduced a modest-text-size overlap before fixing it, and passed check:quick with 299 tests without foundation-only checks.
