@@ -3,3 +3,4 @@
 - 2026-10-16 · while-we-wait · worked · The conversation-bubble device fix reproduced its overflow bug in a targeted UI test, then passed related tests and check:quick without running foundation-only checks.
 - 2026-10-31 · while-we-wait · worked · Sports content updates used related tests while editing and a final quick check, with content validation after each accepted round.
 - 2026-11-03 · while-we-wait · worked · Illustrated onboarding used related UI/asset tests, reproduced a modest-text-size overlap before fixing it, and passed check:quick with 299 tests without foundation-only checks.
+- 2026-11-03 · while-we-wait · worked · The onboarding typography and padding follow-up passed related UI tests and check:quick with 299 tests, keeping this presentation-only adjustment out of foundation checks.
