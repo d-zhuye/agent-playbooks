@@ -17,3 +17,4 @@
 - 2026-11-03 · while-we-wait · worked · Shared Who's playing picker: web:check flagged 21 then 5 predicted changes after a scale fix; inspected and approved only those, final full run clean.
 - 2026-11-05 · while-we-wait · worked · Trivia portrait guide integration approved ten predicted captures; the full run exposed thirteen stale Expansion-count baselines, verified against the committed catalogue and refreshed, then passed all 333 visual checks.
 - 2026-11-05 · while-we-wait · worked · The Woodland-only visual check isolated the 20 Questions frame-2 camera correction to two expected phone screenshots; other illustration work stayed outside the check.
+- 2026-11-05 · while-we-wait · worked · Would You Rather and Most Likely To portrait integration exposed antenna occlusion on the SE; shorter example replies and paired-bubble clearance resolved it before approving fourteen guide captures.

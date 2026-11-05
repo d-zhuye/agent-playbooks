@@ -5,3 +5,4 @@
 - 2026-10-31 · while-we-wait · worked · Sports Trivia generation used the validator for the current audience mix and kept exact candidate wording only in a dated proposal, outside the playable library.
 - 2026-10-31 · while-we-wait · worked · The Sports expansion keeps playable wording in JSON, dated vetting decisions in an audit, and the ledger pointing to validation rather than copied live counts.
 - 2026-11-01 · while-we-wait · worked · Added the requested riddle batch directly to the playable JSON and used content checks for live counts, without creating a duplicate review file.
+- 2026-11-05 · while-we-wait · worked · Completing the monster guide migration replaced stale duplicated illustration counts with links to guide definitions and source artwork packs.
