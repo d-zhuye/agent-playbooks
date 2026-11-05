@@ -5,3 +5,4 @@
 - 2026-11-03 · while-we-wait · worked · Illustrated onboarding used related UI/asset tests, reproduced a modest-text-size overlap before fixing it, and passed check:quick with 299 tests without foundation-only checks.
 - 2026-11-03 · while-we-wait · worked · The onboarding typography and padding follow-up passed related UI tests and check:quick with 299 tests, keeping this presentation-only adjustment out of foundation checks.
 - 2026-11-05 · while-we-wait · worked · Trivia portrait artwork integration used related tests for aspect-ratio support, then check:quick passed 346 tests without foundation-only checks.
+- 2026-11-05 · while-we-wait · worked · New Would You Rather and Most Likely To illustration packs passed direct PNG/provenance checks and check:quick with 346 tests; app integration and web baselines stayed outside this generation task.
