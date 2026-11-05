@@ -4,3 +4,4 @@
 - 2026-10-31 · while-we-wait · worked · Sports content updates used related tests while editing and a final quick check, with content validation after each accepted round.
 - 2026-11-03 · while-we-wait · worked · Illustrated onboarding used related UI/asset tests, reproduced a modest-text-size overlap before fixing it, and passed check:quick with 299 tests without foundation-only checks.
 - 2026-11-03 · while-we-wait · worked · The onboarding typography and padding follow-up passed related UI tests and check:quick with 299 tests, keeping this presentation-only adjustment out of foundation checks.
+- 2026-11-05 · while-we-wait · worked · Trivia portrait artwork integration used related tests for aspect-ratio support, then check:quick passed 346 tests without foundation-only checks.

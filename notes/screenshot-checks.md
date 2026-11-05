@@ -15,3 +15,4 @@
 - 2026-11-03 · while-we-wait · worked · Smaller onboarding headings and extra iOS title clearance passed five targeted preview cases, including a new iPhone 13 Pro safe-area capture; only predicted onboarding screenshots were approved.
 - 2026-11-03 · while-we-wait · worked · Regenerated four onboarding illustrations; reviewed and approved only the five predicted onboarding screenshots, with no layout failures.
 - 2026-11-03 · while-we-wait · worked · Shared Who's playing picker: web:check flagged 21 then 5 predicted changes after a scale fix; inspected and approved only those, final full run clean.
+- 2026-11-05 · while-we-wait · worked · Trivia portrait guide integration approved ten predicted captures; the full run exposed thirteen stale Expansion-count baselines, verified against the committed catalogue and refreshed, then passed all 333 visual checks.
