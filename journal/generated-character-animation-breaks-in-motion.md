@@ -27,7 +27,7 @@
   - **Limit features to ones the target runtime has.**
     - Allowed: group transforms about explicit pivots, cubic and elastic keys, Solo variants, state-machine layers, grain clipped per part.
     - Not allowed: bones, blend modes, feathering, scripts.
-  - **Walk in profile, with planted feet.** Root x and leg rotation are linear. The hips dip by L·(1−cos A) at each footfall; each stride is 2L·sin A. The swing foot lifts at the passing pose. This replaced the waddle.
+  - **Walk in profile, with planted feet.** Root x and leg rotation are linear. The hips dip by L·(1−cos A) at each footfall; each stride is 2L·sin A. The swing foot lifts at the passing pose. This replaced the waddle. Iteration 6 below refines this contact model; linear leg rotation still allowed sliding.
   - **Hidden overlap at every joint.** Each moving part continues under the body, and the body keeps a complete outline underneath it. Joints then stay closed at any angle.
   - **Headless frame review.**
     - One `--commands` process renders many frames at 2x.
@@ -43,7 +43,7 @@
   - **Reusing parts cut from a single still pose.**
     - A part cut from a still drawing only looks right in that pose. The traced arm had an open shoulder end and ragged ink where the body hid it, and both showed as soon as the arm moved in front of the body.
     - It was patched three times: invented hidden lines, a duplicate arm drawn in front, and finally clean drawings.
-    - The final fix: a closed smoothed shape for the hanging arm, and a separate in-front drawing whose outline is open at the shoulder and runs into the body outline.
+    - The final fix: a closed smoothed shape for the hanging arm, and a separate in-front drawing whose outline is open at the shoulder and runs into the body outline. This was the iteration 5 fix; iteration 6 below replaces the drawing handoff with one continuous contour.
     - Build each moving part as a complete, clean shape for every pose it will take, before animating.
   - **Sending GIFs after checking only the key poses.**
     - Defects lived in transitions. A "hold" keyframe switches at the end of its segment, so the in-front arm appeared only after the swing finished. Until then the arm vanished into the body and only its crease line floated around as black dashes.
@@ -56,3 +56,25 @@
   - Keep decisions and constraints in a file in the project. This session relied on compaction summaries to carry them.
 
 - Status: worked once (one character approved so far; three remain).
+
+## Iteration 6: finishing and checking the motion
+
+- Seen: 2026-11-05, while-we-wait, purple adult iteration 6. The user asked for a finishing pass after a separate frame review. This builds on the history above; it is still one character in one project.
+
+- Tried, and worked:
+  - **Keep one arm contour through the whole swing.** The earlier two-drawing repair still jumped when the hanging arm handed off to the in-front arm. A single clean, open-shoulder contour, with matching fill/ink transforms and a small continuous shoulder adjustment, removed that handoff and its floating crease marks. Tune the hand to reach the cheek/chin in the actual rendered pose. This supersedes the two-arm recommendation above for this rig; hidden overlap still matters.
+  - **Preserve traced likeness, clean the geometry that must move.** Smooth body, antenna and leg contours followed the traced silhouette while removing ragged hidden edges. Two apparent antenna specks were actually forehead scraps inside the happy-eye trace. Inspect the source subpaths of the visible mark before patching a nearby body part.
+  - **Solve contact before adding bounce.** Linear root travel plus linear leg rotation still slid. Use the stance angle implied by the planted ankle's world position, compensate hip height, and counter-rotate the foot to keep its sole level. Lift and curl the passing foot so two horizontal soles do not stack. This refines the earlier walk recipe. Open the stance before the turn; give three-quarter view time to read and match width/centre across views.
+  - **Treat view switches as exact timeline boundaries.** An interpolated foot transform reset for one frame at the discrete view change. Explicit held keys kept the outgoing transforms until the incoming view owned them. Verify boundary frames themselves, not just the poses on either side.
+  - **Make interruption rules explicit.** A late mope tap suppressed the phone reveal. Stage changes now cancel incompatible greetings; Still and Replay also cancel an active greeting. Compare native renders with an uninterrupted run, check the loop boundary and a full repeated cycle, and prove a greeting was active before testing its cancellation. `adult_checks.py` retains these checks; `capture_adult.py` derives recording length from the rig.
+  - **Use a fresh review with a narrow brief.** The reviewer found no important visual issues but correctly identified missing coverage for active-greeting → Still/Replay. Those cases were added and passed before hand-back. Visual sampling and automated comparisons complemented each other; neither proved everything alone.
+
+- Mistakes I made, and should avoid:
+  - **I reported eye flicker from a reduced contact sheet.** Enlarged native lens crops showed a consistently happy eye; measuring the isolated eye ink confirmed it. The defect was my reading of the thumbnail, not expression ownership. Correct the report before changing working code. Contact sheets locate suspicious frames; original pixels establish the finding.
+  - **I initially weighted the GIF palette by the whole screenshot.** The tiny Home character received too few colours and looked badly posterized although the native PNG was clean. A shared palette is necessary but insufficient: give character crops enough histogram weight. Compare the encoded GIF with native frames at matching times, at both study and phone size, before treating encoding damage as a rig defect.
+  - **I left some interaction cases until late.** Static Still and ordinary Replay checks do not cover interrupting a greeting, and one waiting tap does not cover both greeting branches. List the state/interaction cases before polishing geometry; exercise each branch and boundary deliberately. Verify pointer coordinates with a visible response rather than assuming viewport scaling applies.
+  - **I made the review more expensive to navigate than needed.** Many overlapping capture batches and large contact-sheet dumps accumulated. Keep one small evidence index of frame ranges, findings and decisions; retain native frames and re-encode them when only the palette changes. Review one diagnosed issue at a time, then do one full recording after the source stabilizes. Temporary scratch notes helped this session but are not a durable project handoff.
+
+- Next-run order: preserve the reference and target-runtime constraints → render a baseline → verify suspected defects in enlarged native pixels → define interaction/boundary checks → repair complete moving contours and contact mechanics → inspect dense transitions → compare encoded output at both sizes → fresh review → versioned GIF. Keep failed experiments isolated and preserve unrelated user work.
+
+- Status: worked once. Iteration 6 was delivered for user review; native compilation and behavioral checks passed. This is not evidence of user approval or validation across characters/projects.
