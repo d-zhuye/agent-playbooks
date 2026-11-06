@@ -78,3 +78,20 @@
 - Next-run order: preserve the reference and target-runtime constraints → render a baseline → verify suspected defects in enlarged native pixels → define interaction/boundary checks → repair complete moving contours and contact mechanics → inspect dense transitions → compare encoded output at both sizes → fresh review → versioned GIF. Keep failed experiments isolated and preserve unrelated user work.
 
 - Status: worked once. Iteration 6 was delivered for user review; native compilation and behavioral checks passed. This is not evidence of user approval or validation across characters/projects.
+
+## Into the app: one source, checked frame by frame
+
+- Seen: 2026-11-06, while-we-wait, putting iteration 6 into the app (Reanimated + react-native-svg, no Rive runtime).
+
+- Tried, and worked:
+  - **Grill the integration before building.** A short round of numbered questions with recommended answers settled scope, renderer, taps, lifecycle, Reduce Motion and grain. Check facts behind a question before asking it: one of mine wrongly said the walk came from the right edge; reading the preview frames first would have caught it.
+  - **Export, don't re-author.** A standard-library script turns the generated `.rml` into JSON (paths, every key, the tap layer's rules read from its transitions). The app evaluates that JSON. A hash test fails when the source changes without a re-export.
+  - **Port the runtime's mixing rules from its source, then prove them.** Rive applies the outgoing state at full mix until a transition ends and never blends switch (Solo) keys, so a greeting holds its last pose, then hands back. Reading the runtime source settled this; a guess would have smoothed it.
+  - **Parity script against the real renderer.** Render the app's frames (resvg) and Rive's frames (CLI, from a temporary copy with app-skipped features removed) for the same scenarios, and diff pixels with a limit. It matched to ~0.02%, located a one-frame blend residual, and found that the CLI's `pointer click` itself advances 3 frames.
+
+- Mistakes to avoid:
+  - **Chasing a sub-perceptual residual too long.** Five easing/offset variants for a 1–2% difference over nine frames. Bound such searches; document the residual and give its frames a looser, explicit limit.
+  - **Forgetting that approved screenshots feed previews.** Approving the new Home screenshots doubled the monster in the Rive preview that used them as a backdrop. Give previews their own frozen backdrop.
+  - **Not checking the machine first.** "Record it on the iOS simulator" was agreed on a Linux machine. Check what the environment can run before agreeing to a verification step.
+
+- Status: worked once (one character, one app).
