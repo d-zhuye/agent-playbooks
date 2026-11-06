@@ -9,3 +9,4 @@
 
 - Seen: 2026-11-06, while-we-wait, pear animation fixes. Two full runs flagged different unchanged Get to Know You screens: a few guide letter edges, then the Deep prompt's typing dots. Neither baseline was approved.
 - Tried: inspected the Deep diff against ConversationBubble.tsx: its dots use a 900 ms JS Animated sequence after dealLanding, while preview settle waits 400 ms; CSS animation disabling does not stop it. This explains that dot displacement, but the guide-letter root cause remains unconfirmed. Original-checkout Home passed; a full original-checkout run is being checked without unrelated baseline changes.
+- Tried: the final full original-checkout run passed all 333 checks without changing either unrelated baseline; the intermittent capture issue remains open.
