@@ -19,3 +19,4 @@
 - 2026-11-05 · while-we-wait · worked · The Woodland-only visual check isolated the 20 Questions frame-2 camera correction to two expected phone screenshots; other illustration work stayed outside the check.
 - 2026-11-05 · while-we-wait · worked · Would You Rather and Most Likely To portrait integration exposed antenna occlusion on the SE; shorter example replies and paired-bubble clearance resolved it before approving fourteen guide captures.
 - 2026-11-05 · while-we-wait · skipped · The standalone Rive study changed no app screens; native Rive renders and phone-size reference composites checked its layout instead of web:check.
+- 2026-11-06 · while-we-wait · changed · A linked node_modules tree dropped NativeWind styles in a scratch worktree; a local dependency copy restored styling, then twelve Home baselines were reviewed for the existing teen and sign while sampled animation renders checked pear motion.

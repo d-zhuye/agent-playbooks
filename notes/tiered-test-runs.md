@@ -8,3 +8,4 @@
 - 2026-11-05 · while-we-wait · worked · New Would You Rather and Most Likely To illustration packs passed direct PNG/provenance checks and check:quick with 346 tests; app integration and web baselines stayed outside this generation task.
 - 2026-11-05 · while-we-wait · worked · Shared park artwork integration expanded portrait coverage to both remaining games, passed 203 related tests and 350 tests in check:quick, without foundation-only checks.
 - 2026-11-05 · while-we-wait · worked · The standalone Rive prototype passed check:quick; related app tests were correctly empty and no full app suite was needed.
+- 2026-11-06 · while-we-wait · worked · Pear animation fixes used failing greeting regressions and related tests, then check:quick passed typecheck, lint and 249 tests without foundation-only checks.
