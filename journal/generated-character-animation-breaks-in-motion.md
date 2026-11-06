@@ -112,3 +112,20 @@
   - **Tracing defects that only show zoomed:** staircase points left spikes on stroked outlines (smooth the crack loop before simplifying), a hidden leg extension left a slit that the stroke drew as a hairline (morphological close), and paper enclosed between legs was filled as ink. All three were invisible at Home size and obvious at 4x.
 
 - Status: worked once (second character); not yet seen on a device by me (Linux, no simulator).
+
+## Third character: a child that walks in with the first
+
+- Seen: 2026-11-06, while-we-wait, the lime child. Same method as the pear; the brief changed twice during the grilling.
+
+- Tried, and worked:
+  - **Judge cast fit from a lineup on the real background, at real size, before tracing.** Crop each reference sheet's front view, scale by the height rules, paste onto the app's screenshot colour, and look at it at phone size. It showed that a new adult design read as a teddy bear and that the row had no child; the user swapped it for an existing approved child. A redesign before tracing costs one image; after, a re-trace and re-rig.
+  - **Let a companion start overlapping its partner.** The child "walks in with" the adult, whose first frame is already at the drawing's left edge; a child trailing behind would have popped in at the clip edge. It starts level with the adult on the near side, takes quicker steps, and falls back to its place. The first character stayed untouched.
+  - **Set line weight in screen units, not sheet units.** Each sheet draws its character at its own size; the child's sheet line, scaled down to its cast height, would have been about 35% thinner than the adults'. Its stroke is set from the cast's on-screen line.
+  - **Shared helpers moved out of the second character's script, proven by identical output** before any re-timing.
+
+- Mistakes to avoid:
+  - **Thresholds tuned on one outline broke on another.** A 4-connected distance makes diagonal lines thicker than straight ones, so the spiky outline's valleys counted as interior ink and were filled. Widen the outline band, then sort interior ink by blob size: big blobs are features (eyes, mouth, creases), small ones are the outline turning in.
+  - **A cut-out part left its line behind.** Flooding the arm's fill left the crease's ink in the body; the stroke turned the sliver into a blob when the arm rose. Grow the cut-out over its line, then open (erode, dilate) the body in that zone.
+  - **A finished greeting's hold can hide a key story beat.** A late tap's held last pose covered the child's notice for ~10 frames; keep hand-backs short for characters whose beats others react to.
+
+- Status: worked a third time (one app). Not yet seen on a device by me.
