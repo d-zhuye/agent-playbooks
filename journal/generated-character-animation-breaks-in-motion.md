@@ -129,3 +129,11 @@
   - **A finished greeting's hold can hide a key story beat.** A late tap's held last pose covered the child's notice for ~10 frames; keep hand-backs short for characters whose beats others react to.
 
 - Status: worked a third time (one app). Not yet seen on a device by me.
+
+## Repairing the pear after the cast changed
+
+- Seen: 2026-11-06, while-we-wait. Re-rendered the current four-character scene before applying an older review: arrival/phone timings and neighbours had changed, making old absolute timing and collision findings obsolete.
+- Tried: ink only the external side-shin/foot outlines, leaving the artificial ankle cuts open; retain the whole toe curve and inspect both planted and passing feet. This removed the cut-cap spike without redrawing the reference.
+- Tried: a greeting return must fade its weight, and stage changes must interrupt blend-in. Repeated taps during a return can leave two greetings contributing; preserve that complete per-channel overlay when the phone interrupts it. A bounded values/weights snapshot fixed pear and adult mope discontinuities; both were reproduced in failing tests first.
+- Tried: verify the full wave arc against the new child, rather than just the held wave. An outward wave clears the child; relocating the walk start clear of the title required fewer, slower steps. Current cast placement and story beats were retained.
+- Status: rendered through the app evaluator and checked at Home size, with 249 changed tests passing; native device feel remains unverified.
