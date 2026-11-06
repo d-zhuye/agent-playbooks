@@ -95,3 +95,20 @@
   - **Not checking the machine first.** "Record it on the iOS simulator" was agreed on a Linux machine. Check what the environment can run before agreeing to a verification step.
 
 - Status: worked once (one character, one app).
+
+## Second character, straight to SVG + Reanimated (no Rive)
+
+- Seen: 2026-11-06, while-we-wait, the sky-blue pear. Traced and animated by Python scripts directly into the app's JSON, evaluated by the same TypeScript state machine as the first character. The user reviews on a phone dev build; I review frames rendered headlessly from the app's own evaluator (resvg, outside the repo).
+
+- Tried, and worked:
+  - **Skip the intermediate tool once one character is proven.** No exporter, no parity check, no runtime-semantics port. What gets reviewed is exactly what ships.
+  - **Fill outline + stroke underlay.** Each part is one traced fill outline; its ink is the same path stroked at twice the line width, drawn before all fills in its group. Simpler than per-part ink masks, keeps line weight in every pose, and parts in one group merge into one silhouette. Arms: an open line (shoulder end open) under their own fill.
+  - **Prove a refactor pixel-identical.** Generalising the evaluator from one character to several was checked by rendering the committed engine and the new one at 24 moments and comparing markup strings: identical.
+  - **Fit the new character to the old one's beats.** It reacts to the first character; the first stays untouched, so its verified export needs no rework.
+
+- Mistakes to avoid:
+  - **Carrying an old prototype's role into a question.** I proposed the pear as the phone-bringer from the right because the old cast did that; the user wanted a bored second arrival from the left, as a later study (`study_7`) had settled. Ask what the character's role is, and which iteration is current, before detailing timing.
+  - **Reusing a gait across body types.** The first character's swing amplitude on short legs under big feet drove toes below the ground. Scale steps to the leg (more, shorter steps), keep swing feet level, and look at the passing frames.
+  - **Tracing defects that only show zoomed:** staircase points left spikes on stroked outlines (smooth the crack loop before simplifying), a hidden leg extension left a slit that the stroke drew as a hairline (morphological close), and paper enclosed between legs was filled as ink. All three were invisible at Home size and obvious at 4x.
+
+- Status: worked once (second character); not yet seen on a device by me (Linux, no simulator).
