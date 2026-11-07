@@ -8,6 +8,16 @@
   plans and device results.
 - Purpose: material for a system that builds, iterates on and optimizes character animations.
   Read it to work differently next time, not as a record of this project.
+- Seen again: 2026-11-07, while-we-wait, the title lime on Who's playing. It had every cost Home
+  had: one array woke all 30 parts while about 4 moved, the whole SVG was redrawn, and the frame
+  callback registered again on every render.
+- Tried: the same session reused this entry's system in about an hour:
+  - a probe first;
+  - the layer compiler generalized to take any rig plus its timelines;
+  - the parity replay extended to every clip and blend, and mutation-checked;
+  - pausing out of sight with a bounded catch-up.
+  Lesson: when one character gets optimized, audit every animated character in the app for the
+  same costs. The renderer should be shared, so fixing one fixes all.
 
 ## The story in brief
 
