@@ -6,3 +6,4 @@
 - 2026-10-31 · while-we-wait · worked · The Sports expansion keeps playable wording in JSON, dated vetting decisions in an audit, and the ledger pointing to validation rather than copied live counts.
 - 2026-11-01 · while-we-wait · worked · Added the requested riddle batch directly to the playable JSON and used content checks for live counts, without creating a duplicate review file.
 - 2026-11-05 · while-we-wait · worked · Completing the monster guide migration replaced stale duplicated illustration counts with links to guide definitions and source artwork packs.
+- 2026-11-07 · while-we-wait · worked · Power audit points to runtime policy code and labels frozen workload evidence separately from unmeasured device energy.
