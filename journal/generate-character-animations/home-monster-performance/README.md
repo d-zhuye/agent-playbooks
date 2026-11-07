@@ -10,6 +10,7 @@ Project: `/home/zhu-ye-deng/while-we-wait`.
 3. [Reproducible measurement probe](probe.cjs): loads the real pure evaluator and tests an isolated constant-channel omission with exact channel comparisons.
 4. [Supporting design](supporting-design.md): approved direction, preserved behavior, planner decisions, measurement gate, acceptance rules and deferred work.
 5. [Implementation plan](implementation-plan.md): receiving-agent setup, exact interfaces, test cycles, commits, owner device steps and rollback rules.
+6. [Implementation results](implementation-results.md) (2026-11-07): what was built, workload results, what failed, and the device runs still pending.
 
 [Provenance and file checksums](provenance.json) record the original project paths and any
 archive-only link adjustment. The full project copies are retained for the implementing agent.

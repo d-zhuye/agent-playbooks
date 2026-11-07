@@ -4,7 +4,7 @@
   "projectHeadObserved": "cdf1a70deb7530dc333a1c71b2e57b5dd605d638",
   "reviewBaseline": "0550901321fea7261c539a969c5bdb2b1aa1e4f9",
   "deviceMeasurementsAvailable": false,
-  "implementationPerformed": false,
+  "implementationPerformed": true,
   "artifacts": [
     {
       "file": "review.md",
@@ -41,5 +41,12 @@
       "archivedSha256": "623a8f199343d30112362ce4edb3097d39e8d0e291bc6ec87a4600afa9c0ca30",
       "adjustment": null
     }
-  ]
+  ],
+  "implementation": {
+    "date": "2026-11-07",
+    "branch": "home-monster-performance",
+    "baselineBuildSha": "a722d02",
+    "candidateBuildSha": "987631c",
+    "deviceMeasurementsAvailable": false
+  }
 }
