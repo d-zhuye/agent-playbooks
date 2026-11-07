@@ -1,0 +1,45 @@
+{
+  "archivedDate": "2026-11-06",
+  "project": "while-we-wait",
+  "projectHeadObserved": "cdf1a70deb7530dc333a1c71b2e57b5dd605d638",
+  "reviewBaseline": "0550901321fea7261c539a969c5bdb2b1aa1e4f9",
+  "deviceMeasurementsAvailable": false,
+  "implementationPerformed": false,
+  "artifacts": [
+    {
+      "file": "review.md",
+      "source": "docs/reviews/2026-11-06-home-monster-performance/README.md",
+      "sourceSha256": "7aa71ce11991a7c3344baf9e037b67a1d5f0b71a9102f96b33d8f9da321e167e",
+      "archivedSha256": "0025c2ce39db9591c065f38eab56443781da2e562af017598c5901172d45ce80",
+      "adjustment": "Replaced the project-relative builds link with its original project path so it is not broken at the archive location."
+    },
+    {
+      "file": "baseline.json",
+      "source": "docs/reviews/2026-11-06-home-monster-performance/baseline.json",
+      "sourceSha256": "862391f4dd0eed0e6b20a8ca5b608fe3382a927ab71a9f9b67031faf4bcc5f45",
+      "archivedSha256": "862391f4dd0eed0e6b20a8ca5b608fe3382a927ab71a9f9b67031faf4bcc5f45",
+      "adjustment": null
+    },
+    {
+      "file": "probe.cjs",
+      "source": "docs/reviews/2026-11-06-home-monster-performance/probe.cjs",
+      "sourceSha256": "1b7187d263fc017a3e06b2bd6c8fd3eec787b9ce9559fd2eed768c13f8a0187c",
+      "archivedSha256": "1b7187d263fc017a3e06b2bd6c8fd3eec787b9ce9559fd2eed768c13f8a0187c",
+      "adjustment": null
+    },
+    {
+      "file": "implementation-plan.md",
+      "source": "docs/superpowers/plans/2026-11-06-home-monster-performance.md",
+      "sourceSha256": "df4f96ea775fabdcb3a3ccfb108b6352bf98dccfff9e506e02af26cb7ae481b3",
+      "archivedSha256": "df4f96ea775fabdcb3a3ccfb108b6352bf98dccfff9e506e02af26cb7ae481b3",
+      "adjustment": null
+    },
+    {
+      "file": "supporting-design.md",
+      "source": "docs/superpowers/specs/2026-11-06-home-monster-performance-design.md",
+      "sourceSha256": "623a8f199343d30112362ce4edb3097d39e8d0e291bc6ec87a4600afa9c0ca30",
+      "archivedSha256": "623a8f199343d30112362ce4edb3097d39e8d0e291bc6ec87a4600afa9c0ca30",
+      "adjustment": null
+    }
+  ]
+}

@@ -147,7 +147,7 @@
   - **I initially treated a clear held wave as a clear gesture.** Intermediate angles exposed a new collision with the child. Endpoint review was insufficient even after updating the cast layout.
   - **Sharing dependencies by symlinking `node_modules` broke the worktree preview.** NativeWind styles disappeared across unrelated screens. A local dependency copy restored them. Running the broad screenshot suite before checking one Home screen wasted a full run on an environment problem.
   - **Ad hoc evidence batches accumulated.** Large contact sheets and overlapping render batches were slower to navigate than a small before/after set indexed by finding and frame. Build the reusable renderer early, retain source frames, and assemble one final animation once the source stabilizes.
-  - **Repeated full layout runs were expensive diagnostics for unrelated flakes.** One run caught guide-letter rendering drift; another caught Get to Know You's JS-animated typing dots. I inspected the diffs and kept those baselines unchanged. The final full run passed, but that did not prove the intermittent capture issue fixed; see `guide-screenshot-text-rendering-drift.md`.
+  - **Repeated full layout runs were expensive diagnostics for unrelated flakes.** One run caught guide-letter rendering drift; another caught Get to Know You's JS-animated typing dots. I inspected the diffs and kept those baselines unchanged. The final full run passed, but that did not prove the intermittent capture issue fixed; see [guide screenshot text rendering drift](../guide-screenshot-text-rendering-drift.md).
 
 - Mistakes to avoid:
   - **Do not apply historical frame numbers or neighbour assumptions mechanically.** Read current code and render the current cast first; distinguish obsolete findings from surviving defects.
@@ -163,3 +163,11 @@
 
 - Seen: 2026-11-06, while-we-wait, walking leg cutouts tapered to a point and separated from the coral body; raised traced hands showed downward thumbs.
 - Tried: repaired the per-view torso anchor and full-width hidden leg overlap, kept the stance grounded by moving bounce into the torso, and turned palms along the arm axis with a round forearm underneath. Evaluator-rendered transition frames caught the initial edge-on arm collapse; a central tube preserved volume. Native device feel remains for the user to review.
+
+
+## Performance review and implementation handoff
+
+- Seen: 2026-11-06, while-we-wait, a Home animation assembled without a performance baseline or an explicit understanding of the rendering workload.
+- Tried: traced the actual evaluator and SVG update path, recorded operation counts and isolated Node/V8 timings, checked a constant-channel omission with an exact replay, and wrote a measurement-first implementation handoff. Code-proven redundant work is separate from hypotheses about native impact; the owner has an iPhone 13 Pro and no Mac/Instruments.
+- Evidence: [full performance case study](home-monster-performance/README.md), including the review, raw measurements, reproducible probe, implementation plan and supporting design.
+- Status: review and plan complete; native device measurements and production optimization remain pending. This is context for a future playbook, not a validated performance recipe.

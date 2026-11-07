@@ -12,3 +12,4 @@
 - 2026-11-06 · while-we-wait · worked · Scoped monster animation refinements used related tests while editing and check:quick before hand-back; all 252 relevant tests passed.
 - 2026-11-06 · while-we-wait · worked · A Home animation performance review used 389 related tests and a pinned operation-count replay; native iPhone timing stayed explicitly unmeasured and no foundation-only checks were needed.
 - 2026-11-06 · while-we-wait · worked · A measurement-first animation handoff changed documents only and passed check:quick with 313 affected tests; native measurement and implementation remain explicit receiving-agent milestones.
+- 2026-11-06 · while-we-wait · worked · Archiving the character-animation performance case verified complete-file hashes, journal links and the pinned probe replay; the source journal-reference fix passed check:quick with 314 affected tests.
