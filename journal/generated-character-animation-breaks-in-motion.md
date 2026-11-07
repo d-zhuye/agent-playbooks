@@ -158,3 +158,8 @@
   - **Do not claim native animation quality from Chromium or a GIF.** These checks establish geometry, timing and evaluator behavior. They do not establish iOS/Android rendering parity, touch feel or frame pacing.
 
 - Status: committed as `c16ad8b`; typecheck, lint, 249 changed tests and the final 333-check web run passed. Pre-commit checks remained enabled. This is evidence from one app; native device feel remains unverified.
+
+## Pear and coral finishing pass
+
+- Seen: 2026-11-06, while-we-wait, walking leg cutouts tapered to a point and separated from the coral body; raised traced hands showed downward thumbs.
+- Tried: repaired the per-view torso anchor and full-width hidden leg overlap, kept the stance grounded by moving bounce into the torso, and turned palms along the arm axis with a round forearm underneath. Evaluator-rendered transition frames caught the initial edge-on arm collapse; a central tube preserved volume. Native device feel remains for the user to review.
