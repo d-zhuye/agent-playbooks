@@ -3,7 +3,7 @@
   "project": "while-we-wait",
   "projectHeadObserved": "cdf1a70deb7530dc333a1c71b2e57b5dd605d638",
   "reviewBaseline": "0550901321fea7261c539a969c5bdb2b1aa1e4f9",
-  "deviceMeasurementsAvailable": false,
+  "deviceMeasurementsAvailable": true,
   "implementationPerformed": true,
   "artifacts": [
     {
@@ -47,6 +47,6 @@
     "branch": "home-monster-performance",
     "baselineBuildSha": "a722d02",
     "candidateBuildSha": "987631c",
-    "deviceMeasurementsAvailable": false
+    "deviceMeasurementsAvailable": true
   }
 }

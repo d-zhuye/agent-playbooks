@@ -5,7 +5,7 @@
   `MonsterParts` renderer. At the owner's request the optimizations went in before the baseline
   device run; the per-optimization builds were folded into one baseline build (`a722d02`) and
   one candidate build (`987631c`, both optimizations).
-- Status: workload reduction verified in Jest and the probe; **device results pending**.
+- Status: workload reduction verified; paired iPhone 13 Pro captures received 2026-11-07 (below).
 
 ## Results without a device (application workload, not device timing)
 
@@ -42,9 +42,32 @@
 - Mutation checks on tests that passed before their feature existed caught one fixture that
   could not fail (float rounding needs a timestamp difference, not a decimal literal).
 
+## Device results (iPhone 13 Pro, iOS 27.0.1, 3 runs per scenario per build)
+
+| Scenario | Callbacks/s A → B | Over 25 ms A → B |
+| --- | --- | --- |
+| Loop, live | 31.1 → 35.2 | 97.6% → 78.2% |
+| Story, live | 34.3 → 35.9 | 82.5% → 73.6% |
+| Interaction, live | 31.2 → 38.8 | 98.9% → 64.0% |
+| Loop, frozen (same tree, nothing moving) | 119.9 → 119.9 | 0% → 0% |
+
+- Seen: 2026-11-07, while-we-wait — the real cost was not where the review looked. Evaluator
+  p95 0.3–0.5 ms and publishing p95 0.1–0.3 ms, yet live callbacks ran every 3–5 vsyncs;
+  frozen ran at 120 Hz. The cost is native (prop commit plus react-native-svg redrawing the
+  whole canvas when anything changes), so it follows the drawing, not the changed-part count.
+- Tried: cutting SVG prop requests 92–96% → partly: cadence improved 5–24%, nowhere near 60 or
+  120 Hz; both builds miss the timing targets.
+- Tried: the candidate bundled both optimizations in one build to save a round trip → it added
+  a repeatable 60–69 ms interval about every 15 s (the loop length) that can't be attributed to
+  either change. Keep one build per optimization when a regression is possible.
+- Tried: reading battery percentages across back-to-back sessions → no conclusion (order, warm
+  phone, unrecorded session lengths, coarse percentages).
+- Frozen mode (same native tree, no motion) was the most useful diagnostic: it split the
+  mounted-tree cost from the per-frame cost in one comparison, without native tools.
+
 ## For the eventual playbook
 
 Separate code-proven workload cuts from device results; time through the framework's deferred
 update phase; build a faithful frame harness before claiming pause/resume behavior; give the
-tester one copyable session dump and a run sheet. Add the paired device numbers here before
-treating per-part publication as a validated recipe.
+tester one copyable session dump and a run sheet. Per-part publication is a verified workload cut but only a modest device gain under a
+whole-canvas SVG renderer; measure the frozen-versus-live gap before optimizing JavaScript.
