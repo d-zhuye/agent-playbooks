@@ -6,4 +6,4 @@ Reviews promote, merge or delete entries (see [REVIEWING.md](../REVIEWING.md)).
 
 ## Topics
 
-- [Generate character animations](generate-character-animations/README.md): animation-generation and repair history, plus the Home monster performance review, measurements and implementation handoff.
+- [Generate character animations](generate-character-animations/README.md): how to make, repair and speed up vector character animations from reference art, condensed on one page, with the full history and performance evidence behind it.
