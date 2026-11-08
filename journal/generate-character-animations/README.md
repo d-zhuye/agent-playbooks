@@ -181,5 +181,7 @@ no intermediate tool, no exporter, no parity port.
 - [Performance journey](home-monster-performance-journey/README.md) and
   [title lime report](home-monster-performance-journey/title-lime-report.md): the performance
   work as the implementing session saw it, and its reuse on a second character.
+- [Re-renders delayed taps](animated-character-rerenders-delay-taps.md): the drawing rebuilt on
+  every unrelated Home render, so taps lagged; diagnosis, the memo fix and its tests.
 - [Performance case study](home-monster-performance/README.md): review, raw measurements, probe,
   design, plan and device results.
