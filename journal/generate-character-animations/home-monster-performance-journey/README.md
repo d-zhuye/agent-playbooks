@@ -138,5 +138,7 @@ The owner reports the result as much less laggy, and still right visually.
 
 ## Still open
 
-The periodic stall; a capture of the layered renderer on a preview build; removing the now-unused
-SVG binding path; and a lower animation rate, only if measurement says it's still needed.
+The owner closed the branch on 2026-11-07, judging performance fine by eye, and deferred these
+to diagnose only if a problem shows up: the periodic stall; a capture of the layered renderer on a
+preview build; the title lime on the phone; and a lower animation rate. The SVG binding path is no
+longer unused: the title lime draws through it, so keep it.

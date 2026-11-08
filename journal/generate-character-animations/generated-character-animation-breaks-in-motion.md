@@ -170,4 +170,4 @@
 - Seen: 2026-11-06, while-we-wait, a Home animation assembled without a performance baseline or an explicit understanding of the rendering workload.
 - Tried: traced the actual evaluator and SVG update path, recorded operation counts and isolated Node/V8 timings, checked a constant-channel omission with an exact replay, and wrote a measurement-first implementation handoff. Code-proven redundant work is separate from hypotheses about native impact; the owner has an iPhone 13 Pro and no Mac/Instruments.
 - Evidence: [full performance case study](home-monster-performance/README.md), including the review, raw measurements, reproducible probe, implementation plan and supporting design.
-- Status: review and plan complete; native device measurements and production optimization remain pending. This is context for a future playbook, not a validated performance recipe.
+- Status: implemented and measured on the phone on 2026-11-07; see the [journey](home-monster-performance-journey/README.md). This is context for a future playbook, not a validated performance recipe.
