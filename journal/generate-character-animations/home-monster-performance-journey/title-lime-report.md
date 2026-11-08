@@ -4,7 +4,8 @@
   Who's playing screen (branch `home-monster-performance`, commits `628381e` and `e56fa74`).
 - Who wrote this: the Claude Code session that did the work, right after the Home monster work
   this folder's [README](README.md) describes.
-- Status: done and tested; not yet seen or measured on a phone.
+- Status: **reverted the same day.** It passed every test, but on the phone it broke Home, and the
+  lime itself showed a misplaced star. Read "Correction" at the end before reusing any step.
 - Read this if you are asked to create, refine or optimize a character animation. Read the README
   first for why each step exists. This report shows the steps applied to a new character, start
   to finish, with what changed when they had to fit it.
@@ -180,3 +181,33 @@ compiler, the frame harness and the mutation checks. Three things needed adaptin
    apart from the character.
 10. Ask the owner for a by-eye check, then a preview-build capture. Only then remove the old
     renderer.
+
+## Correction: what happened on the phone (2026-11-07)
+
+The owner saw two bugs after this work:
+- on Home, the coral teen's eyes drawn on the purple adult;
+- on Who's playing, one lime star far below the lime.
+
+Home had looked right before the lime change, and the compiler refactor left Home's layers
+identical, so no code-level test could see it. The cause was not confirmed before the owner chose
+to revert both commits (`9b034a7`). The leading candidate is runtime coupling: the lime's native
+part views sit on the screen just before Home, and Fabric can reuse discarded views; parts that
+rarely move then depend on Reanimated's settled-props hand-back to fix their transform. Separate
+code would not prevent that.
+
+What replaced it (`83fd21a`): the lime stays an SVG drawing, with each animated group bound to its
+own frame and published only when it changes, the memoized callback, and the out-of-sight pause
+with bounded catch-up. It shares no views with Home. Its SVG still redraws every frame.
+
+Lessons that override the ones above:
+- **Sharing a renderer is also sharing runtime state.** "One renderer, so a fix lands on every
+  character" is true for code; it also means a bug or a native quirk lands on every character, and
+  two screens' views can affect each other. Before putting a second character on a native-view
+  renderer, test the handover: mount it, unmount it, mount the first character, and check every
+  part's first drawn position.
+- **Parity replays prove the data, not the screen.** Every test here passed while the phone was
+  wrong. A renderer change needs the owner's by-eye check of *every* character on that renderer,
+  not just the new one, before it counts as done.
+- **Take the smallest step that touches nothing else first.** Changed-only publishing on the old
+  SVG path removed most of the wasted work with no shared views. Move to native layers only if a
+  check on the phone says the remaining redraw still matters.

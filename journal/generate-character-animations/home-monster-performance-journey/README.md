@@ -17,7 +17,12 @@
   - the parity replay extended to every clip and blend, and mutation-checked;
   - pausing out of sight with a bounded catch-up.
   Lesson: when one character gets optimized, audit every animated character in the app for the
-  same costs. The renderer should be shared, so fixing one fixes all.
+  same costs.
+- Tried again: putting the lime on Home's native-layer renderer broke Home on the phone (one
+  monster's eyes drawn on another) and misplaced a lime star, though every test passed. Reverted;
+  the lime now uses changed-only publishing on its own SVG drawing. Lesson: a shared native
+  renderer shares runtime state too; check every character on it by eye before calling it done
+  ([report](title-lime-report.md#correction-what-happened-on-the-phone-2026-11-07)).
 
 ## The story in brief
 
