@@ -211,3 +211,9 @@ Lessons that override the ones above:
 - **Take the smallest step that touches nothing else first.** Changed-only publishing on the old
   SVG path removed most of the wasted work with no shared views. Move to native layers only if a
   check on the phone says the remaining redraw still matters.
+- **Don't carry a hidden-time policy to another character; it depends on how often it's seen.**
+  I extended Home's "keep time while hidden" to the lime, with a bounded catch-up. The owner
+  overruled it: the lime is seen only occasionally, so it lives only while its screen is open,
+  restarts from its hello each time, and simply holds still while scrolled away (`b513a8f`). An
+  ambient character people return to all the time (Home) keeps time; one on an occasional screen
+  restarts. Restarting is also less code and less to test, so make it the default and ask.
