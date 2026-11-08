@@ -6,6 +6,8 @@ check a specific claim.
 
 - Seen: 2026-11-05 to 2026-11-07, while-we-wait. Five characters (purple adult, sky-blue pear,
   lime child, coral teen, title lime) and a traced queue sign, plus two performance passes.
+- Seen: 2026-11-08, while-we-wait. A sixth, the four-armed Corner Card Slinger, from reference sheets
+  the owner generated from the agent's prompts ([entry](new-character-from-generated-sheets.md)).
 - Stack: Python 3 + Pillow for tracing and rig generation; React Native with Reanimated 4.5.1 and
   react-native-svg for the app; resvg/Playwright for headless frames; Rive CLI 1.9 for the first
   character only.
@@ -48,6 +50,16 @@ before asking it (read the latest preview frames, the current code, the machine'
    cost when you propose them.
 7. **Verification.** What this machine can run (simulator? decoder for screen recordings?) and
    what only the owner's device can show.
+
+## When you write the prompts for the reference art
+
+1. Three concept directions, one prompt each, same composition; the owner generates and picks.
+2. A reference sheet in the existing packs' 4×3 format, with every anatomy invariant in capitals and
+   **one hex colour named for each set of parts that must match**: generators drift (pink garters).
+3. A construction sheet: parts with a **pivot dot** each (they trace as holes: read them as joints),
+   a large hand library sharing one cuff, and the poses no other sheet shows. Hands on a reference
+   sheet are too small to trace.
+4. Audit each sheet by sampling pixels and counting limbs before planning; write the audit beside it.
 
 ## Making a character, in order
 
@@ -161,6 +173,10 @@ no intermediate tool, no exporter, no parity port.
 | Approving widespread screenshot diffs to clear a failed check | Diagnose environment faults (e.g. symlinked `node_modules`) separately |
 | Repeated full suite runs for a scoped change | Related tests and focused renders while editing; full run once at the end |
 | Claiming native quality from Chromium or a GIF | Those prove geometry and timing; touch feel and pacing need the device |
+| Two rig nodes sharing an id (a fill keyed like its pivot group) | A unique-id test first; one id's channels move every node that has it |
+| Mirroring an arm with `scaleX: -1` and its solved rotation | A node scales, then turns: negate the mirrored root's rotation only |
+| A limb pointing at the viewer at full length | Foreshorten it with a shorter piece; bake per-limb lengths, don't stretch per pose |
+| Per-limb variants (every hand on every arm) at full trace detail | Simplify small parts harder and watch the data size as you add them |
 
 ## Working habits
 
@@ -185,3 +201,6 @@ no intermediate tool, no exporter, no parity port.
   every unrelated Home render, so taps lagged; diagnosis, the memo fix and its tests.
 - [Performance case study](home-monster-performance/README.md): review, raw measurements, probe,
   design, plan and device results.
+- [New character from generated sheets](new-character-from-generated-sheets.md): writing the prompts
+  for concept, reference and construction sheets, auditing them, and the rig traps of a four-armed
+  character (duplicate node ids, mirrored joints, foreshortened limbs, data size).
