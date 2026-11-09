@@ -28,3 +28,4 @@
 - 2026-11-08 · while-we-wait · worked · White backgrounds and black borders on Expansion navigation were reviewed in ten phone captures; diffs were confined to the expected toolbar controls and those screenshots were approved.
 - 2026-11-09 · while-we-wait · changed · Hard-killed web:check runs left Chrome audio helpers stuck in D state (unkillable until reboot); added a run lock, a sweep by PREVIEW_RUN env tag plus systemd-adopted Playwright browsers, setpriv --pdeathsig and Playwright globalTimeout so runs stop cleanly instead.
 - 2026-11-09 · while-we-wait · worked · Dealer Q&A copy changes affected only the four predicted Learn more captures; reviewed and approved the opening and answer screens at both phone sizes.
+- 2026-11-09 · while-we-wait · worked · Dealer conversation transitions, asked markers and acknowledgements passed 299 full web checks; reviewed two changed and six new phone captures, including the final answer, follow-up and purchase guidance.
