@@ -10,7 +10,7 @@
 - Status: worked once, up to an approved still with arms. Arm motion, the study GIF and the device
   check were still to come when this was written.
 
-Read the folder's [README](README.md) first: tracing, hidden overlap, poses-not-frames and the
+Read the folder's [README](../README.md) first: tracing, hidden overlap, poses-not-frames and the
 testing rules all still apply. This entry adds what is different when **you write the prompts that
 make the reference art**, and the rig traps this character hit.
 

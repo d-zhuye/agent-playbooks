@@ -7,7 +7,7 @@ check a specific claim.
 - Seen: 2026-11-05 to 2026-11-07, while-we-wait. Five characters (purple adult, sky-blue pear,
   lime child, coral teen, title lime) and a traced queue sign, plus two performance passes.
 - Seen: 2026-11-08, while-we-wait. A sixth, the four-armed Corner Card Slinger, from reference sheets
-  the owner generated from the agent's prompts ([entry](new-character-from-generated-sheets.md)).
+  the owner generated from the agent's prompts ([entry](card-dealer/new-character-from-generated-sheets.md)).
 - Stack: Python 3 + Pillow for tracing and rig generation; React Native with Reanimated 4.5.1 and
   react-native-svg for the app; resvg/Playwright for headless frames; Rive CLI 1.9 for the first
   character only.
@@ -201,6 +201,10 @@ no intermediate tool, no exporter, no parity port.
   every unrelated Home render, so taps lagged; diagnosis, the memo fix and its tests.
 - [Performance case study](home-monster-performance/README.md): review, raw measurements, probe,
   design, plan and device results.
-- [New character from generated sheets](new-character-from-generated-sheets.md): writing the prompts
+- [New character from generated sheets](card-dealer/new-character-from-generated-sheets.md): writing the prompts
   for concept, reference and construction sheets, auditing them, and the rig traps of a four-armed
   character (duplicate node ids, mirrored joints, foreshortened limbs, data size).
+- [Arms that stay attached](card-dealer/arms-that-stay-attached.md): building a sleeved two-segment
+  joint that shows no seam at any bend, why in-betweens folded and flipped, what failed (joint
+  space, sideways bows) and what worked (keys' elbow lean, hands passing in front of the shoulder,
+  no dead-straight arms), and gating jolts on every glove, elbow and card.
