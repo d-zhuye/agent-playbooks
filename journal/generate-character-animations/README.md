@@ -208,3 +208,6 @@ no intermediate tool, no exporter, no parity port.
   joint that shows no seam at any bend, why in-betweens folded and flipped, what failed (joint
   space, sideways bows) and what worked (keys' elbow lean, hands passing in front of the shoulder,
   no dead-straight arms), and gating jolts on every glove, elbow and card.
+- [Fixing traced props without redesigning](card-dealer/fixing-traced-props-without-redesigning.md):
+  a rejected hat redesign, then the narrow fix (replace flawed point runs, crescent shades on the
+  drawn curve, seat a tipped crown on its ring) and property tests that fail on the old art.
