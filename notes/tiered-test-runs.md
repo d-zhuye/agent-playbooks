@@ -19,3 +19,4 @@
 - 2026-11-08 · while-we-wait · worked · A dealer hat artwork repair used the 97 related tests while editing and check:quick before hand-back; no foundation checks were needed.
 
 - 2026-11-08 · while-we-wait · worked · Dealer hat reconstruction used the 96 related tests while iterating and check:quick before handoff; no foundation change required the full logic suite.
+- 2026-11-08 · while-we-wait · worked · Café scenery integration used 107 related UI/asset tests and the quick hand-back check; no foundation changes needed the full logic suite.
