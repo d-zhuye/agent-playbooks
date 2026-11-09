@@ -17,3 +17,5 @@
 - 2026-11-08 · while-we-wait · skipped · Owner explicitly deferred tests, lint, typecheck and commit hooks during dealer iteration commits; required validation remains pending their go-ahead.
 
 - 2026-11-08 · while-we-wait · worked · A dealer hat artwork repair used the 97 related tests while editing and check:quick before hand-back; no foundation checks were needed.
+
+- 2026-11-08 · while-we-wait · worked · Dealer hat reconstruction used the 96 related tests while iterating and check:quick before handoff; no foundation change required the full logic suite.

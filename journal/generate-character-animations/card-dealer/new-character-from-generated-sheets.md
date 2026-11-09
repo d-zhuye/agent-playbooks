@@ -100,3 +100,6 @@ make the reference art**, and the rig traps this character hit.
 
 - Seen: 2026-11-08, while-we-wait. The hat crown vanished during the card-from-hat tip: its underside Solo variant contained only the brim ring and opening, although the construction sheet shows a complete crown and band.
 - Tried: measured the construction sheet’s underside crown and band, registered them to the existing brim’s back edge with hidden overlap, and painted both behind the ring. Regenerated the rig and inspected lift/return frames through the app evaluator; the full hat stays visible. Related tests and check:quick passed; native device review remains with the owner.
+
+- Seen: 2026-11-08, while-we-wait. The owner flagged a hat brim that appeared to dig into the temples and patchy traced shading, and clarified that reference sheets are guides rather than sources of truth.
+- Tried: rebuilt a continuous tilted oval brim in the rig, painted its worn underside behind the head and its crown/band in front, and kept both portions on shared animation channels. Both hat views now use the same brim grip point; the lifted view retains the crown/band and rises/rolls clear of the dome with a reachable bent-arm grip. Fresh phone captures and lifted/return frames were inspected; 96 related tests and check:quick passed. Owner look approval and native motion review remain pending.

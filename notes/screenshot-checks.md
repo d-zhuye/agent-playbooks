@@ -21,3 +21,5 @@
 - 2026-11-05 · while-we-wait · skipped · The standalone Rive study changed no app screens; native Rive renders and phone-size reference composites checked its layout instead of web:check.
 - 2026-11-06 · while-we-wait · changed · A linked node_modules tree dropped NativeWind styles in a scratch worktree; a local dependency copy restored styling, then twelve Home baselines were reviewed for the existing teen and sign while sampled animation renders checked pear motion.
 - 2026-11-08 · while-we-wait · skipped · Owner deferred screenshot comparisons and all checks during segmented dealer refinements; generated a versioned art preview for iteration, with validation pending explicit go-ahead.
+
+- 2026-11-08 · while-we-wait · worked · Inspected fresh Expansion captures and approved six predicted overview screenshots after reconstructing the dealer hat; the older baselines also predated already-completed arms.
