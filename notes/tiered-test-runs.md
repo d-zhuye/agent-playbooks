@@ -14,3 +14,4 @@
 - 2026-11-06 · while-we-wait · worked · A measurement-first animation handoff changed documents only and passed check:quick with 313 affected tests; native measurement and implementation remain explicit receiving-agent milestones.
 - 2026-11-06 · while-we-wait · worked · Archiving the character-animation performance case verified complete-file hashes, journal links and the pinned probe replay; the source journal-reference fix passed check:quick with 314 affected tests.
 - 2026-11-07 · while-we-wait · worked · Foreground power audit used targeted lifecycle/audio/store suites and the quick hand-back check without a full build or coverage run.
+- 2026-11-08 · while-we-wait · skipped · Owner explicitly deferred tests, lint, typecheck and commit hooks during dealer iteration commits; required validation remains pending their go-ahead.

@@ -91,3 +91,6 @@ make the reference art**, and the rig traps this character hit.
 - Name hex colours in the very first reference-sheet prompt, not the second sheet's.
 - Ask for the construction sheet in the same breath as the reference sheet. Hands were always going
   to need it, and it gated most of the rig.
+
+- Seen: 2026-11-08, while-we-wait, dealer refinement after the approved still. The owner reported lumpy torso sides, implausible arm/hand motion, expression size drift and unnatural cards. Source inspection found the vest mask included occluding sleeves/gloves, expression fits used different scales, right gloves reused left-world directions, and cards vanished without a completed transfer.
+- Tried: restored an independent vest contour and fixed facial landmarks; used equal physical limb lengths with projected elbow swivels and table-contact compensation; authored explicit release/catch/gather events and queued decorative reactions at secured poses. Committed in segments and produced study_3.gif. Outcome pending owner motion review and all checks, explicitly deferred by the owner; this is not a verified success.
