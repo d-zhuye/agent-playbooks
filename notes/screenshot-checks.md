@@ -25,3 +25,4 @@
 - 2026-11-08 · while-we-wait · worked · Inspected fresh Expansion captures and approved six predicted overview screenshots after reconstructing the dealer hat; the older baselines also predated already-completed arms.
 - 2026-11-08 · while-we-wait · worked · Reviewed and approved the six café-background Expansion captures at iPhone 15 and SE sizes; preserved the existing dealer stage and purchase controls.
 - 2026-11-08 · while-we-wait · changed · The full 271-case web run hung in Linux Chromium audio helpers; a temporary launcher adding --disable-audio-output to the pinned browser completed cleanly without changing repository configuration or screenshot settings.
+- 2026-11-08 · while-we-wait · worked · White backgrounds and black borders on Expansion navigation were reviewed in ten phone captures; diffs were confined to the expected toolbar controls and those screenshots were approved.

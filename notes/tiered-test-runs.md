@@ -20,3 +20,4 @@
 
 - 2026-11-08 · while-we-wait · worked · Dealer hat reconstruction used the 96 related tests while iterating and check:quick before handoff; no foundation change required the full logic suite.
 - 2026-11-08 · while-we-wait · worked · Café scenery integration used 107 related UI/asset tests and the quick hand-back check; no foundation changes needed the full logic suite.
+- 2026-11-08 · while-we-wait · worked · A two-line navigation style change used 53 related UI tests and the quick check, with screenshot comparisons covering the visual result instead of new style-prop tests.
