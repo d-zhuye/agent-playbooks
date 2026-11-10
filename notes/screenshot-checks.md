@@ -33,3 +33,4 @@
 - 2026-11-09 · while-we-wait · changed · Web CSS screenshots did not reproduce an iPhone percentage-inset overlap; moved speech actions to a sibling using measured native bubble coordinates, added geometry and answer-Back regression coverage, and reviewed sixteen affected phone captures.
 - 2026-11-09 · while-we-wait · worked · Ran the full web layout check before committing the native dealer renderer; the local preview server required sandbox escalation.
 - 2026-11-09 · while-we-wait · worked · Dealer art polish changed the 28 predicted overview, conversation and purchase-error captures only; reviewed actuals and diffs at both phone sizes before approving the artwork.
+- 2026-11-09 · while-we-wait · worked · Dealer light and motion pass on Skia: named the 28 Expansion screens beforehand, exactly those changed, one actual screenshot opened to confirm the browser drew the new SVG blur, clip and gradient, then approved.
