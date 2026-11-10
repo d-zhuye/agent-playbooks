@@ -30,3 +30,4 @@
 - 2026-11-10 · while-we-wait · worked · Doubling the invitation chaser stroke used quick checks and the web layout suite; subprocess helpers needed an unsandboxed rerun.
 - 2026-11-10 · while-we-wait · worked · Related tests and the quick check covered the isolated footer fix without rerunning the full logic and content suite.
 - 2026-11-10 · while-we-wait · worked · The purchase-caption change passed related tests and the quick check with enlarged-text coverage, without a full logic or content run.
+- 2026-11-10 · while-we-wait · worked · Related tests exposed a shared renderer API mismatch during three-branch integration, and the combined quick check passed 641 tests before the broader integration checks.

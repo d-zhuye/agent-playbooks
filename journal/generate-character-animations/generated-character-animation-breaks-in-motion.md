@@ -171,3 +171,8 @@
 - Tried: traced the actual evaluator and SVG update path, recorded operation counts and isolated Node/V8 timings, checked a constant-channel omission with an exact replay, and wrote a measurement-first implementation handoff. Code-proven redundant work is separate from hypotheses about native impact; the owner has an iPhone 13 Pro and no Mac/Instruments.
 - Evidence: [full performance case study](home-monster-performance/README.md), including the review, raw measurements, reproducible probe, implementation plan and supporting design.
 - Status: implemented and measured on the phone on 2026-11-07; see the [journey](home-monster-performance-journey/README.md). This is context for a future playbook, not a validated performance recipe.
+
+## Dependency sharing during approved-branch integration
+
+- Seen: 2026-11-10, while-we-wait, a temporary integration worktree with a symlinked node_modules exported raw Tailwind directives and caused unrelated browser layout failures.
+- Tried: stopped the invalid full run, replaced the symlink with a local dependency copy, and checked Home, onboarding and the Expansion overview first; Tailwind emitted processed CSS and all seven representative checks passed their layout assertions, with only the predicted compact Expansion screenshot changing.
