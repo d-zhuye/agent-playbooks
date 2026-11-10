@@ -124,3 +124,6 @@ How they were used, and what was learnt:
 - `test/skia.ts` and `src/ui/monsterDrawing.test.ts`: CanvasKit in Node and the pixel tests.
 - `scripts/monsters/dealer.py`: the shadows, gradients and smear boxes, at the hat and the table.
 - `docs/design/mockups/expansion-corner-card-slinger/README.md`: the art notes for each pass.
+
+- Seen: 2026-11-10, while-we-wait. The title lime still used animated SVG groups after Pete moved to one canvas; its foreground signal also replaced the moving character while inactive.
+- Tried: 2026-11-10, while-we-wait. Reused MonsterCanvas and compiled scene frames for moving and held poses, separated Reduce Motion from foreground pausing, and redrew only the title’s front artwork. Real Skia matched every clip and a tapped simulation, canvas-edge checks passed, and the full web check stayed clean after 15 predicted header approvals; phone feel remains unverified.
