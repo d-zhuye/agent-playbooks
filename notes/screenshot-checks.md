@@ -31,3 +31,4 @@
 - 2026-11-09 · while-we-wait · worked · Dealer conversation transitions, asked markers and acknowledgements passed 299 full web checks; reviewed two changed and six new phone captures, including the final answer, follow-up and purchase guidance.
 - 2026-11-09 · while-we-wait · worked · Reviewed fourteen dealer backstory and asked-badge phone captures; spotted SE question truncation from reserved badge width and fixed it by floating the badge above the text while preserving label width.
 - 2026-11-09 · while-we-wait · changed · Web CSS screenshots did not reproduce an iPhone percentage-inset overlap; moved speech actions to a sibling using measured native bubble coordinates, added geometry and answer-Back regression coverage, and reviewed sixteen affected phone captures.
+- 2026-11-09 · while-we-wait · worked · Ran the full web layout check before committing the native dealer renderer; the local preview server required sandbox escalation.
