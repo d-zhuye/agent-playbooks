@@ -28,3 +28,4 @@
 - 2026-11-10 · while-we-wait · worked · Focused native regressions caught conversation-entry resizing and repeated store-notice announcements; the quick tier passed 886 tests without a foundation run for this presentation-only change.
 - 2026-11-10 · while-we-wait · worked · Related tests covered the title-lime canvas migration and redraw; check:quick passed 889 tests without a foundation run. Fresh worktrees also need Husky’s generated .husky/_ files before committing.
 - 2026-11-10 · while-we-wait · worked · Doubling the invitation chaser stroke used quick checks and the web layout suite; subprocess helpers needed an unsandboxed rerun.
+- 2026-11-10 · while-we-wait · worked · Related tests and the quick check covered the isolated footer fix without rerunning the full logic and content suite.
