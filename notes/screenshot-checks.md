@@ -41,3 +41,4 @@
 - 2026-11-10 · while-we-wait · worked · The title-lime redraw changed only 15 predicted header captures; reviewed and approved them, then finished with a clean 327-test full web check.
 - 2026-11-10 · while-we-wait · changed · Added frame-based opening and interruption checks because settled screenshots missed delayed question movement and stale exiting rows.
 - 2026-11-10 · while-we-wait · worked · Adding the purchase caption exposed an iPhone SE overflow with the developer store-message strip; reclaiming redundant compact footer spacing resolved it before screenshot approval.
+- 2026-11-10 · while-we-wait · changed · Three approved branches needed 35 combined Expansion baselines; a compact store-error check now verifies the minimum-size dealer can scroll fully into view and restores scroll position instead of rejecting intentional overflow.
