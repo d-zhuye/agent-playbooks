@@ -40,3 +40,4 @@
 - 2026-11-10 · while-we-wait · worked · Reviewed and approved 14 predicted Expansion captures; web checks caught missing aria-hidden on the inactive measured footer, and cross-mode flows verified unchanged footer, dealer and sign bounds including iPhone 13 Pro safe-area clearance.
 - 2026-11-10 · while-we-wait · worked · The title-lime redraw changed only 15 predicted header captures; reviewed and approved them, then finished with a clean 327-test full web check.
 - 2026-11-10 · while-we-wait · changed · Added frame-based opening and interruption checks because settled screenshots missed delayed question movement and stale exiting rows.
+- 2026-11-10 · while-we-wait · worked · Adding the purchase caption exposed an iPhone SE overflow with the developer store-message strip; reclaiming redundant compact footer spacing resolved it before screenshot approval.
