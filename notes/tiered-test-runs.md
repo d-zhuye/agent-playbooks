@@ -24,3 +24,4 @@
 - 2026-11-09 · while-we-wait · worked · Used the quick check before committing the Skia dealer changes and the full check for the new native dependency.
 - 2026-11-09 · while-we-wait · worked · Lowering the dealer shoulders used focused geometry regressions and the strict arm report; all-frame elbow tests caught a pop missed by wrist-only measurements, and a real-Skia pixel test caught shading erasing the outline.
 - 2026-11-09 · while-we-wait · worked · Related tests covered the remembered dealer identity while editing, followed by the quick check and full foundation checks because the saved snapshot changed; the Expo compatibility check separately flagged seven existing outdated patch versions.
+- 2026-11-10 · while-we-wait · worked · Updated existing dialogue/navigation tests, used a focused browser red-green check for clipped answers, then ran the quick tier (882 tests) without an unnecessary foundation check for this copy and presentation change.

@@ -8,3 +8,4 @@
 - 2026-11-05 · while-we-wait · worked · Completing the monster guide migration replaced stale duplicated illustration counts with links to guide definitions and source artwork packs.
 - 2026-11-07 · while-we-wait · worked · Power audit points to runtime policy code and labels frozen workload evidence separately from unmeasured device energy.
 - 2026-11-09 · while-we-wait · worked · Documented the dealer introduction and local identity flag by intent and source references, keeping the exact dialogue and name in the presentation code.
+- 2026-11-10 · while-we-wait · worked · Recorded the owner-approved conversational voice as intent and kept all exact dialogue in the presentation module while updating the existing copy expectations.

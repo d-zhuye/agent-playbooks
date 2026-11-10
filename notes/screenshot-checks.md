@@ -36,3 +36,4 @@
 - 2026-11-09 · while-we-wait · worked · Dealer light and motion pass on Skia: named the 28 Expansion screens beforehand, exactly those changed, one actual screenshot opened to confirm the browser drew the new SVG blur, clip and gradient, then approved.
 - 2026-11-09 · while-we-wait · worked · Reviewed 36 predicted Expansion captures for the dealer name tab and three-part introduction, including saved-name return screenshots on both phone sizes; the first return recipe needed to await the store button after reload.
 - 2026-11-09 · while-we-wait · worked · Expansion captures use Reduce Motion to avoid alternating sign-text rasterization after a JavaScript stage tween; separate browser flow checks still exercise motion.
+- 2026-11-10 · while-we-wait · worked · Reviewed 30 predicted Pete conversation captures, including eight new captures; long subscription answers exposed missing React Native Web font fitting, which actual-answer flow checks caught before approval.
