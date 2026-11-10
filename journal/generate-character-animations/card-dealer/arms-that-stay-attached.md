@@ -91,3 +91,6 @@ way. Plan the in-betweens around it.
 - Evidence: while-we-wait `docs/superpowers/plans/2026-11-08-dealer-arm-construction.md` (plan plus
   execution notes), `docs/design/mockups/expansion-corner-card-slinger/README.md` ("Arm construction
   pass"), studies 5–7 in `experiments/expansion-dealer/build/iterations/` (git-ignored).
+
+- Seen: 2026-11-09, while-we-wait. Lowering the upper sockets below the collar during the Skia art pass changed reach enough to compress the forearm and pop the elbow in Card from the hat.
+- Tried: kept the existing solver and moved the revealed card beside his cheek, then checked every glove, elbow, card and scene boundary plus minimum projected limb length; strict arm measurements and all-frame tests pass. A contour-derived forearm shadow also preserves the full outline, checked with real Skia pixels.

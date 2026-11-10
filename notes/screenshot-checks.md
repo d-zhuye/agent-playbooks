@@ -32,3 +32,4 @@
 - 2026-11-09 · while-we-wait · worked · Reviewed fourteen dealer backstory and asked-badge phone captures; spotted SE question truncation from reserved badge width and fixed it by floating the badge above the text while preserving label width.
 - 2026-11-09 · while-we-wait · changed · Web CSS screenshots did not reproduce an iPhone percentage-inset overlap; moved speech actions to a sibling using measured native bubble coordinates, added geometry and answer-Back regression coverage, and reviewed sixteen affected phone captures.
 - 2026-11-09 · while-we-wait · worked · Ran the full web layout check before committing the native dealer renderer; the local preview server required sandbox escalation.
+- 2026-11-09 · while-we-wait · worked · Dealer art polish changed the 28 predicted overview, conversation and purchase-error captures only; reviewed actuals and diffs at both phone sizes before approving the artwork.
