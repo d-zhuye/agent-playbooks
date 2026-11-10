@@ -34,3 +34,4 @@
 - 2026-11-09 · while-we-wait · worked · Ran the full web layout check before committing the native dealer renderer; the local preview server required sandbox escalation.
 - 2026-11-09 · while-we-wait · worked · Dealer art polish changed the 28 predicted overview, conversation and purchase-error captures only; reviewed actuals and diffs at both phone sizes before approving the artwork.
 - 2026-11-09 · while-we-wait · worked · Dealer light and motion pass on Skia: named the 28 Expansion screens beforehand, exactly those changed, one actual screenshot opened to confirm the browser drew the new SVG blur, clip and gradient, then approved.
+- 2026-11-09 · while-we-wait · worked · Reviewed 36 predicted Expansion captures for the dealer name tab and three-part introduction, including saved-name return screenshots on both phone sizes; the first return recipe needed to await the store button after reload.

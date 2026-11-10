@@ -23,3 +23,4 @@
 - 2026-11-08 · while-we-wait · worked · A two-line navigation style change used 53 related UI tests and the quick check, with screenshot comparisons covering the visual result instead of new style-prop tests.
 - 2026-11-09 · while-we-wait · worked · Used the quick check before committing the Skia dealer changes and the full check for the new native dependency.
 - 2026-11-09 · while-we-wait · worked · Lowering the dealer shoulders used focused geometry regressions and the strict arm report; all-frame elbow tests caught a pop missed by wrist-only measurements, and a real-Skia pixel test caught shading erasing the outline.
+- 2026-11-09 · while-we-wait · worked · Related tests covered the remembered dealer identity while editing, followed by the quick check and full foundation checks because the saved snapshot changed; the Expo compatibility check separately flagged seven existing outdated patch versions.
