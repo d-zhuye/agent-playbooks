@@ -42,3 +42,4 @@
 - 2026-11-10 · while-we-wait · changed · Added frame-based opening and interruption checks because settled screenshots missed delayed question movement and stale exiting rows.
 - 2026-11-10 · while-we-wait · worked · Adding the purchase caption exposed an iPhone SE overflow with the developer store-message strip; reclaiming redundant compact footer spacing resolved it before screenshot approval.
 - 2026-11-10 · while-we-wait · changed · Three approved branches needed 35 combined Expansion baselines; a compact store-error check now verifies the minimum-size dealer can scroll fully into view and restores scroll position instead of rejecting intentional overflow.
+- 2026-11-10 · while-we-wait · worked · Replacing the Home Expansion pill with the selected Shop sticker changed exactly twelve predicted Home captures; reviewed actuals and diffs at both phone sizes before approval, with a sandbox escalation for the local preview server.

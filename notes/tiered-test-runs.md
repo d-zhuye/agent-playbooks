@@ -31,3 +31,4 @@
 - 2026-11-10 · while-we-wait · worked · Related tests and the quick check covered the isolated footer fix without rerunning the full logic and content suite.
 - 2026-11-10 · while-we-wait · worked · The purchase-caption change passed related tests and the quick check with enlarged-text coverage, without a full logic or content run.
 - 2026-11-10 · while-we-wait · worked · Related tests exposed a shared renderer API mismatch during three-branch integration, and the combined quick check passed 641 tests before the broader integration checks.
+- 2026-11-10 · while-we-wait · worked · The Home Shop icon used existing navigation and large-text coverage: 175 related tests and the 268-test quick tier passed, plus 53 bundled-image checks for the lossless WebP copy, without a foundation run.
