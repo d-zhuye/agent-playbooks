@@ -42,4 +42,5 @@
   copy of a project skill that had drifted and still told agents to write review files.
 - Tried: Left store text, content guidelines and research unreviewed, and said so → owner deferred
   them. Don't rewrite owner-pasted text in a cleanup; flag it.
+- Related: `playbooks/docs-without-copies.md` covers docs that copy strings and counts. It was installed here and did not stop this: dated plans, specs and reviews are a different source of staleness.
 - Status: worked once

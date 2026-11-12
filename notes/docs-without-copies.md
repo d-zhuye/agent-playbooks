@@ -9,3 +9,4 @@
 - 2026-11-07 · while-we-wait · worked · Power audit points to runtime policy code and labels frozen workload evidence separately from unmeasured device energy.
 - 2026-11-09 · while-we-wait · worked · Documented the dealer introduction and local identity flag by intent and source references, keeping the exact dialogue and name in the presentation code.
 - 2026-11-10 · while-we-wait · worked · Recorded the owner-approved conversational voice as intent and kept all exact dialogue in the presentation module while updating the existing copy expectations.
+- 2026-11-12 · while-we-wait · worked · Copy and counts stayed in code, but it does not cover dated plans, specs and reviews, which piled up to ~60,000 lines; see journal/stale-docs-pile-up-and-mislead-agents.md.
