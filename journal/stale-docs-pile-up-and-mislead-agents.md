@@ -42,5 +42,16 @@
   copy of a project skill that had drifted and still told agents to write review files.
 - Tried: Left store text, content guidelines and research unreviewed, and said so → owner deferred
   them. Don't rewrite owner-pasted text in a cleanup; flag it.
+- Tried: Turned the rules into guards so agents can't skip them → just installed. A `docs:check`
+  script (pre-commit on every commit, and in CI) fails on dead links and backticked paths, word
+  budgets for AGENTS.md and design files, dates in design files, anything under
+  `docs/superpowers/`, and dated reviews nothing cites; each message says how to fix it and that
+  raising a budget is not a fix. It runs in 0.2 s. Plans and specs moved to the git-ignored
+  `.superpowers/` (AGENTS.md overrides the skills' default path). A `docs:drift` report ranks docs
+  by commits to the code they name since they were last checked (a small `verified.json` records
+  checks), and a `docs-pass` skill works the top of that list; on first run it found two module
+  READMEs 16 and 41 commits behind. A weekly cloud routine to run the pass needs GitHub connected.
+  Planting a stray plan, an uncited review, a dated design line and a renamed file proved each
+  guard fails.
 - Related: `playbooks/docs-without-copies.md` covers docs that copy strings and counts. It was installed here and did not stop this: dated plans, specs and reviews are a different source of staleness.
 - Status: worked once
