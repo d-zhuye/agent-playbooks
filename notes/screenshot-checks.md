@@ -44,3 +44,4 @@
 - 2026-11-10 · while-we-wait · changed · Three approved branches needed 35 combined Expansion baselines; a compact store-error check now verifies the minimum-size dealer can scroll fully into view and restores scroll position instead of rejecting intentional overflow.
 - 2026-11-10 · while-we-wait · worked · Replacing the Home Expansion pill with the selected Shop sticker changed exactly twelve predicted Home captures; reviewed actuals and diffs at both phone sizes before approval, with a sandbox escalation for the local preview server.
 - 2026-11-12 · while-we-wait · worked · Checked a longer Charades rule label at both phone sizes and approved only its picker screenshots.
+- 2026-11-12 · while-we-wait · worked · Phone screenshot checks caught compact card overflow from longer Get to Know You instructions; shrinking its flower restored clearance.
