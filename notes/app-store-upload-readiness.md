@@ -1,2 +1,3 @@
 - 2026-10-15 · while-we-wait · worked · Written from this project's pre-upload check; all 14 checks passed against the SDK 57 production build.
 - 2026-11-13 · agent-playbooks · skipped · Cross-referenced from the App Store stakeholder journal to distinguish listing decisions from build readiness; no application build was under review.
+- 2026-11-13 · while-we-wait · worked · All 14 checks passed using the last store build's downloaded IPA (Info.plist, embedded profile, privacy manifest, symbols) plus the current config; the IPA was better evidence than `expo config --type introspect`, which listed dev-client keys the release binary lacks, and it showed the build predated two new native modules, so a fresh build is needed before submission.
