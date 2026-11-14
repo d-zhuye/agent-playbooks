@@ -3,7 +3,8 @@
 A prompt template for a second agent session to review a finished set of App Store screenshots
 before upload. The reviewer looks at the frames cold, at the size shoppers see them, then
 reviews from 14 roles (shoppers, Apple's reviewer, and specialists), then reads the designer's
-reasoning and challenges it. It writes one report and changes nothing. For iOS apps; the roles
+reasoning and challenges it. Each role says what is wrong and how it would make the set better.
+The reviewer writes one report and changes nothing. For iOS apps; the roles
 and steps carry over to Google Play with the rules swapped.
 
 **Adopt it when** an agent has designed or rebuilt the screenshots and you want a check that
@@ -34,7 +35,8 @@ the design rationale first: then it reviews the argument, not the pictures.
 designer session   builds the frames, the true-size mocks, the research and the storyboard
 owner              fills in the template below and starts a fresh session with it
 reviewer session   step 1  looks cold at the mocks and writes first impressions
-                   step 2  one pass per role, kept separate
+                   step 2  one pass per role, kept separate; each ends with that role's
+                           recommendations
                    step 3  reads the designer's reasoning and challenges it
                    step 4  reads the designer's own doubts, last
                    writes one report; edits nothing; commits nothing
@@ -45,7 +47,9 @@ Three rules shape the template:
 
 1. **Look before reading.** First impressions can be taken only once. The template names the
    reasoning files but forbids opening them until step 3.
-2. **Review only.** One report, uncommitted, so the owner reads it before anything changes.
+2. **Advise, don't edit.** Every role must say how to make the set better, not only what it
+   thinks of it. The advice goes in one uncommitted report, so the owner reads it before
+   anything changes.
 3. **Doubts and decisions come last.** The designer's doubts would steer the reviewer if they
    came first. Decisions the owner has already made are listed so the reviewer doesn't spend
    its time reopening them, with one way out: a serious problem, said once, with evidence.
@@ -81,7 +85,10 @@ they are uploaded. Another agent designed and built them. You have not seen its 
 that is on purpose: your value is a fresh pair of eyes. Find what is weak, unclear, untrue or
 risky, and say what would make more of the right people download the app.
 
-Review only. Do not edit the frames, the scripts, the app or the listing. Your one output is
+An opinion of the frames is half the job. The other half is advice: for everything you
+criticize, say how to fix it, and say what would make good frames better.
+
+Advise only. Do not edit the frames, the scripts, the app or the listing. Your one output is
 a written report (see "What to deliver").
 
 ## The app, in brief
@@ -133,6 +140,15 @@ this once.
 Take each role in turn and review the frames only from that seat. Keep the passes separate;
 do not blend them until the end. Where a role's claim rests on a fact (an Apple rule, a
 rival's page, a study), check it and cite it. Use web search where you need current facts.
+
+End every role's pass with that role's recommendations:
+
+- **Change first:** the one to three changes this role would make, most valuable first.
+  Each must be specific enough to act on: the new words, the new order, what to move,
+  enlarge, cut or add. Include improvements to things that are not wrong but could do more.
+- **A bigger idea:** one thing this role would try if it were making the set from scratch,
+  even if it means remaking a frame. Say what it would gain and what it would cost.
+- **Keep:** what this role thinks is working and must survive any change.
 
 **The people who decide**
 
@@ -214,10 +230,15 @@ Write one report to TODO(project): path, and do not commit it. Write it for the 
 who will decide what to change. They have seen the frames but not your working. Plain words,
 short sentences.
 
-1. **Verdict first:** would you ship these as they are? Then the three changes that would
-   matter most, in order.
-2. **Your cold notes from step 1,** unedited.
-3. **Findings,** most important first. For each one:
+1. **Verdict first:** would you ship these as they are?
+2. **The plan you recommend:** one ordered list of changes that merges every role's
+   advice, most valuable first. For each: the frame, the change, which roles asked for it,
+   and what it should improve. Mark each as Must do before upload, Should do, or Worth
+   testing after launch. Where two roles want opposite things, pick one and say why.
+3. **Your cold notes from step 1,** unedited.
+4. **Recommendations by role:** each role's Change first, Bigger idea and Keep, as written
+   at the end of its pass.
+5. **Findings,** most important first. For each one:
    - the frame number, and where on it
    - what is wrong, in one sentence
    - who it affects and what they would do as a result
@@ -227,13 +248,14 @@ short sentences.
    - the change you recommend, specific enough to act on: the new words, the new order, or
      what to move
    - severity: Must fix before upload, Should fix, or Worth testing after launch
-4. **What works and should not be changed,** so a fix elsewhere does not break it.
-5. **Disagreements between roles,** where one role's fix would hurt another's goal, and
+6. **What works and should not be changed,** so a fix elsewhere does not break it.
+7. **Disagreements between roles,** where one role's fix would hurt another's goal, and
    which side you would take.
-6. **Decided items you would reopen,** if any, with evidence.
-7. **What you could not check,** and how the owner could.
+8. **Decided items you would reopen,** if any, with evidence.
+9. **What you could not check,** and how the owner could.
 
-Be direct. A finding that says a frame is "a bit busy" is no use; say what to remove. Do
+Be direct. A finding that says a frame is "a bit busy" is no use; say what to remove. Never
+leave a criticism without a way to fix it. Do
 not pad the list: if a role found nothing, say so in one line. If you think the whole
 approach is wrong, say that first and say what you would do instead.
 ````
@@ -261,7 +283,8 @@ Not yet run. The setup works if:
    contain at least one misreading or unreadable element. A cold look that finds nothing wrong
    was probably not cold.
 2. Every finding has a frame number, an evidence label and a change specific enough to apply
-   without asking the reviewer what it meant.
+   without asking the reviewer what it meant. Every role has its three recommendation parts,
+   and the plan at the top could be handed to the designer as a work list.
 3. The working tree shows one new file, the report, and no other change.
 4. A decided item is reopened only with a rule or an observation behind it, never on taste.
 5. An agent that has just finished a screenshot set offers this review without being asked.
