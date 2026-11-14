@@ -1,1 +1,2 @@
 - 2026-10-15 · while-we-wait · worked · Written from this project's pre-upload check; all 14 checks passed against the SDK 57 production build.
+- 2026-11-13 · agent-playbooks · skipped · Cross-referenced from the App Store stakeholder journal to distinguish listing decisions from build readiness; no application build was under review.
