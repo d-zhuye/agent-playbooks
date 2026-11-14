@@ -5,6 +5,11 @@
 - Tried: Examined the original ranking, reciprocal benefits, competing interests, user alternatives and the implications for release assets → produced the questions and decision framework below; no application was evaluated or listing tested.
 - Seen: 2026-11-13, while-we-wait; an upload-readiness check before App Store submission.
 - Tried: while-we-wait keeps one paste-ready listing file where every field states its reason, grounded in pre-launch search research and customer story research → partly: the reasons hold up, but nothing kept the file in step with the build, so after a ninth game shipped it still said "nine" while describing eight, and the screenshots predated the new game.
+- Seen: 2026-11-14, while-we-wait; redesigning the App Store screenshots and deciding on the iOS 27 header and search results assets.
+- Tried: filled the "for [user] facing [situation]" sentence from existing research, then audited the first three frames of the top rivals for each target search before designing → worked: the audit, not the stakeholder table, settled the design (what searchers expect per game, an unused color, clean cards among 17+ rivals). In search the "next-best alternative" is the listing above or below.
+- Tried: judged every frame in a true-size mock of search results beside real rivals, not at full size → worked: it showed that only text about 150 px tall in a 1320 px frame is read, so the app's own large card became the picture.
+- Tried: built the frames by script from the app's screens with named free cards → worked for the drift this entry recorded on 2026-11-13; one command rebuilds them when a game is added.
+- Tried: the entry's Outcome, Mechanism, Fit sequence → partly: for a bundle of known games, people search by game name (Apple lists no "waiting" term), so the frames lead with the bundle and then one named game each. The sequence fits a single-purpose app better.
 - Status: open
 
 ## Intent and use
