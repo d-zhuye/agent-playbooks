@@ -3,6 +3,8 @@
 - Seen: 2026-11-13, agent-playbooks; conversation about preparing an application for App Store release.
 - What happened: Discussing what users, developers and Apple want raised questions about how to choose listing metadata, screenshots and release information. A stakeholder ranking alone did not explain which users to attract, why they would choose this app, or what evidence the listing should provide.
 - Tried: Examined the original ranking, reciprocal benefits, competing interests, user alternatives and the implications for release assets → produced the questions and decision framework below; no application was evaluated or listing tested.
+- Seen: 2026-11-13, while-we-wait; an upload-readiness check before App Store submission.
+- Tried: while-we-wait keeps one paste-ready listing file where every field states its reason, grounded in pre-launch search research and customer story research → partly: the reasons hold up, but nothing kept the file in step with the build, so after a ninth game shipped it still said "nine" while describing eight, and the screenshots predated the new game.
 - Status: open
 
 ## Intent and use
