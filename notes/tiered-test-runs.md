@@ -33,3 +33,4 @@
 - 2026-11-10 · while-we-wait · worked · Related tests exposed a shared renderer API mismatch during three-branch integration, and the combined quick check passed 641 tests before the broader integration checks.
 - 2026-11-10 · while-we-wait · worked · The Home Shop icon used existing navigation and large-text coverage: 175 related tests and the 268-test quick tier passed, plus 53 bundled-image checks for the lossless WebP copy, without a foundation run.
 - 2026-11-12 · while-we-wait · worked · Trivia import passed content and docs checks; quick checks exposed a pre-existing dealer source-hash mismatch while 803 tests passed.
+- 2026-11-15 · while-we-wait · worked · Related tests and check:quick covered the app side of a website branch; the new static-site build got its own node:test tier (site:test) inside npm run check rather than a separate CI job.

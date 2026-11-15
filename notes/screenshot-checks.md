@@ -45,3 +45,4 @@
 - 2026-11-10 · while-we-wait · worked · Replacing the Home Expansion pill with the selected Shop sticker changed exactly twelve predicted Home captures; reviewed actuals and diffs at both phone sizes before approval, with a sandbox escalation for the local preview server.
 - 2026-11-12 · while-we-wait · worked · Checked a longer Charades rule label at both phone sizes and approved only its picker screenshots.
 - 2026-11-12 · while-we-wait · worked · Phone screenshot checks caught compact card overflow from longer Get to Know You instructions; shrinking its flower restored clearance.
+- 2026-11-15 · while-we-wait · changed · A new Settings row below the captured area showed "Nothing changed" in --screens settings, so the row was proven by unit tests instead; the full 380-screen run stayed clean.
