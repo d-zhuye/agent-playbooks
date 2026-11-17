@@ -36,13 +36,13 @@ with its generalist, for a broad pass; call the specialists below it for depth.
 
 ## Product and strategy
 
-- **Product manager** (generalist): whether a feature solves a real problem for real users, its scope, and what to cut. *(no brief yet)*
-- Positioning strategist: one clear promise, different from rivals, aimed at the right people. *(no brief yet)*
-- Pricing and monetization specialist: the line between free and paid, prices, paywall timing, feeling tricked. *(no brief yet)*
-- Onboarding and activation specialist: how fast a new user gets to the moment the product pays off. *(no brief yet)*
-- Retention specialist: why people come back or drift away, without manipulative tricks. *(no brief yet)*
-- Prioritization coach: which ideas to do first, weighing value against cost. *(no brief yet)*
-- Competitive analyst: what rivals do better, what they miss, and where the gap is. *(no brief yet)*
+- **[Product manager](product/product-manager.md)** (generalist): whether a feature solves a real problem for real users, its scope, and what to cut.
+- [Positioning strategist](product/positioning.md): one clear promise, different from rivals, aimed at the right people.
+- [Pricing and monetization specialist](product/pricing.md): the line between free and paid, prices, paywall timing, feeling tricked.
+- [Onboarding and activation specialist](product/onboarding.md): how fast a new user gets to the moment the product pays off.
+- [Retention specialist](product/retention.md): why people come back or drift away, without manipulative tricks.
+- [Prioritization coach](product/prioritization.md): which ideas to do first, weighing value against cost.
+- [Competitive analyst](product/competitive-analyst.md): what rivals do better, what they miss, and where the gap is.
 
 ## Visual design
 
@@ -53,11 +53,11 @@ with its generalist, for a broad pass; call the specialists below it for depth.
 - [Visual hierarchy specialist](design/hierarchy.md): what the eye sees first, second, third, and whether that's what matters.
 - [Color and contrast specialist](design/color-and-contrast.md): palette roles, contrast ratios, meaning carried by color alone, dark mode.
 - [Layout and grid specialist](design/layout.md): alignment, grids, and how screens reflow across sizes and real content.
-- Iconography specialist: whether icons read at a glance, stay consistent, and need a label. *(no brief yet)*
-- Illustration and character designer: style consistency, appeal, silhouettes, and art that supports the screen. *(no brief yet)*
-- Motion designer: what each animation is for, its timing and easing, and reduced-motion settings. *(no brief yet)*
-- Design systems specialist: reusable components and tokens, and screens drifting from them. *(no brief yet)*
-- Brand designer: whether everything looks and feels like the same product. *(no brief yet)*
+- [Iconography specialist](design/iconography.md): whether icons read at a glance, stay consistent, and need a label.
+- [Illustration and character designer](design/illustration.md): style consistency, appeal, silhouettes, and art that supports the screen.
+- [Motion designer](design/motion.md): what each animation is for, its timing and easing, and reduced-motion settings.
+- [Design systems specialist](design/design-systems.md): reusable components and tokens, and screens drifting from them.
+- [Brand designer](design/brand.md): whether everything looks and feels like the same product.
 
 ## UX and interaction
 
