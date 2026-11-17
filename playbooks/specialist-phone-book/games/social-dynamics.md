@@ -59,3 +59,4 @@ expose the person answering.
 - Children → [Family play specialist](family-play.md)
 - Prompts that could touch a raw nerve → [Mental health safety reviewer](mental-health-safety.md)
 - Group behavior beyond single prompts → [Social psychologist](../behavior/social-psychology.md)
+- Who the content shows and assumes, across the product → [Belonging advocate](../advocates/belonging.md)

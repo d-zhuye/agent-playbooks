@@ -64,3 +64,4 @@ offensive), and a suggested fix or flag.
 - How content lands in a group → [Social dynamics specialist](../games/social-dynamics.md)
 - Checking facts → [Fact checker](fact-checker.md)
 - Selling in other countries → [Regional market specialist](../marketing/regional-markets.md)
+- Who is shown and assumed, beyond one culture → [Belonging advocate](../advocates/belonging.md)

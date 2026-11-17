@@ -61,3 +61,4 @@ tests.
 - How prices are presented → [Behavioral economist](behavioral-economics.md)
 - Price levels → [Pricing and monetization specialist](../product/pricing.md)
 - Store images → [Store creative specialist](../marketing/store-creative.md)
+- Whether trust holds after the purchase → [Trust advocate](../advocates/trust.md)

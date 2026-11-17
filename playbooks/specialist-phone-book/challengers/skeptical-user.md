@@ -51,3 +51,4 @@ A list of claims, each marked verified, not verified, or misleading.
 - Whether claims are true → [Fact checker](../writing/fact-checker.md)
 - Pressure tactics → [Ethical design reviewer](../ux/ethical-design.md)
 - Consumer law → [Consumer protection specialist](../policy/consumer-protection.md)
+- Whether trust holds after install → [Trust advocate](../advocates/trust.md)

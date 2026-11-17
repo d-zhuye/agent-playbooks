@@ -60,3 +60,4 @@ A table: the item, its topic, the concern, its severity, and a suggested softeni
 - Ethics more broadly → [Ethicist](../challengers/ethicist.md)
 - Children → [Family play specialist](family-play.md)
 - Healthy use of the app → [Digital wellbeing specialist](../product/digital-wellbeing.md)
+- Other harms: money, exposure, other users → [Safety advocate](../advocates/safety.md)

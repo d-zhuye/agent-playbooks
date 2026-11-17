@@ -64,3 +64,4 @@ hesitation.
 - A fresh-eyes friction hunt → [Usability evaluator](usability.md)
 - How it looks → [Designer](../design/designer.md)
 - The words → [UX writer](../writing/ux-writer.md)
+- How the whole product feels to the user → [User advocate](../advocates/user-advocate.md)

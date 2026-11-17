@@ -64,3 +64,4 @@ every choice.
 - Pricing strategy → [Pricing and monetization specialist](../product/pricing.md)
 - Children's rules → [Children's compliance specialist](../policy/childrens-compliance.md)
 - The psychology behind the levers → [Behavioral economist](../behavior/behavioral-economics.md)
+- Harm beyond design tricks, including from other users → [Safety advocate](../advocates/safety.md)

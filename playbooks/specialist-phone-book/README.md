@@ -1,7 +1,7 @@
 # Specialist phone book
 
-A phone book of specialists (designers, writers, engineers, psychologists, storytellers, policy
-and research people, and more) that you or an agent call by name for a spot-check, a review, a critique, a question or a
+A phone book of specialists (designers, writers, engineers, psychologists, storytellers, user
+advocates, policy and research people, and more) that you or an agent call by name for a spot-check, a review, a critique, a question or a
 recommendation, instead of writing a role from scratch each time. A scannable index lists every
 specialist with one line on what they catch. A full brief per specialist gives them a point of
 view, what they must see, what to look at first, the mistakes common in their field, and the
@@ -120,6 +120,10 @@ writing roles from scratch. When I haven't named anyone, say which ones you pick
    such as a type size its design guide sets below their minimum. The report keeps the
    recommendation, names the decision and where it's recorded, states the strength ("strong
    disagreement" when it is), and asks the owner to decide, instead of quietly deferring.
+8. **Two advocates, one screen.** Call the trust advocate and the respect advocate on the same
+   paywall. The trust advocate should report on what was promised and when the catch appeared;
+   the respect advocate on how often and when it asks. If their findings overlap heavily, the
+   briefs have blurred.
 
 ## 6. Gotchas
 
@@ -134,6 +138,9 @@ Expected, not yet seen in use:
   and code alone doesn't show how a screen looks. The caller should gather what each brief's
   "What you need to see" asks for before calling. The shared rules tell a specialist to say when
   it's missing and propose a workaround.
+- **Feeling-based specialists can blur into "make it nicer".** The advocates in "How it feels to
+  the user" each judge one sentence a user would say, and their mistake lists name different
+  moments. Call the user advocate first, and only the advocates it says are at risk.
 - **Cost grows with the number of specialists.** Three specialists cost about three reviews.
   Call the fewest who cover the task.
 

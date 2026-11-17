@@ -21,6 +21,9 @@ project's repo is the `while-we-wait` folder beside this one on the owner's mach
 - Content: [Humor writer](../../story/humor-writer.md),
   [Cultural consultant](../../writing/cultural-consultant.md),
   [Plain-language editor](../../writing/plain-language.md)
+- How it feels: [Ease advocate](../../advocates/ease.md) (one phone passed around a group in cars,
+  queues and waiting rooms), [Belonging advocate](../../advocates/belonging.md) (mixed families and
+  groups)
 - Look and feel: [Illustration and character designer](../../design/illustration.md),
   [Motion designer](../../design/motion.md), [Mobile-first designer](../../design/mobile-first.md)
 - Building and shipping: [React Native and Expo specialist](../../platforms/react-native-expo.md),

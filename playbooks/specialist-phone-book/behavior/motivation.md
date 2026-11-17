@@ -63,3 +63,5 @@ reward feature.
 - Healthy use → [Digital wellbeing specialist](../product/digital-wellbeing.md)
 - The game loop → [Game designer](../games/game-designer.md)
 - Running interviews → [User interviewer](../research/user-interviews.md)
+- Whether users feel in control, capable and welcome → [Control advocate](../advocates/control.md),
+  [Competence advocate](../advocates/competence.md), [Belonging advocate](../advocates/belonging.md)

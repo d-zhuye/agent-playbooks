@@ -64,3 +64,4 @@ signal agreed before building starts.
 - What to charge → [Pricing and monetization specialist](pricing.md)
 - Which of many ideas goes first → [Prioritization coach](prioritization.md)
 - Whether people can use it → [UX designer](../ux/ux-designer.md)
+- How it feels to use, from first sight to leaving → [User advocate](../advocates/user-advocate.md)

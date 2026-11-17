@@ -53,3 +53,4 @@ A table of the four forces for each story, then the patterns across stories.
 - Gathering stories by interview → [User interviewer](user-interviews.md)
 - Turning the job into a promise → [Positioning strategist](../product/positioning.md)
 - Pulling findings together → [Researcher](researcher.md)
+- Whether the product shows it understands the need → [Understanding advocate](../advocates/understanding.md)

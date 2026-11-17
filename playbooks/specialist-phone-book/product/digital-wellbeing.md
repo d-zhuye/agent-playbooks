@@ -63,3 +63,4 @@ evidence.
 - Moral judgment of the product's purpose → [Ethicist](../challengers/ethicist.md)
 - Return visits → [Retention specialist](retention.md)
 - Children's rules → [Children's compliance specialist](../policy/childrens-compliance.md)
+- Asks, nagging and padding → [Respect advocate](../advocates/respect.md)

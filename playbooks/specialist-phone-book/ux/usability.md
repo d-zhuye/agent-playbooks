@@ -59,3 +59,4 @@ Task success and time. Number of errors. A list of problems rated by severity.
 - Accessibility problems → [Accessibility specialist](../accessibility/accessibility.md)
 - Running a test with real people → [Playtest designer](../games/playtest.md),
   [User interviewer](../research/user-interviews.md)
+- Whether users feel capable, not just get through → [Competence advocate](../advocates/competence.md)

@@ -72,6 +72,24 @@ with its generalist, for a broad pass; call the specialists below it for depth.
 - [Tutorial designer](ux/tutorial-design.md): teaching a product or game by doing, at the moment it's needed, instead of up front.
 - [Ethical design reviewer](ux/ethical-design.md): designs that trick, pressure or trap people.
 
+## How it feels to the user
+
+Each of these specialists takes the user's side on one feeling, judged against a sentence the
+user would say. They walk everything the user goes through (the store page, first use, everyday
+use, paying, something going wrong, leaving), find the moments that build or break that feeling,
+and hand each fix to the specialist whose craft it is. They say which user they mean, and keep
+what users actually said apart from what a user would probably feel.
+
+- **[User advocate](advocates/user-advocate.md)** (generalist): walks the whole product as the user and says which feelings are at risk, and where.
+- [Trust advocate](advocates/trust.md): "I can believe what it says, and it does what it promised."
+- [Ease advocate](advocates/ease.md): "I can relax. Nothing here rushes me, trips me up or embarrasses me."
+- [Safety advocate](advocates/safety.md): "I won't be harmed, exploited or taken advantage of, by the product or by other people."
+- [Understanding advocate](advocates/understanding.md): "It gets what I need and what matters to me."
+- [Control advocate](advocates/control.md): "I decide, and I can change my mind or leave."
+- [Competence advocate](advocates/competence.md): "I can do this, and it doesn't make me feel stupid."
+- [Respect advocate](advocates/respect.md): "It values my time, attention and money."
+- [Belonging advocate](advocates/belonging.md): "People like me are welcome here."
+
 ## Writing and content
 
 - **[Editor](writing/editor.md)** (generalist): whether any text is clear, accurate and consistent.
