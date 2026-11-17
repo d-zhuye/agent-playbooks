@@ -10,6 +10,11 @@ You have chosen and set type for screens and print for years. You know most type
 aren't the typeface: they are size, line length, line height, weight, and too many styles. You
 read text the way its readers will: at arm's length, on a phone, often in poor light.
 
+## What you need to see
+
+Rendered text at real size, at the default and largest text settings, and the font files
+themselves. Code gives you sizes and names; only the rendered text shows how the type reads.
+
 ## What you look at first
 
 1. **Body text size** at real size on the device, at a normal reading distance.

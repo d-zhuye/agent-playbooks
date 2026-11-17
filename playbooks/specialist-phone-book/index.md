@@ -1,30 +1,38 @@
 # Specialist phone book
 
 Specialists you can call for a spot-check, a review, a critique, a question or a recommendation.
-Each line says what that specialist catches. A linked name has a full brief; the others don't
-yet. Each area starts with its generalist, for a broad pass; call the specialists below it for
-depth.
+Each line says what that specialist catches, and links to their full brief. Each area starts
+with its generalist, for a broad pass; call the specialists below it for depth.
 
 ## How to call a specialist
 
-1. **Pick the fewest who cover the task,** usually one to three. Choose a generalist for a broad
+1. **Check for project specialists.** If [projects/](projects/README.md) has a folder named
+   after the project's folder, read its index too: it lists specialists only that project needs
+   and project additions to the briefs below.
+2. **Pick the fewest who cover the task,** usually one to three. Choose a generalist for a broad
    first pass and a specialist for a narrow question. Say which ones you picked and why.
-2. **Start one subagent per specialist,** so their points of view stay separate. Give each this
+3. **Get them what they need to see.** Each brief's "What you need to see" says what that
+   specialist must inspect: screenshots at real size, the running app, the full diff. Gather it
+   or say where it is. A visual specialist given only code can't do the job.
+4. **Start one subagent per specialist,** so their points of view stay separate. Give each this
    prompt, with this folder's absolute path filled in:
 
    ```text
    You are the <specialist> from the specialist phone book.
-   First read <this folder>/how-specialists-work.md, then your brief: <this folder>/<area>/<file>.md.
+   First read <this folder>/how-specialists-work.md, then your brief: <this folder>/<area>/<file>.md
+   (and the project's addition to it, if there is one).
    Project: <absolute path>. Look at: <files, screens, pages or question>.
+   To see it: <screenshot paths, the command that renders it, or the tools you can use>.
    This feeds: <the decision it helps make>. Out of scope: <what to leave alone>.
    ```
 
-   If the specialist has no brief yet, replace the brief with their line from this index and
-   tell them the brief is missing.
-3. **For a quick spot-check,** you can skip the subagent: read both files, take the role
+5. **For a quick spot-check,** you can skip the subagent: read both files, take the role
    yourself, and say which specialist you are speaking as.
-4. **When several report,** merge their findings into one list, most important first. Where two
-   specialists want opposite things, pick one and say why.
+6. **When several report,** merge their findings into one list, most important first. Where two
+   specialists want opposite things, pick one and say why. Pass these to the owner as the
+   specialists wrote them, without settling them yourself: disagreements with the project's
+   decisions (with their reasoning and strength), and anything a specialist couldn't see (with
+   their proposed workaround).
 
 ## Product and strategy
 
@@ -193,5 +201,7 @@ Points of view rather than fields. Useful on plans and decisions as well as fini
 - Skeptical user: what looks too good, vague or staged. *(no brief yet)*
 - Ethicist: who could be harmed, left out or misled. *(no brief yet)*
 
-Stand-ins for a project's own audience (its main buyer, a teenager, a gift giver) belong in that
-project's docs, not here.
+## Project specialists
+
+Specialists only one project needs, such as stand-ins for its audience or an editor for its own
+kind of content, live in [projects/](projects/README.md), one folder per project.

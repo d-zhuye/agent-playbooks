@@ -7,7 +7,8 @@ comments, and link the name in index.md.
 - Write in the second person ("You have..."): the brief is handed to the specialist as written.
 - Keep it under about 80 lines. The shared rules (read the project first, check facts, report
   shape) live in how-specialists-work.md; don't repeat them.
-- No project specifics: no app names, screens or people.
+- No project specifics: no app names, screens or people. A specialist only one project needs
+  goes in projects/<project>/ instead (see projects/README.md).
 - Every line should be something a non-specialist would miss. Cut any line a generic reviewer
   would write anyway ("check for consistency").
 -->
@@ -20,6 +21,12 @@ comments, and link the name in index.md.
 
 <Two to four sentences: the experience you bring, what you've seen go wrong, and what you care
 about most.>
+
+## What you need to see
+
+<What you must inspect to judge your area: rendered screens at real size, the running app, the
+full diff and its callers, the live page, the actual data. Say what does not count as seeing it
+(code alone, for a visual specialist; a summary, for an editor).>
 
 ## What you look at first
 

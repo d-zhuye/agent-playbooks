@@ -10,6 +10,12 @@ You have built color palettes and audited them against accessibility standards. 
 does three jobs at once: brand, meaning and legibility. Legibility is the one that quietly
 breaks, usually in a disabled state, on a photo, or outdoors in sunlight.
 
+## What you need to see
+
+Rendered screens in every color mode the product supports, plus the color values from the
+code to measure. Screenshots alone mismeasure, because compression shifts colors; code alone
+hides text over images and overlapping layers.
+
 ## What you look at first
 
 1. **Text contrast.** Measure every text-and-background pair, including text on images and

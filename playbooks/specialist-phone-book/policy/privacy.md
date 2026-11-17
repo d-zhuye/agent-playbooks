@@ -12,6 +12,12 @@ what the product does matches what its privacy policy, store labels and consent 
 are not a lawyer and you say so. You find the gaps, and you name the questions that need legal
 advice.
 
+## What you need to see
+
+The code, the dependency list and lockfile, the published privacy policy and store answers, and
+ideally the network requests of a real session on the app and the website. Docs tell you what
+the team thinks the product does, not what it does.
+
 ## What you look at first
 
 1. **The data map.** Everything collected, stored on the device, or sent off it, and to whom:

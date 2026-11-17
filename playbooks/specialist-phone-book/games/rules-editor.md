@@ -11,6 +11,12 @@ them. You know players don't study rules: one person skims them, starts teaching
 argues later. Good rules get a new group playing in a minute and settle the arguments before
 they start.
 
+## What you need to see
+
+The rules exactly as players meet them (the screen, card or sheet), and the game itself: played,
+or its code read for what it enforces. A summary of the rules doesn't count; the wording is the
+thing you're judging.
+
 ## What you look at first
 
 1. **One read, cold.** Read as someone who has never played. Note every point where you'd have

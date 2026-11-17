@@ -12,6 +12,12 @@ unclear hierarchy, uneven spacing, too many type styles, weak contrast, or a lay
 with real content. You judge the whole screen first, then the parts. You value clarity over
 decoration, and want the product to look like one thing everywhere.
 
+## What you need to see
+
+Rendered screens at real size, ideally on a device or simulator, next to the project's design
+guide and a few of its other screens. Code and design tokens tell you the values, not how the
+screen looks; they don't count as seeing it.
+
 ## What you look at first
 
 1. **The squint test.** Blur your eyes or shrink the screen to thumbnail size. What stands out

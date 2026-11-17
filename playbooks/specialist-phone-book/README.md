@@ -4,8 +4,11 @@ A phone book of specialists (designers, editors, engineers, reviewers, policy an
 people) that you or an agent call by name for a spot-check, a review, a critique, a question or a
 recommendation, instead of writing a role from scratch each time. A scannable index lists every
 specialist with one line on what they catch. A full brief per specialist gives them a point of
-view, what to look at first, the mistakes common in their field, and the facts to check. It's read
-in place from this repo, by any agent tool that can read files and start subagents.
+view, what they must see, what to look at first, the mistakes common in their field, and the
+facts to check. Specialists give an independent view: they flag where they disagree with the
+project's decisions and leave the call to the owner. Specialists only one project needs live in
+that project's folder under `projects/`. It's read in place from this repo, by any agent tool
+that can read files and start subagents.
 
 **Status: prototype.** The owner asked for this playbook directly; it was not promoted from a
 journal entry. The index is complete, but only some briefs are written: the visual design area,
@@ -38,7 +41,9 @@ any task.
 It is a failure, even if it runs, when:
 
 - a brief adds nothing over the bare title ("typography specialist"),
-- specialists override the project's own decisions,
+- specialists soften good advice to fit the project's decisions, or overrule a decision without
+  asking the owner,
+- specialists judge what they couldn't see, such as a color review from code alone,
 - out-of-date facts are stated as current,
 - specialists blur into one voice,
 - or the index grows too long to scan.
@@ -48,9 +53,10 @@ It is a failure, even if it runs, when:
 | File | What it is |
 |---|---|
 | [index.md](index.md) | The phone book: every specialist in one line, grouped by area, plus how to call one |
-| [how-specialists-work.md](how-specialists-work.md) | The rules every specialist follows: read the project first, check facts that change, stay in your seat, the report shape |
+| [how-specialists-work.md](how-specialists-work.md) | The rules every specialist follows: get what you need to see or say you can't, give an independent view and flag disagreements, check facts that change, stay in your seat, the report shape |
 | [template.md](template.md) | The shape of a brief, for writing new ones |
 | `<area>/<specialist>.md` | One brief per specialist, written in the second person so it can be handed over as is |
+| [projects/](projects/README.md) | One folder per project, for specialists only it needs and project additions to general briefs |
 
 It serves two readers at two depths. The index is for scanning: you, looking for who to call, or
 an agent picking specialists for a task. The brief is for doing the work: the specialist reads
@@ -71,9 +77,9 @@ project at once. The cost is that a cloud session without this repo can't use it
 
 - [ ] This repo is cloned on the machine (see [SETUP.md](../../SETUP.md)). Nothing is installed
       in projects.
-- [ ] Optional, per project: in the project's own docs, list the specialists it calls most and
-      add any it alone needs, such as stand-ins for its audience or an editor for its own kind of
-      content. Write their briefs from [template.md](template.md).
+- [ ] Optional, per project: create `projects/<project>/` for specialists only that project
+      needs (stand-ins for its audience, an editor for its own kind of content) and project
+      additions to general briefs. [projects/README.md](projects/README.md) says how.
 
 ## 4. Agent rule
 
@@ -108,6 +114,13 @@ writing roles from scratch. When I haven't named anyone, say which ones you pick
 4. **Outside the seat.** The typography specialist notices a contrast problem and hands it to the
    color and contrast specialist instead of reviewing it.
 5. **Facts that change.** The privacy specialist cites current sources with dates, not memory.
+6. **Can't see.** Call the color and contrast specialist with only the code and no way to view
+   images. Its report opens by saying it couldn't see the screens, proposes a workaround (such
+   as the project's screenshot command), and labels anything it judged from code as unverified.
+7. **Disagreement.** Call a specialist on something the project decided against their advice,
+   such as a type size its design guide sets below their minimum. The report keeps the
+   recommendation, names the decision and where it's recorded, states the strength ("strong
+   disagreement" when it is), and asks the owner to decide, instead of quietly deferring.
 
 ## 6. Gotchas
 
@@ -118,15 +131,15 @@ Expected, not yet seen in use:
   quick spot-checks.
 - **Briefs can drift generic.** The test for every line is whether a non-specialist would miss
   it. Cut lines any reviewer would write anyway.
-- **Specialists can't always see.** A subagent without an image viewer can't judge a screenshot.
-  The shared rules tell it to say so.
+- **Specialists can't always see.** A subagent without an image viewer can't judge a screenshot,
+  and code alone doesn't show how a screen looks. The caller should gather what each brief's
+  "What you need to see" asks for before calling. The shared rules tell a specialist to say when
+  it's missing and propose a workaround.
 - **Cost grows with the number of specialists.** Three specialists cost about three reviews.
   Call the fewest who cover the task.
 
 ## 7. What it does not cover
 
-- Stand-ins for a project's own audience (its buyer, a teenager, a gift giver). Those belong in
-  the project.
 - Real professional advice. The legal and privacy specialists find gaps and say when a lawyer is
   needed; they don't replace one. The same goes for a security audit.
 - Cloud sessions without this repo.
@@ -140,6 +153,9 @@ Expected, not yet seen in use:
   no project specifics, link the name in the index, and leave a note.
 - **Adding a specialist:** add a line to the right area of the index. Reviews merge, rename and
   cut entries, so adding stays easy.
+- **A specialist only one project needs:** put it in `projects/<project>/`, following
+  [projects/README.md](projects/README.md). If a second project wants it, move it into the main
+  index without the project details.
 - **Notes:** after a use, add one line to `notes/specialist-phone-book.md` saying which
   specialists you called, and whether they caught something the caller wouldn't have.
 

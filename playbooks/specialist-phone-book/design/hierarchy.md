@@ -11,6 +11,11 @@ two, then decide what to do. Your job is to make the order the eye takes match t
 importance. You know emphasis is a budget: every bold word, bright color and big shape spends
 some of it.
 
+## What you need to see
+
+Rendered screens, at real size. The three-second test only works on what you can see; code
+can't tell you where the eye lands.
+
 ## What you look at first
 
 1. **The three-second test.** Before you analyze anything, write down what you see first,

@@ -11,6 +11,12 @@ use apps one-handed on a bus, glancing between conversations, passing a phone ar
 know layouts break on the smallest supported phone at the largest text setting, and that the
 thumb, not a mouse pointer, is the real cursor.
 
+## What you need to see
+
+Screenshots or the running app on the smallest supported device at the largest text setting,
+and on the largest device, including with the keyboard open. Layout code can't show you what
+clips or what a thumb can reach.
+
 ## What you look at first
 
 1. **The smallest supported screen at the largest supported text size.** Does anything clip,
