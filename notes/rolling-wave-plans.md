@@ -1,1 +1,2 @@
 - 2026-11-16 · while-we-wait · changed · Used the rolling-wave template for a draft covering 40 review tasks and 86 findings, with only the first stage detailed; deferred the automatic build start because the owner requested planning only.
+- 2026-11-17 · while-we-wait · changed · An 11-stage content build (131 specialist briefs in agent-playbooks) absorbed a mid-build scope addition as new stages cleanly; the final squash covered only the commits after another session's commit on the same branch, since squashing all of them would have rewritten that session's work.
