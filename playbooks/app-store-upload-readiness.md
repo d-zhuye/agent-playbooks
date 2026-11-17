@@ -167,6 +167,7 @@ in a sentence or two.
 - App Store Connect metadata: the privacy label, age rating, screenshots, description,
   support and privacy policy URLs, and pricing.
 - App Review Guidelines (content, payments, login). This list covers whether the upload goes
-  through, not whether review approves it.
+  through, not whether review approves it. For that, see
+  [App Store review readiness](app-store-review-readiness.md).
 - Android and Google Play. A similar list would cover the target API level, the AAB format,
   the data safety form and signing.

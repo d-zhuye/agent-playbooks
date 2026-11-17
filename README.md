@@ -7,6 +7,10 @@ Each playbook below says what it does, why to use it, and how to install it. Age
 index, then open the playbooks that fit the project. Also search [journal/](journal/) for
 problems seen before that aren't playbooks yet.
 
+- [App Store review readiness](playbooks/app-store-review-readiness.md): an agent takes the App Store
+  reviewer's role and checks the whole submission (app, product page, purchases, review notes)
+  with 34 fixed checks plus a sweep of every App Review Guideline, then reports what would be
+  rejected. Unproven; iOS apps before submitting for review.
 - [App Store screenshot review](playbooks/app-store-screenshot-review.md): a prompt template for a
   second agent session to review finished App Store screenshots: a cold look at search size,
   14 role passes, then a challenge of the designer's reasoning, ending in one report. Unproven;
