@@ -124,6 +124,8 @@ writing roles from scratch. When I haven't named anyone, say which ones you pick
    paywall. The trust advocate should report on what was promised and when the catch appeared;
    the respect advocate on how often and when it asks. If their findings overlap heavily, the
    briefs have blurred.
+9. **Notes per specialist.** After a call with two specialists, the caller adds two note lines
+   in the shape under "Growing it", and copies in any brief feedback from the reports.
 
 ## 6. Gotchas
 
@@ -162,8 +164,38 @@ Expected, not yet seen in use:
 - **A specialist only one project needs:** put it in `projects/<project>/`, following
   [projects/README.md](projects/README.md). If a second project wants it, move it into the main
   index without the project details.
-- **Notes:** after a use, add one line to `notes/specialist-phone-book.md` saying which
-  specialists you called, and whether they caught something the caller wouldn't have.
+- **Notes:** after a use, add one line per specialist called to
+  `notes/specialist-phone-book.md`. The first three fields are the usual note fields, so the
+  sweep counts them as it counts any note; the last two make each line countable per specialist:
+
+  ```md
+  - <YYYY-MM-DD> · <project> · <worked | didn't | changed> · <Specialist> · <caught | missed | noise | couldn't see>: <one sentence>
+  ```
+
+  - **caught:** found something the caller wouldn't have, and the owner acted on it.
+  - **missed:** something in its seat turned up later, from another specialist, a user or a
+    store review. Add this line when it turns up, even weeks after the call.
+  - **noise:** its findings were generic, wrong or rejected. Say which.
+  - **couldn't see:** it lacked what its brief needs, and the workaround didn't help.
+
+  Copy the specialist's brief feedback into the sentence when it gave some.
+
+### Reviewing briefs
+
+The monthly sweep reviews this playbook as a whole once it has 5 new note lines. Within it,
+each brief is judged on its own notes, with these rules in place of the repo's pattern rule,
+because one brief among many would rarely collect three notes on the same issue:
+
+- **Edit a brief** after 2 notes on the same issue with it, or after 1 `missed` note whose miss
+  belongs in its "Mistakes you catch" or "What you look at first". Brief feedback from the
+  specialist counts as a note.
+- **Let a change settle:** after editing a brief, wait for 2 new notes on it before changing it
+  again.
+- **A miss or noise in one project only** (its audience, its own content) goes into that
+  project's addition under `projects/`, not the general brief.
+- **At the repo review,** before trimming notes, count each specialist's calls and outcomes, and
+  keep those counts in the SUMMARY line. Flag specialists never called in two repo reviews for
+  merging into a neighbor; ask the owner before cutting any.
 
 ## 9. Builds on
 

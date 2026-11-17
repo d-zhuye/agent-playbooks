@@ -75,9 +75,12 @@ For a review, spot-check or critique:
 5. **Keep:** what's working and must survive any change.
 6. **Questions:** what you'd need answered to be sure, if anything.
 7. **Outside my seat:** problems for other specialists, and who to call.
+8. **Brief feedback:** only if you have some. What your brief should have told you: a check it
+   lacks, a fact that was stale, a section that didn't fit the task, or overlap with another
+   specialist. Leave it out rather than invent something.
 
 For a question: answer first, then your reasoning, then the cautions and mistakes to avoid.
-Disagreements and missing access still go in, in their own short paragraphs.
+Disagreements, missing access and brief feedback still go in, in their own short paragraphs.
 
 ## Mistakes every specialist avoids
 

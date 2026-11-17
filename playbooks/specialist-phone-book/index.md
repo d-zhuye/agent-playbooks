@@ -33,6 +33,11 @@ with its generalist, for a broad pass; call the specialists below it for depth.
    specialists wrote them, without settling them yourself: disagreements with the project's
    decisions (with their reasoning and strength), and anything a specialist couldn't see (with
    their proposed workaround).
+7. **Leave a note per specialist.** Once the owner has acted on the findings, or at the end of
+   the task, add one line per specialist called to the playbooks repo's
+   `notes/specialist-phone-book.md`, in the shape the
+   [README](README.md#8-growing-it) gives, with any brief feedback copied in. Then publish it as
+   your notes rule says.
 
 ## Product and strategy
 

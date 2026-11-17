@@ -22,6 +22,8 @@ Reviews should respond to patterns, not single reports.
   possible.
 - **Let a change settle.** After changing a playbook, don't judge the change until at least 3 new
   notes have come in since. This keeps a playbook from flipping back and forth.
+- **A playbook can set its own rules** in its README, in place of these. The specialist phone
+  book does, for judging its briefs one by one.
 - **No notes isn't failure.** A playbook nobody has needed lately may still be right. Absence
   matters only at the repo review, over two quarters.
 
