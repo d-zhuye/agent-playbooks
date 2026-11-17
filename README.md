@@ -35,6 +35,12 @@ problems seen before that aren't playbooks yet.
   search for the product, from free autocomplete and App Store competition data, ending in
   proposed App Store, Google Play and web page text plus flagged conflicts with copy rules. Apps
   and sites before launch; Node scripts included.
+- [Rolling-wave plans](playbooks/rolling-wave-plans/README.md): a skill that runs a build from an
+  agreed design without a full implementation plan: the current stage in detail, the next as
+  outcomes, later ones as one line each, with a commander's-intent section for the calls the
+  design leaves open. Owner Stops are rare, Looks never hold up work, every change of route gets
+  a Log line, and each stage makes one commit, squashed at the end. Unproven; any project where
+  agents build from a written design.
 - [Screenshot checks](playbooks/screenshot-checks.md): approved screenshots of every screen, compared after
   each UI change with one command; agents approve predicted changes and ask only about the rest.
   For Expo / React Native apps (and plain web apps).
