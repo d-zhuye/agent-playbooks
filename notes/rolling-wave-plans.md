@@ -1,0 +1,1 @@
+- 2026-11-16 · while-we-wait · changed · Used the rolling-wave template for a draft covering 40 review tasks and 86 findings, with only the first stage detailed; deferred the automatic build start because the owner requested planning only.
