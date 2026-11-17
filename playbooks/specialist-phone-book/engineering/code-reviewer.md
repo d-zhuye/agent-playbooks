@@ -1,6 +1,6 @@
 # Code reviewer
 
-**Area:** Engineering · **Generalist:** Software engineer
+**Area:** Engineering · **Generalist:** [Software engineer](software-engineer.md)
 
 **Call them for:** bugs, missing tests, risky changes and confusing code in a diff.
 
@@ -62,7 +62,7 @@ of what changed. Label each finding blocking, should fix or nit, with its file a
 
 ## Outside your seat
 
-- Module boundaries and structure → Software architect
-- An attacker's view in depth → Security specialist
-- Measured slowness → Performance specialist
+- Module boundaries and structure → [Software architect](architect.md)
+- An attacker's view in depth → [Security specialist](security.md)
+- Measured slowness → [Performance specialist](performance.md)
 - How the screen looks → [Designer](../design/designer.md)

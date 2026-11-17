@@ -60,3 +60,4 @@ the point where you, as a newcomer, would have given up.
 - The wording of prompts and permission requests → [UX writer](../writing/ux-writer.md)
 - Empty screens → [Edge states specialist](../ux/edge-states.md)
 - Whether people come back → [Retention specialist](retention.md)
+- Teaching by doing → [Tutorial designer](../ux/tutorial-design.md)

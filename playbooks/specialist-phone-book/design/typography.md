@@ -68,5 +68,5 @@ smallest and largest text settings.
 
 - Text color against its background → [Color and contrast specialist](color-and-contrast.md)
 - Which text gets emphasis → [Visual hierarchy specialist](hierarchy.md)
-- The words themselves → UX writer or Editor
-- Font licenses in depth → Licensing specialist
+- The words themselves → [UX writer](../writing/ux-writer.md) or [Editor](../writing/editor.md)
+- Font licenses in depth → [Licensing specialist](../policy/licensing.md)

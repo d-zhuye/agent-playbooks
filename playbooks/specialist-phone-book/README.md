@@ -1,7 +1,7 @@
 # Specialist phone book
 
-A phone book of specialists (designers, editors, engineers, reviewers, policy and research
-people) that you or an agent call by name for a spot-check, a review, a critique, a question or a
+A phone book of specialists (designers, writers, engineers, psychologists, storytellers, policy
+and research people, and more) that you or an agent call by name for a spot-check, a review, a critique, a question or a
 recommendation, instead of writing a role from scratch each time. A scannable index lists every
 specialist with one line on what they catch. A full brief per specialist gives them a point of
 view, what they must see, what to look at first, the mistakes common in their field, and the
@@ -10,11 +10,10 @@ project's decisions and leave the call to the owner. Specialists only one projec
 that project's folder under `projects/`. It's read in place from this repo, by any agent tool
 that can read files and start subagents.
 
-**Status: prototype.** The owner asked for this playbook directly; it was not promoted from a
-journal entry. The index is complete, but only some briefs are written: the visual design area,
-plus one each from games, engineering and policy, to test the brief format on different kinds of
-work. No project has used it yet, so there are no cost figures, and the agent rule (section 4)
-isn't installed yet.
+**Status: unproven.** The owner asked for this playbook directly; it was not promoted from a
+journal entry. Every specialist in the index has a full brief, and one project has a folder under
+`projects/`. No specialist has been called on a real task yet, so there are no cost figures, and
+the agent rule (section 4) isn't installed yet.
 
 **Adopt it when** you'd otherwise write "review this as a designer" or a role spec by hand, or
 when you want to see what kinds of expertise you could bring to a task.
@@ -66,7 +65,7 @@ Calling one is in [index.md](index.md#how-to-call-a-specialist): pick the fewest
 cover the task, start one subagent each with a short prompt that points at the two files, and
 merge their reports. For a quick spot-check, an agent can take the role itself instead.
 
-Each area starts with a generalist for a broad pass; the specialists below it go deep. Each
+Most areas start with a generalist for a broad pass; the specialists below it go deep. Each
 specialist names who to hand off to when a problem is outside their seat.
 
 **Why it isn't copied into projects.** Other folder playbooks ship `files/` to copy into each
@@ -109,7 +108,7 @@ writing roles from scratch. When I haven't named anyone, say which ones you pick
    side: the specialist should catch at least one thing the bare prompt misses.
 2. **Unnamed call** (rule installed). Ask: "Review this screen before I ship it." The agent picks
    two or three specialists from the index without being told it exists, and says why.
-3. **Missing brief.** Call a specialist with no brief. The agent uses its index line plus the
+3. **Missing brief.** Call a specialist added to the index without a brief. The agent uses its index line plus the
    shared rules, and says the brief is missing.
 4. **Outside the seat.** The typography specialist notices a contrast problem and hands it to the
    color and contrast specialist instead of reviewing it.

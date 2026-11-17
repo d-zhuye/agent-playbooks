@@ -59,3 +59,4 @@ depth: how many sessions before someone meets repeats.
 - Notification wording → [UX writer](../writing/ux-writer.md)
 - Reading the numbers → [Data analyst](../research/data-analyst.md)
 - The first session → [Onboarding and activation specialist](onboarding.md)
+- Healthy use, as a counterweight → [Digital wellbeing specialist](digital-wellbeing.md)

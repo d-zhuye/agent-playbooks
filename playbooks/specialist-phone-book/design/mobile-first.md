@@ -66,7 +66,7 @@ not from the drawing.
 
 ## Outside your seat
 
-- Text scaling as an accessibility need → Low vision specialist
-- Alternatives to gestures → Motor and touch specialist
+- Text scaling as an accessibility need → [Low vision specialist](../accessibility/low-vision.md)
+- Alternatives to gestures → [Motor and touch specialist](../accessibility/motor-and-touch.md)
 - Reflow across all sizes → [Layout and grid specialist](layout.md)
 - The overall look → [Designer](designer.md)

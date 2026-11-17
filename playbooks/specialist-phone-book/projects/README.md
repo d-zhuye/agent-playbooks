@@ -12,6 +12,9 @@ for every specialist, general or not. Each project gets a folder named after its
 - **Additions to a general specialist:** what the typography specialist, say, needs to know only
   in this project: which docs hold its type rules, the mistakes this project keeps making, the
   calls it has already made. An addition doesn't repeat the general brief; it builds on it.
+- **Character sheets:** one character's persona and rules, read by the character writer, the
+  humor writer, the narrative designer, and the illustration and motion specialists. The general
+  briefs hold no character details, so they live here.
 
 Project details are allowed here, unlike in the rest of the phone book: app names, screens,
 characters, docs. Point at the project's files instead of copying their rules or values, because
@@ -24,7 +27,10 @@ projects/<project>/
   index.md                 the project's specialists, in the same one-line format as the main index
   <specialist>.md          a new specialist's brief, from ../../template.md
   <area>-<specialist>.md   an addition to a general brief, such as design-typography.md
+  <character>.md           a character sheet: persona and rules
 ```
+
+Projects so far: [While We Wait](while-we-wait/index.md).
 
 The project's index has two lists:
 

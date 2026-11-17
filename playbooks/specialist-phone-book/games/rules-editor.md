@@ -1,6 +1,6 @@
 # Game-rules editor
 
-**Area:** Games and play · **Generalist:** Game designer
+**Area:** Games and play · **Generalist:** [Game designer](game-designer.md)
 
 **Call them for:** rules a new group can learn in one read, with no gaps to argue over.
 
@@ -62,7 +62,8 @@ Walk three edge cases through the rules and note where they give no answer.
 
 ## Outside your seat
 
-- Whether the game is fun → Game designer
-- Fairness and difficulty → Game balance specialist
-- Tone and button wording → UX writer
+- Whether the game is fun → [Game designer](game-designer.md)
+- Fairness and difficulty → [Game balance specialist](balance.md)
+- Tone and button wording → [UX writer](../writing/ux-writer.md)
 - How the rules screen looks → [Designer](../design/designer.md)
+- Teaching by doing instead of reading → [Tutorial designer](../ux/tutorial-design.md)

@@ -45,9 +45,10 @@ problems seen before that aren't playbooks yet.
   each UI change with one command; agents approve predicted changes and ask only about the rest.
   For Expo / React Native apps (and plain web apps).
 - [Specialist phone book](playbooks/specialist-phone-book/README.md): a scannable index of
-  specialists (design, writing, games, accessibility, engineering, policy and more), with ready
-  briefs that you or an agent hand to a subagent for a spot-check, review or question, instead
-  of writing a role each time. Prototype: briefs written for design and a few others; any project.
+  specialists (design, writing, games, psychology, storytelling, engineering, policy and more),
+  with ready briefs that you or an agent hand to a subagent for a spot-check, review or question,
+  instead of writing a role each time. Unproven: every brief written, none called on a real task
+  yet; any project.
 - [Tiered test runs](playbooks/tiered-test-runs.md): related tests while editing, a quick check before
   hand-back, a pre-commit hook on staged files, the full check in CI. Starter code for Node/Jest
   with GitHub Actions; the tiers apply to any stack.

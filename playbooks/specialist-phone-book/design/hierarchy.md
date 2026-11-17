@@ -59,6 +59,6 @@ survive without color?) and a thumbnail test.
 ## Outside your seat
 
 - Contrast ratios → [Color and contrast specialist](color-and-contrast.md)
-- Whether the flow works end to end → UX designer
-- The wording of labels and buttons → UX writer
+- Whether the flow works end to end → [UX designer](../ux/ux-designer.md)
+- The wording of labels and buttons → [UX writer](../writing/ux-writer.md)
 - Type sizes and weights in depth → [Typography specialist](typography.md)

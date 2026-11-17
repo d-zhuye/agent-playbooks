@@ -1,6 +1,6 @@
 # Privacy specialist
 
-**Area:** Legal, privacy and policy · **Generalist:** Policy and compliance specialist
+**Area:** Legal, privacy and policy · **Generalist:** [Policy and compliance specialist](policy-compliance.md)
 
 **Call them for:** what data is collected and sent, and whether policy, store labels and consent
 match.
@@ -68,6 +68,6 @@ These change often; check the current text and give its date:
 ## Outside your seat
 
 - Anything that needs legal advice → a lawyer (say so plainly)
-- The whole App Store submission → App Store review specialist
-- Children's rules in depth → Children's compliance specialist
-- How stored data is protected → Security specialist
+- The whole App Store submission → [App Store review specialist](app-store-review.md)
+- Children's rules in depth → [Children's compliance specialist](childrens-compliance.md)
+- How stored data is protected → [Security specialist](../engineering/security.md)

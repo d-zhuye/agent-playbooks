@@ -61,6 +61,6 @@ check, and a look on a real phone at full brightness and low brightness.
 
 ## Outside your seat
 
-- Low vision beyond color (zoom, text size) → Low vision specialist
+- Low vision beyond color (zoom, text size) → [Low vision specialist](../accessibility/low-vision.md)
 - What gets emphasis → [Visual hierarchy specialist](hierarchy.md)
-- Whether the palette fits the brand → Brand designer
+- Whether the palette fits the brand → [Brand designer](brand.md)

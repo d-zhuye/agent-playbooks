@@ -72,5 +72,5 @@ Call a specialist when one problem needs depth:
 - Contrast, palette, dark mode → [Color and contrast specialist](color-and-contrast.md)
 - Grids, alignment, reflow → [Layout and grid specialist](layout.md)
 - Small screens and thumbs → [Mobile-first designer](mobile-first.md)
-- Whether people can finish the task → UX designer
-- The words themselves → UX writer
+- Whether people can finish the task → [UX designer](../ux/ux-designer.md)
+- The words themselves → [UX writer](../writing/ux-writer.md)
