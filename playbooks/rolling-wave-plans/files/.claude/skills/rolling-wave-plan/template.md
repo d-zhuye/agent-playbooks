@@ -4,6 +4,7 @@ Design: <path to the agreed design> · Branch: <branch> · Base: <short hash of 
 
 `[x]` done · `[~]` in progress · `[ ]` to do · `[-]` dropped (reason in the Log)
 Stages go rough → next → detailed → done, one detailed at a time.
+Done stages record `Commit: <hash>` beneath their heading.
 **Stop** (rare): what is below it waits for the owner's answer · **Look:** the owner checks when free, and work goes on
 
 ## Intent
@@ -38,6 +39,11 @@ Goal: <one sentence>
 - <one line>
 - [ ] **Stop:** <the owner's decision, such as merge or publish>
 - <the one-way step the Stop guards>
+
+## Final review
+
+- [ ] Independent review of the full build against the design and Intent, including missing requirements and likely failure cases
+- Reviewer and result: <who reviewed, findings and their resolution; deferred items go in the Log>
 
 ## Log
 

@@ -10,7 +10,9 @@ commander's intent: where the design is silent or a route fails, decide from Int
 (files, names, order, tools) is yours to choose and to change.
 
 A stage is a slice of the build that ends on something that runs: the owner could look at it, or
-a check could confirm it.
+a check could confirm it. Prefer thin end-to-end stages, each connecting the layers needed for
+one observable behavior and its checks. Build the smallest complete path first, then widen it.
+A necessary preparatory stage names the behavior it enables and has its own check.
 
 ## 1. Write the plan
 
@@ -62,26 +64,49 @@ Done when every outcome bullet is `[x]`, `[-]` or moved, each drop and move with
 
 Commit the stage's work as one commit: one sentence saying what changed, then a body saying why,
 in the repo's style. The owner wants these commits made without asking; push only when the owner
-asks. Then change the stage's heading from `· detailed` to `· done`, and show its Look (see
-Gates). Send the owner done, next and left, the stage's commit, and its Log lines when it has
-any. Then roll the wave for the next stage (step 2).
+asks. Record its hash as `Commit: <hash>` beneath the stage heading, change the heading from
+`· detailed` to `· done`, and show its Look (see Gates). Send the owner done, next and left,
+the stage's commit, and its Log lines when it has any. Then roll the wave for the next stage
+(step 2).
 
 ## 5. Finish
 
 When the last stage closes, or on reaching a Stop that guards the merge if that comes first,
-squash the build's stage commits (`git log --oneline <Base>..HEAD`) into the fewest commits that
-each read as one change: seven stage commits end as one or two. Write each message in the repo's
-style. Start from a clean `git status`:
+finish the review, history and checks below before asking at the Stop.
+
+**Independent review.** Have a fresh-context subagent or another reviewer who did not implement
+the build inspect the full diff from Base against the agreed design and Intent. Give them the
+design, plan, Log and check results. Ask for missing requirements and likely failure cases,
+including behavior the outcome bullets did not test, as well as defects in the changes.
+Fix material findings, verify the fixes, and have the changed parts reviewed again. Log and
+report deferred minor findings. Record the reviewer and result in the plan's Final review
+section; tick it only after the review and fixes are complete. If an independent reviewer is
+unavailable, do the remaining work and report that review is still outstanding before merge.
+
+**Squash only owned, unpublished history.** Start from a clean `git status`. Compare
+`git log --oneline <Base>..HEAD` with the plan's recorded commit hashes. Refresh relevant remote
+refs and check which commits have been published, including on other branches or tags; a missing
+upstream does not establish that a commit is unpublished.
+
+Choose only the contiguous, linear tail ending at HEAD whose commits all belong to this build
+and are verified unpublished. Its parent is **Squash base**. Keep other sessions' commits,
+published commits and merges intact, even when earlier build commits must stay unsquashed.
+The author name alone does not establish ownership. If ownership or publication is uncertain,
+the checkout is shared with another active session, or fewer than two eligible commits remain,
+keep the history and Log why. If HEAD moves, inspect the range again before rewriting.
+
+Squash that tail into the fewest commits that each read as one change, using the repo's message
+style. For a single commit:
 
 ```bash
-before=$(git rev-parse HEAD)
-git reset --soft <Base> && git commit -m "<what changed>" -m "<why>"   # one commit
-# More than one: git reset <Base>, add each part's paths and commit it, git add -A for the last.
-git diff --quiet "$before" HEAD && echo kept   # the squash kept every change
+squash_before=$(git rev-parse HEAD)
+git reset --soft <Squash-base> && git commit -m "<what changed>" -m "<why>"
+git diff --quiet "$squash_before" HEAD &&
+  git merge-base --is-ancestor <Squash-base> HEAD && echo kept
 ```
 
-If the branch has been pushed, use `@{u}` in place of Base, so pushed commits stay as they are.
-The squash is done when the check prints `kept`. Then:
+The squash is done when the check prints `kept`: the tree is unchanged and the protected history
+remains ancestral. Log the replacement hashes and any history left intact. Then:
 
 - Report each End state item against the real result, one line each.
 - List each Look the owner has yet to answer.

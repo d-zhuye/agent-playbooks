@@ -55,6 +55,7 @@ Each build gets one plan file, copied from the template into a git-ignored folde
 | Header | The design's path, the branch, the Base commit, the start date |
 | Intent | Purpose, End state, Fixed (promises no route may break), Open (unknowns the build answers) |
 | Stages | Each goes `rough` (one line) → `next` (outcome bullets) → `detailed` (goal, bullets, risk, gates) → `done` |
+| Final review | Independent reviewer, findings and their resolution |
 | Log | Every change of route or plan, with its reason |
 | Owner tasks | What only the owner can do, and which bullet needs it |
 
@@ -64,11 +65,14 @@ The loop, from [SKILL.md](files/.claude/skills/rolling-wave-plan/SKILL.md):
    stage 1. Start stage 1 in the same turn.
 2. **Roll the wave** at the start of each stage. Detail this stage, list the next one's outcomes,
    and rewrite later stages to fit what the build taught. Log each change.
-3. **Build the stage.** The route (files, names, order, tools) is the agent's choice. A bullet is
-   ticked only after its check has passed.
-4. **Close the stage.** Make one commit, without asking. Tell the owner what's done, next and left.
-5. **Finish.** Squash the stage commits into one or two, check that the squash kept every
-   change, and report the End state item by item.
+3. **Build the stage.** Prefer a thin end-to-end behavior through the needed layers. The route
+   (files, names, order, tools) is the agent's choice. A bullet is ticked only after its check
+   has passed.
+4. **Close the stage.** Make one commit, record its hash in the plan, and tell the owner what's
+   done, next and left.
+5. **Finish.** Get an independent review against the design, fix material findings, and squash
+   only a verified tail of this build's unpublished commits. Check that the tree and protected
+   history are preserved, and report the End state item by item.
 
 Gates are tick-box lines, so the plan records when each was passed:
 
@@ -127,9 +131,11 @@ going on.
 1. **Unprompted start.** With the rule installed, agree a small design in brainstorming and say
    "build it". Without being told about the skill, the agent writes the plan, with Base and Intent
    filled, every stage on one line, stage 1 detailed and stage 2 next. It gives the path and stage
-   names and starts stage 1 in the same turn. No writing-plans plan appears.
+   names and starts stage 1 in the same turn. No writing-plans plan appears. Stages prefer thin
+   end-to-end behaviors, with the smallest complete path working first; a necessary preparatory
+   stage names what it enables and has its own check.
 2. **Stage close.** After stage 1:
-   - the stage has one commit and its heading reads `· done`;
+   - the stage has one commit, its hash is recorded, and its heading reads `· done`;
    - stage 2 is detailed and stage 3 is next;
    - each change has a Log line;
    - any Look is marked `[~]` shown with the date, and work goes on.
@@ -138,12 +144,21 @@ going on.
 4. **Resume.** Start a fresh session mid-stage and say "carry on". The agent reads the plan,
    checks `git log`, and goes on without redoing ticked bullets.
 5. **Finish.** By the time it reaches the merge Stop, the agent has:
-   - squashed the commits: the check printed `kept`, and `git log <Base>..HEAD` shows one or two
-     commits;
+   - had a fresh reviewer check the full build against the design and Intent, including
+     missing requirements and likely failure cases; material fixes were checked and reviewed;
+   - recorded the reviewer and result in Final review, with deferred minor findings in the Log;
+   - squashed only a verified, contiguous tail of owned unpublished commits: the check printed
+     `kept`, or the Log explains why history stayed intact;
    - reported each End state item;
    - listed the Looks still unanswered.
 
-   Then it asks with a recommendation and ends its turn.
+   Then it asks with a recommendation and ends its turn. An unavailable independent reviewer
+   remains an outstanding requirement before merge.
+6. **Mixed history.** In a scratch repo, interleave another session's commit between stage
+   commits, using the same author. Only the eligible tail is squashed; the other session's hash
+   remains ancestral. Repeat with a published commit on another remote branch and no upstream: a
+   verified remote ref protects that commit. If publication cannot be verified, or the checkout
+   has another active session, history stays intact and the reason is logged.
 
 ## 7. Gotchas
 
@@ -160,6 +175,14 @@ Seen while running the forerunner outline and reviewing the skill:
   the end.
 - **Agent shells can't drive `git rebase -i`.** The squash uses `git reset --soft`, then
   `git diff` checks that the tree didn't change.
+- **Another session's commit was inside the build range.** An unchanged tree after squash
+  does not prove ownership was preserved. Recorded stage hashes identify the build's work; only
+  its verified unpublished linear tail may be rewritten. Published commits and other sessions'
+  commits remain intact, including when the author matches or no upstream is configured.
+- **Layer checks can delay integration.** Prefer the smallest complete behavior across the
+  needed layers first, then widen it.
+- **Outcome checks can miss requirements.** A fresh final reviewer checks the full design and
+  likely failure cases, including behavior no outcome bullet covered.
 - **The plan isn't in other worktrees.** Because it's git-ignored, a subagent in another worktree
   needs the plan's absolute path in its brief.
 
