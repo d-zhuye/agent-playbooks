@@ -52,6 +52,7 @@ A five-second test. Conversion by traffic source. Page speed on a phone.
 
 ## Outside your seat
 
+- The first screen in depth → [Website hero specialist](website-hero.md)
 - The words → [Conversion copywriter](../writing/copywriter.md)
 - Search ranking → [SEO specialist](seo.md)
 - Speed → [Web front-end specialist](../platforms/web-front-end.md)

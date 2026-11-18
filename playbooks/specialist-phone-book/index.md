@@ -177,6 +177,7 @@ Specific characters' personas and rules live in each project's folder under
 - [Store creative specialist](marketing/store-creative.md): screenshots, icon and preview video that win the tap.
 - [SEO specialist](marketing/seo.md): web pages that rank for what people search.
 - [Landing page specialist](marketing/landing-pages.md): pages that turn visitors into downloads or sign-ups.
+- [Website hero specialist](marketing/website-hero.md): the first screen of a website, what visitors understand and decide before they scroll, on phone and desktop; reviews, writes and revises heroes.
 - [Launch planner](marketing/launch.md): launch steps, channels and timing, in order.
 - [Press kit writer](marketing/press-kit.md): the press page, fact sheet, images and pitch a journalist needs to cover the product.
 - [Social and community specialist](marketing/social-community.md): posts, communities and word of mouth.
