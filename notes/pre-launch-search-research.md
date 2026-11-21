@@ -8,3 +8,4 @@
 - 2026-11-13 · agent-playbooks · skipped · Cross-referenced from the App Store stakeholder journal; no search audit ran because this task records a conversation rather than prepares a specific app listing.
 - 2026-11-15 · while-we-wait · worked · The October run's web page plan (titles, meta descriptions, the kids-wording decision) became the new whilewewait.app site's landing title and page list without new research; a Charades page was added because the plan predated that game.
 - 2026-11-15 · while-we-wait · changed · Ran a web-only pass (seeds, collect, one web search per candidate) to pick six blog topics and a Charades page title, skipping Apple's numbers and the store steps since only web pages were in scope; about 20 minutes.
+- 2026-11-20 · while-we-wait · worked · Paired US autocomplete with separate web searches for the same phrase with and without “app” to distinguish an immediate-play guide from an app recommendation on launch day.
