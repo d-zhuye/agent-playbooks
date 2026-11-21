@@ -2,3 +2,35 @@
 - 2026-10-16 · while-we-wait · worked · The Get to Know You presentation change used related UI tests while editing and check:quick before hand-back, without running foundation-only checks.
 - 2026-10-16 · while-we-wait · worked · The conversation-bubble device fix reproduced its overflow bug in a targeted UI test, then passed related tests and check:quick without running foundation-only checks.
 - 2026-10-31 · while-we-wait · worked · Sports content updates used related tests while editing and a final quick check, with content validation after each accepted round.
+- 2026-11-03 · while-we-wait · worked · Illustrated onboarding used related UI/asset tests, reproduced a modest-text-size overlap before fixing it, and passed check:quick with 299 tests without foundation-only checks.
+- 2026-11-03 · while-we-wait · worked · The onboarding typography and padding follow-up passed related UI tests and check:quick with 299 tests, keeping this presentation-only adjustment out of foundation checks.
+- 2026-11-05 · while-we-wait · worked · Trivia portrait artwork integration used related tests for aspect-ratio support, then check:quick passed 346 tests without foundation-only checks.
+- 2026-11-05 · while-we-wait · worked · New Would You Rather and Most Likely To illustration packs passed direct PNG/provenance checks and check:quick with 346 tests; app integration and web baselines stayed outside this generation task.
+- 2026-11-05 · while-we-wait · worked · Shared park artwork integration expanded portrait coverage to both remaining games, passed 203 related tests and 350 tests in check:quick, without foundation-only checks.
+- 2026-11-05 · while-we-wait · worked · The standalone Rive prototype passed check:quick; related app tests were correctly empty and no full app suite was needed.
+- 2026-11-06 · while-we-wait · worked · Pear animation fixes used failing greeting regressions and related tests, then check:quick passed typecheck, lint and 249 tests without foundation-only checks.
+- 2026-11-06 · while-we-wait · worked · Scoped monster animation refinements used related tests while editing and check:quick before hand-back; all 252 relevant tests passed.
+- 2026-11-06 · while-we-wait · worked · A Home animation performance review used 389 related tests and a pinned operation-count replay; native iPhone timing stayed explicitly unmeasured and no foundation-only checks were needed.
+- 2026-11-06 · while-we-wait · worked · A measurement-first animation handoff changed documents only and passed check:quick with 313 affected tests; native measurement and implementation remain explicit receiving-agent milestones.
+- 2026-11-06 · while-we-wait · worked · Archiving the character-animation performance case verified complete-file hashes, journal links and the pinned probe replay; the source journal-reference fix passed check:quick with 314 affected tests.
+- 2026-11-07 · while-we-wait · worked · Foreground power audit used targeted lifecycle/audio/store suites and the quick hand-back check without a full build or coverage run.
+- 2026-11-08 · while-we-wait · skipped · Owner explicitly deferred tests, lint, typecheck and commit hooks during dealer iteration commits; required validation remains pending their go-ahead.
+
+- 2026-11-08 · while-we-wait · worked · A dealer hat artwork repair used the 97 related tests while editing and check:quick before hand-back; no foundation checks were needed.
+
+- 2026-11-08 · while-we-wait · worked · Dealer hat reconstruction used the 96 related tests while iterating and check:quick before handoff; no foundation change required the full logic suite.
+- 2026-11-08 · while-we-wait · worked · Café scenery integration used 107 related UI/asset tests and the quick hand-back check; no foundation changes needed the full logic suite.
+- 2026-11-08 · while-we-wait · worked · A two-line navigation style change used 53 related UI tests and the quick check, with screenshot comparisons covering the visual result instead of new style-prop tests.
+- 2026-11-09 · while-we-wait · worked · Used the quick check before committing the Skia dealer changes and the full check for the new native dependency.
+- 2026-11-09 · while-we-wait · worked · Lowering the dealer shoulders used focused geometry regressions and the strict arm report; all-frame elbow tests caught a pop missed by wrist-only measurements, and a real-Skia pixel test caught shading erasing the outline.
+- 2026-11-09 · while-we-wait · worked · Related tests covered the remembered dealer identity while editing, followed by the quick check and full foundation checks because the saved snapshot changed; the Expo compatibility check separately flagged seven existing outdated patch versions.
+- 2026-11-10 · while-we-wait · worked · Updated existing dialogue/navigation tests, used a focused browser red-green check for clipped answers, then ran the quick tier (882 tests) without an unnecessary foundation check for this copy and presentation change.
+- 2026-11-10 · while-we-wait · worked · Focused native regressions caught conversation-entry resizing and repeated store-notice announcements; the quick tier passed 886 tests without a foundation run for this presentation-only change.
+- 2026-11-10 · while-we-wait · worked · Related tests covered the title-lime canvas migration and redraw; check:quick passed 889 tests without a foundation run. Fresh worktrees also need Husky’s generated .husky/_ files before committing.
+- 2026-11-10 · while-we-wait · worked · Doubling the invitation chaser stroke used quick checks and the web layout suite; subprocess helpers needed an unsandboxed rerun.
+- 2026-11-10 · while-we-wait · worked · Related tests and the quick check covered the isolated footer fix without rerunning the full logic and content suite.
+- 2026-11-10 · while-we-wait · worked · The purchase-caption change passed related tests and the quick check with enlarged-text coverage, without a full logic or content run.
+- 2026-11-10 · while-we-wait · worked · Related tests exposed a shared renderer API mismatch during three-branch integration, and the combined quick check passed 641 tests before the broader integration checks.
+- 2026-11-10 · while-we-wait · worked · The Home Shop icon used existing navigation and large-text coverage: 175 related tests and the 268-test quick tier passed, plus 53 bundled-image checks for the lossless WebP copy, without a foundation run.
+- 2026-11-12 · while-we-wait · worked · Trivia import passed content and docs checks; quick checks exposed a pre-existing dealer source-hash mismatch while 803 tests passed.
+- 2026-11-15 · while-we-wait · worked · Related tests and check:quick covered the app side of a website branch; the new static-site build got its own node:test tier (site:test) inside npm run check rather than a separate CI job.

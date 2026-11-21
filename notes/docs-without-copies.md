@@ -6,3 +6,8 @@
 - 2026-10-31 · while-we-wait · worked · The Sports expansion keeps playable wording in JSON, dated vetting decisions in an audit, and the ledger pointing to validation rather than copied live counts.
 - 2026-11-01 · while-we-wait · worked · Added the requested riddle batch directly to the playable JSON and used content checks for live counts, without creating a duplicate review file.
 - 2026-11-01 · REVIEW · no change; 6 of 7 notes worked, no issues reported
+- 2026-11-05 · while-we-wait · worked · Completing the monster guide migration replaced stale duplicated illustration counts with links to guide definitions and source artwork packs.
+- 2026-11-07 · while-we-wait · worked · Power audit points to runtime policy code and labels frozen workload evidence separately from unmeasured device energy.
+- 2026-11-09 · while-we-wait · worked · Documented the dealer introduction and local identity flag by intent and source references, keeping the exact dialogue and name in the presentation code.
+- 2026-11-10 · while-we-wait · worked · Recorded the owner-approved conversational voice as intent and kept all exact dialogue in the presentation module while updating the existing copy expectations.
+- 2026-11-12 · while-we-wait · worked · Copy and counts stayed in code, but it does not cover dated plans, specs and reviews, which piled up to ~60,000 lines; see journal/stale-docs-pile-up-and-mislead-agents.md.

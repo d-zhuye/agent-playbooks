@@ -7,6 +7,14 @@ Each playbook below says what it does, why to use it, and how to install it. Age
 index, then open the playbooks that fit the project. Also search [journal/](journal/) for
 problems seen before that aren't playbooks yet.
 
+- [App Store review readiness](playbooks/app-store-review-readiness.md): an agent takes the App Store
+  reviewer's role and checks the whole submission (app, product page, purchases, review notes)
+  with 34 fixed checks plus a sweep of every App Review Guideline, then reports what would be
+  rejected. Unproven; iOS apps before submitting for review.
+- [App Store screenshot review](playbooks/app-store-screenshot-review.md): a prompt template for a
+  second agent session to review finished App Store screenshots: a cold look at search size,
+  14 role passes, then a challenge of the designer's reasoning, ending in one report. Unproven;
+  iOS apps before uploading screenshots.
 - [App Store upload readiness](playbooks/app-store-upload-readiness.md): 14 pass/fail checks before an App Store
   Connect upload (current Xcode/SDK minimum, icon, privacy manifest, Info.plist, signing, binary
   contents) and a short report format. iOS apps; Expo / EAS commands included.
@@ -27,9 +35,21 @@ problems seen before that aren't playbooks yet.
   search for the product, from free autocomplete and App Store competition data, ending in
   proposed App Store, Google Play and web page text plus flagged conflicts with copy rules. Apps
   and sites before launch; Node scripts included.
+- [Rolling-wave plans](playbooks/rolling-wave-plans/README.md): a skill that runs a build from an
+  agreed design without a full implementation plan: the current stage in detail, the next as
+  outcomes, later ones as one line each, with a commander's-intent section for the calls the
+  design leaves open. Owner Stops are rare, Looks never hold up work, every change of route gets
+  a Log line, and stages prefer thin end-to-end behaviors. A fresh final review checks design
+  coverage; only the build's verified unpublished tail is squashed. Unproven; any project where
+  agents build from a written design.
 - [Screenshot checks](playbooks/screenshot-checks.md): approved screenshots of every screen, compared after
   each UI change with one command; agents approve predicted changes and ask only about the rest.
   For Expo / React Native apps (and plain web apps).
+- [Specialist phone book](playbooks/specialist-phone-book/README.md): a scannable index of
+  specialists (design, writing, games, psychology, storytelling, user advocates, engineering,
+  policy and more), with ready briefs that you or an agent hand to a subagent for a spot-check,
+  review or question, instead of writing a role each time. Unproven: every brief written, none
+  called on a real task yet; any project.
 - [Tiered test runs](playbooks/tiered-test-runs.md): related tests while editing, a quick check before
   hand-back, a pre-commit hook on staged files, the full check in CI. Starter code for Node/Jest
   with GitHub Actions; the tiers apply to any stack.

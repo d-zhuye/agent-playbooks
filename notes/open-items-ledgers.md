@@ -1,0 +1,1 @@
+- 2026-11-07 · while-we-wait · skipped · Kept the focused power investigation in the existing dated review convention; a broader ledger migration was outside this source audit.

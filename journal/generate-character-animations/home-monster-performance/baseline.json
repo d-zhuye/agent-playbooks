@@ -1,0 +1,207 @@
+{
+  "ref": "0550901321fea7261c539a969c5bdb2b1aa1e4f9",
+  "runtime": "v24.12.0",
+  "platform": "linux",
+  "cpu": "Intel(R) Core(TM) Ultra 9 285H",
+  "sourceSha256": "63fd45a2792bede36322b92af80681b1769d18a0b0e9aba2ee26bf4c04d98647",
+  "counts": [
+    {
+      "name": "pear",
+      "jsonBytes": 124282,
+      "mountedGroups": 124,
+      "mountedPaths": 54,
+      "animatedGroups": 35,
+      "channels": 52,
+      "storyChannels": 52,
+      "loopChannels": 52,
+      "fixedLoopChannels": 27,
+      "keys": 3388
+    },
+    {
+      "name": "adult",
+      "jsonBytes": 200835,
+      "mountedGroups": 100,
+      "mountedPaths": 56,
+      "animatedGroups": 40,
+      "channels": 60,
+      "storyChannels": 60,
+      "loopChannels": 60,
+      "fixedLoopChannels": 39,
+      "keys": 5922
+    },
+    {
+      "name": "lime",
+      "jsonBytes": 164921,
+      "mountedGroups": 116,
+      "mountedPaths": 60,
+      "animatedGroups": 33,
+      "channels": 49,
+      "storyChannels": 49,
+      "loopChannels": 49,
+      "fixedLoopChannels": 25,
+      "keys": 4998
+    },
+    {
+      "name": "teen",
+      "jsonBytes": 213326,
+      "mountedGroups": 212,
+      "mountedPaths": 82,
+      "animatedGroups": 50,
+      "channels": 64,
+      "storyChannels": 64,
+      "loopChannels": 64,
+      "fixedLoopChannels": 33,
+      "keys": 7962
+    }
+  ],
+  "snapshots": [
+    {
+      "clock": 0,
+      "visibleAnimatedGroups": [
+        0,
+        16,
+        14,
+        0
+      ],
+      "visiblePaths": [
+        0,
+        20,
+        18,
+        0
+      ]
+    },
+    {
+      "clock": 120,
+      "visibleAnimatedGroups": [
+        0,
+        16,
+        14,
+        0
+      ],
+      "visiblePaths": [
+        0,
+        20,
+        18,
+        0
+      ]
+    },
+    {
+      "clock": 500,
+      "visibleAnimatedGroups": [
+        17,
+        17,
+        13,
+        0
+      ],
+      "visiblePaths": [
+        20,
+        22,
+        22,
+        0
+      ]
+    },
+    {
+      "clock": 800,
+      "visibleAnimatedGroups": [
+        17,
+        17,
+        13,
+        17
+      ],
+      "visiblePaths": [
+        22,
+        22,
+        22,
+        28
+      ]
+    },
+    {
+      "clock": 1100,
+      "visibleAnimatedGroups": [
+        17,
+        17,
+        13,
+        27
+      ],
+      "visiblePaths": [
+        20,
+        20,
+        18,
+        35
+      ]
+    },
+    {
+      "clock": 1500,
+      "visibleAnimatedGroups": [
+        17,
+        16,
+        12,
+        27
+      ],
+      "visiblePaths": [
+        21,
+        20,
+        19,
+        36
+      ]
+    }
+  ],
+  "phases": [
+    {
+      "begin": 0,
+      "end": 1066,
+      "averagesPerFrame": {
+        "animated": 158,
+        "visibleAnimated": 48.53,
+        "changed": 20.04,
+        "visibleChanged": 14.34,
+        "sampled": 223.92,
+        "boundary": 1.08,
+        "cubic": 16.71,
+        "constantCubic": 0
+      }
+    },
+    {
+      "begin": 1066,
+      "end": 1966,
+      "averagesPerFrame": {
+        "animated": 158,
+        "visibleAnimated": 73.7,
+        "changed": 11.7,
+        "visibleChanged": 6.42,
+        "sampled": 224.75,
+        "boundary": 0.25,
+        "cubic": 16.09,
+        "constantCubic": 0
+      }
+    }
+  ],
+  "stillMarkupBytes": 110855,
+  "stillGreetingMarkupBytes": [
+    110029,
+    110857,
+    110911,
+    109835
+  ],
+  "parityChecks": 1035000,
+  "benchmarkResults": {
+    "story": {
+      "medianMicrosecondsPerFourMonsterTick": 13.52,
+      "min": 6.46,
+      "max": 13.65,
+      "checksum": 65017495.88
+    },
+    "loop": {
+      "medianMicrosecondsPerFourMonsterTick": 10.26,
+      "min": 4.84,
+      "max": 10.88,
+      "checksum": 74360000
+    },
+    "greetings": {
+      "medianMicrosecondsPerFourMonsterTick": 8.73,
+      "min": 6.73,
+      "max": 14.17,
+      "checksum": 74360000
+    }
+  }
+}
