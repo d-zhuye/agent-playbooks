@@ -56,4 +56,5 @@ Could a journalist write a paragraph about the product from the press page alone
 - Images → [Store creative specialist](store-creative.md)
 - Timing → [Launch planner](launch.md)
 - Claims → [Fact checker](../writing/fact-checker.md)
+- The About page, which shares the kit's facts but not its prose → [About page specialist](about-page.md)
 - Creators → [Influencer outreach specialist](influencer-outreach.md)

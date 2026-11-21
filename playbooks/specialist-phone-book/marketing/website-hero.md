@@ -176,6 +176,7 @@ adds it to this list so later calls can choose from it.
 
 - Wording beyond the first screen, and voice → [Conversion copywriter](../writing/copywriter.md)
 - The rest of the page → [Landing page specialist](landing-pages.md)
+- Who's behind it, beyond a line in the first screen → [About page specialist](about-page.md)
 - Search titles, snippets, ranking → [SEO specialist](seo.md)
 - Making it fast in code → [Web front-end specialist](../platforms/web-front-end.md)
 - Contrast, screen readers, motion sensitivity → [Accessibility specialist](../accessibility/accessibility.md)

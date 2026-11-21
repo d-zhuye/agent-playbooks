@@ -58,4 +58,5 @@ claim against the product.
 - Search keywords → [App store optimization specialist](../marketing/aso.md)
 - Who to aim at → [Positioning strategist](../product/positioning.md)
 - Whether claims are true → [Fact checker](fact-checker.md)
+- The About page and the owner's story → [About page specialist](../marketing/about-page.md)
 - The images → [Store creative specialist](../marketing/store-creative.md)
