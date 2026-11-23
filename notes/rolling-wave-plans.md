@@ -17,3 +17,4 @@
 - 2026-11-22 · while-we-wait · changed · Kept the Snow Day rolling-wave plan inline and stopped before stage one at the owner’s request; the first slice pairs the production art with the working switch so compact copy fit can be checked on Home.
 - 2026-11-22 · while-we-wait · worked · The Snow Day build used the selected mockup as Intent, checked compact return copy in the first slice, and handed off the native-only VoiceOver and motion checks through the pilot checklist.
 - 2026-11-22 · while-we-wait · worked · A short same-branch Home snowfall build used an independent review to catch a React Native Web driver difference that static snapshots missed.
+- 2026-11-22 · while-we-wait · changed · Kept the snow-globe tile plan inline at the owner's request; the squash was skipped because another session committed content between this build's two stage commits on the same branch, leaving no contiguous tail to squash.
