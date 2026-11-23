@@ -47,3 +47,4 @@
 - 2026-11-12 · while-we-wait · worked · Phone screenshot checks caught compact card overflow from longer Get to Know You instructions; shrinking its flower restored clearance.
 - 2026-11-15 · while-we-wait · changed · A new Settings row below the captured area showed "Nothing changed" in --screens settings, so the row was proven by unit tests instead; the full 380-screen run stayed clean.
 - 2026-11-15 · while-we-wait · changed · For the static website, phone-width Playwright screenshots of a few built pages stood in for the app's web:check, which only covers app screens.
+- 2026-11-22 · while-we-wait · worked · Comparing both states of the Snow Day switch on iPhone SE and iPhone 15 showed changes confined to the tile, while the lower Home and Charades introduction screenshots stayed clean.
