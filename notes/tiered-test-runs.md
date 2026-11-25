@@ -36,3 +36,4 @@
 - 2026-11-15 · while-we-wait · worked · Related tests and check:quick covered the app side of a website branch; the new static-site build got its own node:test tier (site:test) inside npm run check rather than a separate CI job.
 - 2026-11-22 · while-we-wait · worked · The quick tier passed while 20 content-pipeline tests were failing, because they read a JSON file through the file system, which related-test selection can't see; the full check before hand-back caught it.
 - 2026-11-22 · while-we-wait · worked · The Christmas tile snowfall regression checks mounting and first-use cleanup through Home, with related suites during editing and the quick check before handoff.
+- 2026-11-25 · while-we-wait · worked · check:quick passed for eight stages while a catalog test (previewCheck.test.ts) failed, because it reads the screenshot catalog through a child process that related-test selection can't see; the full check at stage 10 caught it.
