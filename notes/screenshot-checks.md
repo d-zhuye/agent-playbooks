@@ -50,3 +50,4 @@
 - 2026-11-22 · while-we-wait · worked · Comparing both states of the Snow Day switch on iPhone SE and iPhone 15 showed changes confined to the tile, while the lower Home and Charades introduction screenshots stayed clean.
 - 2026-11-22 · while-we-wait · worked · Seasonal screenshots already use Reduce Motion, so a separate Playwright pass sampled snowfall over the tile edges and past the first cycle.
 - 2026-11-25 · while-we-wait · changed · Large-text screenshot runs needed layout checks that know the text size: at accessibility sizes actions sit at the end of a scrolling page, so checks scroll to them (DOM scrollIntoView, not Playwright's IfNeeded) and allow a card to scroll.
+- 2026-11-25 · while-we-wait-christmas-prompts · changed · The standard Riddles deck walk deals regular cards, so a separate walk turned on Christmas and checked all 49 seasonal reveals at each of the three phone sizes.

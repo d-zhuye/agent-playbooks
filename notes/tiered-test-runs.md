@@ -37,3 +37,4 @@
 - 2026-11-22 · while-we-wait · worked · The quick tier passed while 20 content-pipeline tests were failing, because they read a JSON file through the file system, which related-test selection can't see; the full check before hand-back caught it.
 - 2026-11-22 · while-we-wait · worked · The Christmas tile snowfall regression checks mounting and first-use cleanup through Home, with related suites during editing and the quick check before handoff.
 - 2026-11-25 · while-we-wait · worked · check:quick passed for eight stages while a catalog test (previewCheck.test.ts) failed, because it reads the screenshot catalog through a child process that related-test selection can't see; the full check at stage 10 caught it.
+- 2026-11-25 · while-we-wait-christmas-prompts · worked · The event content check passed directly, and rerunning the quick tier outside the sandbox cleared the content-pipeline subprocess failures with all 998 tests passing.
