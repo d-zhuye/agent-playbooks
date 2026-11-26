@@ -11,6 +11,7 @@
 - 2026-10-16 · while-we-wait · didn't · A star background passed web checks but nested percentage-positioned SVGs clustered on iPhone; replaced them with measured native views and a bounds/resizing regression test.
 - 2026-10-16 · while-we-wait · worked · Paper Vault review isolated 13 predicted play/guide screenshots; the free-deck walk passed at all three phone sizes, and localhost required the documented sandbox escalation.
 - 2026-10-16 · while-we-wait · worked · Reviewed and approved only the three predicted Categories active-screen changes after replacing its card with generated raster artwork.
+- 2026-11-01 · REVIEW · no change; 9 of 12 notes worked; the web-passes-but-iPhone-differs reports (safe-area, nested SVG) are 2 notes from one project, below the 3-note pattern bar
 - 2026-11-03 · while-we-wait · worked · Targeted onboarding previews caught intrinsic image clipping and description overlap; reviewed regular, SE, short and safe-area captures before approving only the expected screens.
 - 2026-11-03 · while-we-wait · worked · Smaller onboarding headings and extra iOS title clearance passed five targeted preview cases, including a new iPhone 13 Pro safe-area capture; only predicted onboarding screenshots were approved.
 - 2026-11-03 · while-we-wait · worked · Regenerated four onboarding illustrations; reviewed and approved only the five predicted onboarding screenshots, with no layout failures.
